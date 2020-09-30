@@ -1,0 +1,21 @@
+SID,DEVICE_SID,SOURCE_EQUIPMENT_UID,DETAIL_INFO,COLLECT_DATETIME,MESSAGE_ID,CREATE_DATETIME
+1,1,3507584,"[
+  {
+    ""FullPath"": ""C:\\\\Axeda"",
+    ""Size"": 71683840
+  },
+  {
+    ""FullPath"": ""C:\\\\Program Files\\\\FujiFilm\\\\RemoteService"",
+    ""Size"": 170008900
+  }
+]",2019-12-11T23:13:28Z,2ffd90c1-bbf7-4d95-9571-65f9524eeed0,2029-12-31T15:00:00Z
+2,2,3507585,"[
+  {
+    ""FullPath"": ""C:\\\\FujiFilm"",
+    ""Size"": 100
+  },
+  {
+    ""FullPath"": ""C:\\\\RemoteService"",
+    ""Size"": 200
+  }
+]",2019-12-11T23:13:28Z,2ffd90c1-bbf7-4d95-9571-65f9524eeed1,2029-12-31T15:00:00Z

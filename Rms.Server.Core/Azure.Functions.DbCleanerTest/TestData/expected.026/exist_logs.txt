@@ -1,0 +1,10 @@
+[CO_DBC_DBC_003] データの削除に失敗しました。（データ情報：Rms.Server.Core.Abstraction.Repositories.DtDirectoryUsageRepository, Rms.Server.Core.Abstraction）
+[CO_DBC_DBC_003] データの削除に失敗しました。（データ情報：Rms.Server.Core.Abstraction.Repositories.DtDiskDriveRepository, Rms.Server.Core.Abstraction）
+[CO_DBC_DBC_003] データの削除に失敗しました。（データ情報：Rms.Server.Core.Abstraction.Repositories.DtDriveRepository, Rms.Server.Core.Abstraction）
+[CO_DBC_DBC_003] データの削除に失敗しました。（データ情報：Rms.Server.Core.Abstraction.Repositories.DtDxaBillLogRepository, Rms.Server.Core.Abstraction）
+[CO_DBC_DBC_003] データの削除に失敗しました。（データ情報：Rms.Server.Core.Abstraction.Repositories.DtDxaQcLogRepository, Rms.Server.Core.Abstraction）
+[CO_DBC_DBC_003] データの削除に失敗しました。（データ情報：Rms.Server.Core.Abstraction.Repositories.DtEquipmentUsageRepository, Rms.Server.Core.Abstraction）
+[CO_DBC_DBC_003] データの削除に失敗しました。（データ情報：Rms.Server.Core.Abstraction.Repositories.DtInstallResultRepository, Rms.Server.Core.Abstraction）
+[CO_DBC_DBC_003] データの削除に失敗しました。（データ情報：Rms.Server.Core.Abstraction.Repositories.DtInventoryRepository, Rms.Server.Core.Abstraction）
+[CO_DBC_DBC_003] データの削除に失敗しました。（データ情報：Rms.Server.Core.Abstraction.Repositories.DtPlusServiceBillLogRepository, Rms.Server.Core.Abstraction）
+[CO_DBC_DBC_003] データの削除に失敗しました。（データ情報：Rms.Server.Core.Abstraction.Repositories.DtSoftVersionRepository, Rms.Server.Core.Abstraction）

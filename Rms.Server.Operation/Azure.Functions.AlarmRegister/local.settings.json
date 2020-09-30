@@ -1,0 +1,22 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "ConnectionString": "BlobEndpoint=https://rmsopemujpemain01.blob.core.windows.net/;QueueEndpoint=https://rmsopemujpemain01.queue.core.windows.net/;FileEndpoint=https://rmsopemujpemain01.file.core.windows.net/;TableEndpoint=https://rmsopemujpemain01.table.core.windows.net/;SharedAccessSignature=sv=2019-02-02&ss=bfqt&srt=sco&sp=rwdlacup&se=9999-12-31T14:59:59Z&st=2019-12-31T15:00:00Z&spr=https&sig=df0HxgGoFo3k%2Fk8gIsfYxOPVolY7xCcP%2Be5G%2BpVYJT0%3D",
+    "MailQueueName": "mail",
+    "AlarmMailAddressFrom": "",
+    "FailureBlobContainerName": "alarm-register",
+    "DbAccessMaxAttempts": "3",
+    "DbAccessDelayDeltaSeconds": "3",
+    "BlobAccessMaxAttempts": "3",
+    "BlobAccessDelayDeltaSeconds": "3",
+    "MailQueueAccessMaxAttempts": "3",
+    "MailQueueDelayDeltaSeconds": "3"
+  },
+  "ConnectionStrings": {
+    "PrimaryDbConnectionString": "Server=tcp:rms-core-emu-jp-sqlsvr01-failover-group-rms-db01.database.windows.net,1433;Database=rms-db01;Uid=rmsoperation;Pwd=D5Npe8rXQXqh;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;",
+    "MailQueueConnectionString": "BlobEndpoint=https://rmsopemujpemain01.blob.core.windows.net/;QueueEndpoint=https://rmsopemujpemain01.queue.core.windows.net/;FileEndpoint=https://rmsopemujpemain01.file.core.windows.net/;TableEndpoint=https://rmsopemujpemain01.table.core.windows.net/;SharedAccessSignature=sv=2019-02-02&ss=bfqt&srt=sco&sp=rwdlacup&se=9999-12-31T14:59:59Z&st=2019-12-31T15:00:00Z&spr=https&sig=df0HxgGoFo3k%2Fk8gIsfYxOPVolY7xCcP%2Be5G%2BpVYJT0%3D",
+    "FailureBlobConnectionString": "BlobEndpoint=https://rmsopemujpefail01.blob.core.windows.net/;QueueEndpoint=https://rmsopemujpefail01.queue.core.windows.net/;FileEndpoint=https://rmsopemujpefail01.file.core.windows.net/;TableEndpoint=https://rmsopemujpefail01.table.core.windows.net/;SharedAccessSignature=sv=2019-02-02&ss=bfqt&srt=sco&sp=rwdlacup&se=9999-12-31T14:59:59Z&st=2019-12-31T15:00:00Z&spr=https&sig=%2Fj9CCdh9ZWd8gBugVQ%2BiapRJ85fPKr0sKxPh5hZTt8Y%3D"
+  }
+}

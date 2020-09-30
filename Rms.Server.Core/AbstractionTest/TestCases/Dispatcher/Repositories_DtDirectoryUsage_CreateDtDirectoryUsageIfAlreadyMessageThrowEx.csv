@@ -1,0 +1,7 @@
+﻿No,in_InsertNewDataSqlPath,in_DeleteNewDataSqlPath,expected_DataJsonPath,expected_ExceptionType,expected_ExceptionMessage,Remarks
+1,TestData\Dispatcher\CreateDtDirectoryUsageIfAlreadyMessageThrowEx_1\InsertNewData.sql,TestData\Dispatcher\CreateDtDirectoryUsageIfAlreadyMessageThrowEx_1\DeleteNewData.sql,TestData\Dispatcher\CreateDtDirectoryUsageIfAlreadyMessageThrowEx_1\ExpectData.json,,,【正常系】データを作成する
+2,,,,System.ArgumentNullException,Rms.Server.Core.Utility.Models.Entites.DtDeliveryResult is null.,【異常系】メソッドにnullを渡した
+3,,,,Rms.Server.Core.Utility.Exceptions.RmsException,DT_DIRECTORY_USAGEテーブルへのInsertに失敗しました。,【異常系】存在しないSIDをもったデータを追加しようとした
+4,TestData\Dispatcher\CreateDtDirectoryUsageIfAlreadyMessageThrowEx_4\InsertNewData.sql,TestData\Dispatcher\CreateDtDirectoryUsageIfAlreadyMessageThrowEx_4\DeleteNewData.sql,,Rms.Server.Core.Utility.Exceptions.RmsAlreadyExistException,MessageId [hoge] はすでに追加済みです。,【異常系】既存のメッセージIDをもつデータを追加しようとした
+5_001,TestData\Dispatcher\CreateDtDirectoryUsageIfAlreadyMessageThrowEx_5\InsertNewData.sql,TestData\Dispatcher\CreateDtDirectoryUsageIfAlreadyMessageThrowEx_5\DeleteNewData.sql,,Rms.Server.Core.Utility.Exceptions.RmsParameterException,SourceEquipmentUid length should be less than 30 symbols.,【異常系】異常値をもつデータを追加しようとした
+5_002,TestData\Dispatcher\CreateDtDirectoryUsageIfAlreadyMessageThrowEx_5\InsertNewData.sql,TestData\Dispatcher\CreateDtDirectoryUsageIfAlreadyMessageThrowEx_5\DeleteNewData.sql,,Rms.Server.Core.Utility.Exceptions.RmsParameterException,MessageId length should be less than 64 symbols.,【異常系】異常値をもつデータを追加しようとした

@@ -1,0 +1,2744 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="meta.rms.trialModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DT_DELIVERY_FILE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DELIVERY_FILE_TYPE_SID" Type="bigint" Nullable="false" />
+          <Property Name="INSTALL_TYPE_SID" Type="bigint" />
+          <Property Name="FILE_PATH" Type="nvarchar" MaxLength="300" />
+          <Property Name="VERSION" Type="varchar" MaxLength="30" />
+          <Property Name="INSTALLABLE_VERSION" Type="varchar" MaxLength="600" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="200" />
+          <Property Name="INFORMATION_ID" Type="nvarchar" MaxLength="45" />
+          <Property Name="IS_CANCELED" Type="bit" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UPDATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ROW_VERSION" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DT_DELIVERY_GROUP">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DELIVERY_FILE_SID" Type="bigint" Nullable="false" />
+          <Property Name="DELIVERY_GROUP_STATUS_SID" Type="bigint" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="START_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="DOWNLOAD_DELAY_TIME" Type="smallint" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UPDATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ROW_VERSION" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DT_DELIVERY_MODEL">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DELIVERY_FILE_SID" Type="bigint" Nullable="false" />
+          <Property Name="EQUIPMENT_MODEL_SID" Type="bigint" Nullable="false" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DT_DELIVERY_RESULT">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEVICE_SID" Type="bigint" Nullable="false" />
+          <Property Name="GW_DEVICE_SID" Type="bigint" Nullable="false" />
+          <Property Name="DELIVERY_GROUP_SID" Type="bigint" Nullable="false" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DT_DEVICE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EQUIPMENT_MODEL_SID" Type="bigint" />
+          <Property Name="INSTALL_TYPE_SID" Type="bigint" Nullable="false" />
+          <Property Name="CONNECT_STATUS_SID" Type="bigint" Nullable="false" />
+          <Property Name="EDGE_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EQUIPMENT_UID" Type="varchar" MaxLength="30" />
+          <Property Name="REMOTE_CONNECT_UID" Type="varchar" MaxLength="64" />
+          <Property Name="RMS_SOFT_VERSION" Type="varchar" MaxLength="30" />
+          <Property Name="CONNECT_START_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="CONNECT_UPDATE_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UPDATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DT_DEVICE_FILE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEVICE_SID" Type="bigint" Nullable="false" />
+          <Property Name="SOURCE_EQUIPMENT_UID" Type="varchar" MaxLength="30" />
+          <Property Name="CONTAINER" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="FILE_PATH" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="COLLECT_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UPDATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DT_DEVICE_FILE_ATTRIBUTE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEVICE_FILE_SID" Type="bigint" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="256" />
+          <Property Name="VALUE" Type="nvarchar(max)" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UPDATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DT_DIRECTORY_USAGE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEVICE_SID" Type="bigint" Nullable="false" />
+          <Property Name="SOURCE_EQUIPMENT_UID" Type="varchar" MaxLength="30" />
+          <Property Name="DETAIL_INFO" Type="nvarchar(max)" />
+          <Property Name="COLLECT_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="MESSAGE_ID" Type="varchar" MaxLength="64" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DT_DISK_DRIVE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEVICE_SID" Type="bigint" Nullable="false" />
+          <Property Name="SOURCE_EQUIPMENT_UID" Type="varchar" MaxLength="30" />
+          <Property Name="MODEL" Type="varchar" MaxLength="100" />
+          <Property Name="MEDIA_TYPE" Type="varchar" MaxLength="20" />
+          <Property Name="INTERFACE_TYPE" Type="varchar" MaxLength="30" />
+          <Property Name="SERIAL_NUMBER" Type="varchar" MaxLength="30" />
+          <Property Name="SMART_ATTRIBUTE_INFO" Type="nvarchar(max)" />
+          <Property Name="COLLECT_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="MESSAGE_ID" Type="varchar" MaxLength="64" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DT_DRIVE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEVICE_SID" Type="bigint" Nullable="false" />
+          <Property Name="SOURCE_EQUIPMENT_UID" Type="varchar" MaxLength="30" />
+          <Property Name="DETAIL_INFO" Type="nvarchar(max)" />
+          <Property Name="COLLECT_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="MESSAGE_ID" Type="varchar" MaxLength="64" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DT_DXA_BILL_LOG">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEVICE_SID" Type="bigint" Nullable="false" />
+          <Property Name="SOUECE_EQUIPMENT_UID" Type="varchar" MaxLength="30" />
+          <Property Name="STUDY_INSTANCE_UID" Type="varchar" MaxLength="128" />
+          <Property Name="PATIENT_ID" Type="varchar" MaxLength="64" />
+          <Property Name="TYPE_NAME" Type="tinyint" />
+          <Property Name="STUDY_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="MEASURE_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="OPTION_DXA" Type="bit" />
+          <Property Name="SERVICE_MODE" Type="bit" />
+          <Property Name="COLLECT_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UPDATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DT_DXA_QC_LOG">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEVICE_SID" Type="bigint" Nullable="false" />
+          <Property Name="SOURCE_EQUIPMENT_UID" Type="varchar" MaxLength="30" />
+          <Property Name="STUDY_INSTANCE_UID" Type="varchar" MaxLength="128" />
+          <Property Name="SOP_INSTANCE_UID" Type="varchar" MaxLength="128" />
+          <Property Name="STUDY_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="MEASURE_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="PANEL_SERIAL_ID" Type="varchar" MaxLength="30" />
+          <Property Name="TECHNIQUE_CODE" Type="tinyint" />
+          <Property Name="TYPE_NAME" Type="tinyint" />
+          <Property Name="QC_RESULT" Type="bigint" />
+          <Property Name="BMC_DXA_A_TEST" Type="float" />
+          <Property Name="BMC_DXA_B_TEST" Type="float" />
+          <Property Name="BMC_DXA_C_TEST" Type="float" />
+          <Property Name="AREA_DXA_A_TEST" Type="float" />
+          <Property Name="AREA_DXA_B_TEST" Type="float" />
+          <Property Name="AREA_DXA_C_TEST" Type="float" />
+          <Property Name="BMD_DXA_A_TEST" Type="float" />
+          <Property Name="BMD_DXA_B_TEST" Type="float" />
+          <Property Name="BMD_DXA_C_TEST" Type="float" />
+          <Property Name="BMD_LINEARITY_TEST" Type="float" />
+          <Property Name="QL_CSI_BONE_A_TEST" Type="float" />
+          <Property Name="QL_CSI_BONE_B_TEST" Type="float" />
+          <Property Name="QL_CSI_BONE_C_TEST" Type="float" />
+          <Property Name="QL_CSI_SOFT_LA_TEST" Type="float" />
+          <Property Name="QL_CSI_SOFT_LB_TEST" Type="float" />
+          <Property Name="QL_CSI_SOFT_LC_TEST" Type="float" />
+          <Property Name="QL_CSI_SOFT_RA_TEST" Type="float" />
+          <Property Name="QL_CSI_SOFT_RB_TEST" Type="float" />
+          <Property Name="QL_CSI_SOFT_RC_TEST" Type="float" />
+          <Property Name="QL_GOS_BONE_A_TEST" Type="float" />
+          <Property Name="QL_GOS_BONE_B_TEST" Type="float" />
+          <Property Name="QL_GOS_BONE_C_TEST" Type="float" />
+          <Property Name="QL_GOS_SOFT_LA_TEST" Type="float" />
+          <Property Name="QL_GOS_SOFT_LB_TEST" Type="float" />
+          <Property Name="QL_GOS_SOFT_LC_TEST" Type="float" />
+          <Property Name="QL_GOS_SOFT_RA_TEST" Type="float" />
+          <Property Name="QL_GOS_SOFT_RB_TEST" Type="float" />
+          <Property Name="QL_GOS_SOFT_RC_TEST" Type="float" />
+          <Property Name="QL_DXA_BONE_A_TEST" Type="float" />
+          <Property Name="QL_DXA_BONE_B_TEST" Type="float" />
+          <Property Name="QL_DXA_BONE_C_TEST" Type="float" />
+          <Property Name="QL_DXA_SOFT_LA_TEST" Type="float" />
+          <Property Name="QL_DXA_SOFT_LB_TEST" Type="float" />
+          <Property Name="QL_DXA_SOFT_LC_TEST" Type="float" />
+          <Property Name="QL_DXA_SOFT_RA_TEST" Type="float" />
+          <Property Name="QL_DXA_SOFT_RB_TEST" Type="float" />
+          <Property Name="QL_DXA_SOFT_RC_TEST" Type="float" />
+          <Property Name="STD_CSI_BONE_A_TEST" Type="float" />
+          <Property Name="STD_CSI_BONE_B_TEST" Type="float" />
+          <Property Name="STD_CSI_BONE_C_TEST" Type="float" />
+          <Property Name="STD_CSI_SOFT_LA_TEST" Type="float" />
+          <Property Name="STD_CSI_SOFT_LB_TEST" Type="float" />
+          <Property Name="STD_CSI_SOFT_LC_TEST" Type="float" />
+          <Property Name="STD_CSI_SOFT_RA_TEST" Type="float" />
+          <Property Name="STD_CSI_SOFT_RB_TEST" Type="float" />
+          <Property Name="STD_CSI_SOFT_RC_TEST" Type="float" />
+          <Property Name="STD_GOS_BONE_A_TEST" Type="float" />
+          <Property Name="STD_GOS_BONE_B_TEST" Type="float" />
+          <Property Name="STD_GOS_BONE_C_TEST" Type="float" />
+          <Property Name="STD_GOS_SOFT_LA_TEST" Type="float" />
+          <Property Name="STD_GOS_SOFT_LB_TEST" Type="float" />
+          <Property Name="STD_GOS_SOFT_LC_TEST" Type="float" />
+          <Property Name="STD_GOS_SOFT_RA_TEST" Type="float" />
+          <Property Name="STD_GOS_SOFT_RB_TEST" Type="float" />
+          <Property Name="STD_GOS_SOFT_RC_TEST" Type="float" />
+          <Property Name="STD_DXA_BONE_A_TEST" Type="float" />
+          <Property Name="STD_DXA_BONE_B_TEST" Type="float" />
+          <Property Name="STD_DXA_BONE_C_TEST" Type="float" />
+          <Property Name="STD_DXA_SOFT_LA_TEST" Type="float" />
+          <Property Name="STD_DXA_SOFT_LB_TEST" Type="float" />
+          <Property Name="STD_DXA_SOFT_LC_TEST" Type="float" />
+          <Property Name="STD_DXA_SOFT_RA_TEST" Type="float" />
+          <Property Name="STD_DXA_SOFT_RB_TEST" Type="float" />
+          <Property Name="STD_DXA_SOFT_RC_TEST" Type="float" />
+          <Property Name="BMD_DXA_A_BASVAL_TEST" Type="float" />
+          <Property Name="BMD_DXA_B_BASVAL_TEST" Type="float" />
+          <Property Name="BMD_DXA_C_BASVAL_TEST" Type="float" />
+          <Property Name="QL_CSI_BONE_A_BASVAL_TEST" Type="float" />
+          <Property Name="QL_CSI_BONE_B_BASVAL_TEST" Type="float" />
+          <Property Name="QL_CSI_BONE_C_BASVAL_TEST" Type="float" />
+          <Property Name="QL_CSI_SOFT_LA_BASVAL_TEST" Type="float" />
+          <Property Name="QL_CSI_SOFT_LB_BASVAL_TEST" Type="float" />
+          <Property Name="QL_CSI_SOFT_LC_BASVAL_TEST" Type="float" />
+          <Property Name="QL_CSI_SOFT_RA_BASVAL_TEST" Type="float" />
+          <Property Name="QL_CSI_SOFT_RB_BASVAL_TEST" Type="float" />
+          <Property Name="QL_CSI_SOFT_RC_BASVAL_TEST" Type="float" />
+          <Property Name="QL_GOS_BONE_A_BASVAL_TEST" Type="float" />
+          <Property Name="QL_GOS_BONE_B_BASVAL_TEST" Type="float" />
+          <Property Name="QL_GOS_BONE_C_BASVAL_TEST" Type="float" />
+          <Property Name="QL_GOS_SOFT_LA_BASVAL_TEST" Type="float" />
+          <Property Name="QL_GOS_SOFT_LB_BASVAL_TEST" Type="float" />
+          <Property Name="QL_GOS_SOFT_LC_BASVAL_TEST" Type="float" />
+          <Property Name="QL_GOS_SOFT_RA_BASVAL_TEST" Type="float" />
+          <Property Name="QL_GOS_SOFT_RB_BASVAL_TEST" Type="float" />
+          <Property Name="QL_GOS_SOFT_RC_BASVAL_TEST" Type="float" />
+          <Property Name="QL_DXA_BONE_A_BASVAL_TEST" Type="float" />
+          <Property Name="QL_DXA_BONE_B_BASVAL_TEST" Type="float" />
+          <Property Name="QL_DXA_BONE_C_BASVAL_TEST" Type="float" />
+          <Property Name="QL_DXA_SOFT_LA_BASVAL_TEST" Type="float" />
+          <Property Name="QL_DXA_SOFT_LB_BASVAL_TEST" Type="float" />
+          <Property Name="QL_DXA_SOFT_LC_BASVAL_TEST" Type="float" />
+          <Property Name="QL_DXA_SOFT_RA_BASVAL_TEST" Type="float" />
+          <Property Name="QL_DXA_SOFT_RB_BASVAL_TEST" Type="float" />
+          <Property Name="QL_DXA_SOFT_RC_BASVAL_TEST" Type="float" />
+          <Property Name="STD_CSI_BONE_A_BASVAL_TEST" Type="float" />
+          <Property Name="STD_CSI_BONE_B_BASVAL_TEST" Type="float" />
+          <Property Name="STD_CSI_BONE_C_BASVAL_TEST" Type="float" />
+          <Property Name="STD_CSI_SOFT_LA_BASVAL_TEST" Type="float" />
+          <Property Name="STD_CSI_SOFT_LB_BASVAL_TEST" Type="float" />
+          <Property Name="STD_CSI_SOFT_LC_BASVAL_TEST" Type="float" />
+          <Property Name="STD_CSI_SOFT_RA_BASVAL_TEST" Type="float" />
+          <Property Name="STD_CSI_SOFT_RB_BASVAL_TEST" Type="float" />
+          <Property Name="STD_CSI_SOFT_RC_BASVAL_TEST" Type="float" />
+          <Property Name="STD_GOS_BONE_A_BASVAL_TEST" Type="float" />
+          <Property Name="STD_GOS_BONE_B_BASVAL_TEST" Type="float" />
+          <Property Name="STD_GOS_BONE_C_BASVAL_TEST" Type="float" />
+          <Property Name="STD_GOS_SOFT_LA_BASVAL_TEST" Type="float" />
+          <Property Name="STD_GOS_SOFT_LB_BASVAL_TEST" Type="float" />
+          <Property Name="STD_GOS_SOFT_LC_BASVAL_TEST" Type="float" />
+          <Property Name="STD_GOS_SOFT_RA_BASVAL_TEST" Type="float" />
+          <Property Name="STD_GOS_SOFT_RB_BASVAL_TEST" Type="float" />
+          <Property Name="STD_GOS_SOFT_RC_BASVAL_TEST" Type="float" />
+          <Property Name="STD_DXA_BONE_A_BASVAL_TEST" Type="float" />
+          <Property Name="STD_DXA_BONE_B_BASVAL_TEST" Type="float" />
+          <Property Name="STD_DXA_BONE_C_BASVAL_TEST" Type="float" />
+          <Property Name="STD_DXA_SOFT_LA_BASVAL_TEST" Type="float" />
+          <Property Name="STD_DXA_SOFT_LB_BASVAL_TEST" Type="float" />
+          <Property Name="STD_DXA_SOFT_LC_BASVAL_TEST" Type="float" />
+          <Property Name="STD_DXA_SOFT_RA_BASVAL_TEST" Type="float" />
+          <Property Name="STD_DXA_SOFT_RB_BASVAL_TEST" Type="float" />
+          <Property Name="STD_DXA_SOFT_RC_BASVAL_TEST" Type="float" />
+          <Property Name="COLLECT_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="MESSAGE_ID" Type="varchar" MaxLength="64" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DT_EQUIPMENT_USAGE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEVICE_SID" Type="bigint" Nullable="false" />
+          <Property Name="SOURCE_EQUIPMENT_UID" Type="varchar" MaxLength="30" />
+          <Property Name="DETAIL_INFO" Type="nvarchar(max)" />
+          <Property Name="COLLECT_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="MESSAGE_ID" Type="varchar" MaxLength="64" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DT_INSTALL_RESULT">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEVICE_SID" Type="bigint" Nullable="false" />
+          <Property Name="DELIVERY_RESULT_SID" Type="bigint" />
+          <Property Name="INSTALL_RESULT_STATUS_SID" Type="bigint" Nullable="false" />
+          <Property Name="SOURCE_EQUIPMENT_UID" Type="varchar" MaxLength="30" />
+          <Property Name="RELEASE_VERSION" Type="varchar" MaxLength="30" />
+          <Property Name="BEFORE_VERSION" Type="varchar" MaxLength="30" />
+          <Property Name="AFTER_VERVION" Type="varchar" MaxLength="30" />
+          <Property Name="IS_SUCCESS" Type="bit" />
+          <Property Name="ERROR_CODE" Type="varchar" MaxLength="20" />
+          <Property Name="ERROR_DESCRIPTION" Type="ntext" />
+          <Property Name="IS_AUTO" Type="bit" />
+          <Property Name="METHOD" Type="varchar" MaxLength="20" />
+          <Property Name="PROCESS" Type="varchar" MaxLength="12" />
+          <Property Name="UPDATE_STRAT_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="UPDATE_END_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="COMPUTER_NAME" Type="varchar" MaxLength="30" />
+          <Property Name="IP_ADDRESS" Type="varchar" MaxLength="200" />
+          <Property Name="SERVER_CLIENT_KIND" Type="varchar" MaxLength="20" />
+          <Property Name="HAS_REPAIR_REPORT" Type="bit" />
+          <Property Name="EVENT_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="COLLECT_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="MESSAGE_ID" Type="varchar" MaxLength="64" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DT_INVENTORY">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEVICE_SID" Type="bigint" Nullable="false" />
+          <Property Name="SOURCE_EQUIPMENT_UID" Type="varchar" MaxLength="30" />
+          <Property Name="DETAIL_INFO" Type="nvarchar(max)" />
+          <Property Name="COLLECT_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="MESSAGE_ID" Type="varchar" MaxLength="64" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DT_PARENT_CHILD_CONNECT">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PARENT_DEVICE_SID" Type="bigint" Nullable="false" />
+          <Property Name="CHILD_DEVICE_SID" Type="bigint" Nullable="false" />
+          <Property Name="PARENT_RESULT" Type="bit" />
+          <Property Name="PARENT_CONFIRM_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="PARENT_LAST_CONNECT_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="CHILD_RESULT" Type="bit" />
+          <Property Name="CHILD_CONFIRM_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="CHILD_LAST_CONNECT_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UPDATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DT_PLUS_SERVICE_BILL_LOG">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEVICE_SID" Type="bigint" Nullable="false" />
+          <Property Name="SOURCE_EQUIPMENT_UID" Type="varchar" MaxLength="30" />
+          <Property Name="TYPE_NAME" Type="varchar" MaxLength="128" />
+          <Property Name="BILL_FLG" Type="bit" />
+          <Property Name="PATIENT_ID" Type="varchar" MaxLength="128" />
+          <Property Name="SEX" Type="tinyint" />
+          <Property Name="AGE" Type="tinyint" />
+          <Property Name="STUDY_INSTANCE_UID" Type="varchar" MaxLength="128" />
+          <Property Name="SOP_INSTANCE_UID" Type="varchar" MaxLength="128" />
+          <Property Name="STUDY_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="MEASURE_VALUE" Type="float" />
+          <Property Name="MEASURE_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="COLLECT_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UPDATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DT_SCRIPT_CONFIG">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="INSTALL_TYPE_SID" Type="bigint" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="30" />
+          <Property Name="VERSION" Type="smallint" />
+          <Property Name="FILE_NAME" Type="nvarchar" MaxLength="64" />
+          <Property Name="LOCATION" Type="nvarchar" MaxLength="300" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DT_SOFT_VERSION">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEVICE_SID" Type="bigint" Nullable="false" />
+          <Property Name="EQUIPMENT_MODEL_SID" Type="bigint" Nullable="false" />
+          <Property Name="SOURCE_EQUIPMENT_UID" Type="varchar" MaxLength="30" />
+          <Property Name="VERSION" Type="varchar" MaxLength="30" />
+          <Property Name="MESSAGE_ID" Type="varchar" MaxLength="64" />
+          <Property Name="COLLECT_DATETIME" Type="datetime2" Precision="7" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DT_STORAGE_CONFIG">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="URL" Type="varchar" MaxLength="64" />
+          <Property Name="SAS" Type="varchar" MaxLength="200" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UPDATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MT_CONNECT_STATUS">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODE" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="200" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MT_DELIVERY_FILE_TYPE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODE" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="200" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MT_DELIVERY_GROUP_STATUS">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODE" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="200" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MT_EQUIPMENT_MODEL">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EQUIPMENT_TYPE_SID" Type="bigint" Nullable="false" />
+          <Property Name="CODE" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="128" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MT_EQUIPMENT_TYPE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODE" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="128" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MT_INSTALL_RESULT_STATUS">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODE" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="200" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MT_INSTALL_TYPE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EQUIPMENT_TYPE_SID" Type="bigint" Nullable="false" />
+          <Property Name="CODE" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="128" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MT_SOFT_VERSION_CONVERT">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EQUIPMENT_MODEL_SID" Type="bigint" Nullable="false" />
+          <Property Name="DISPLAY_VERSION" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="INTERNAL_VERSION" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="200" />
+          <Property Name="CREATE_DATETIME" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <Association Name="DT_DELIVERY_FILE_FK1">
+          <End Role="MT_DELIVERY_FILE_TYPE" Type="Self.MT_DELIVERY_FILE_TYPE" Multiplicity="1" />
+          <End Role="DT_DELIVERY_FILE" Type="Self.DT_DELIVERY_FILE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_DELIVERY_FILE_TYPE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DELIVERY_FILE">
+              <PropertyRef Name="DELIVERY_FILE_TYPE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DELIVERY_FILE_FK2">
+          <End Role="MT_INSTALL_TYPE" Type="Self.MT_INSTALL_TYPE" Multiplicity="0..1" />
+          <End Role="DT_DELIVERY_FILE" Type="Self.DT_DELIVERY_FILE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_INSTALL_TYPE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DELIVERY_FILE">
+              <PropertyRef Name="INSTALL_TYPE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DELIVERY_GROUP_FK1">
+          <End Role="DT_DELIVERY_FILE" Type="Self.DT_DELIVERY_FILE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DT_DELIVERY_GROUP" Type="Self.DT_DELIVERY_GROUP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DELIVERY_FILE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DELIVERY_GROUP">
+              <PropertyRef Name="DELIVERY_FILE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DELIVERY_GROUP_FK2">
+          <End Role="MT_DELIVERY_GROUP_STATUS" Type="Self.MT_DELIVERY_GROUP_STATUS" Multiplicity="1" />
+          <End Role="DT_DELIVERY_GROUP" Type="Self.DT_DELIVERY_GROUP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_DELIVERY_GROUP_STATUS">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DELIVERY_GROUP">
+              <PropertyRef Name="DELIVERY_GROUP_STATUS_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DELIVERY_MODEL_FK1">
+          <End Role="DT_DELIVERY_FILE" Type="Self.DT_DELIVERY_FILE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DT_DELIVERY_MODEL" Type="Self.DT_DELIVERY_MODEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DELIVERY_FILE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DELIVERY_MODEL">
+              <PropertyRef Name="DELIVERY_FILE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DELIVERY_MODEL_FK2">
+          <End Role="MT_EQUIPMENT_MODEL" Type="Self.MT_EQUIPMENT_MODEL" Multiplicity="1" />
+          <End Role="DT_DELIVERY_MODEL" Type="Self.DT_DELIVERY_MODEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_EQUIPMENT_MODEL">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DELIVERY_MODEL">
+              <PropertyRef Name="EQUIPMENT_MODEL_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DELIVERY_RESULT_FK1">
+          <End Role="DT_DEVICE" Type="Self.DT_DEVICE" Multiplicity="1" />
+          <End Role="DT_DELIVERY_RESULT" Type="Self.DT_DELIVERY_RESULT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DELIVERY_RESULT">
+              <PropertyRef Name="GW_DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DELIVERY_RESULT_FK2">
+          <End Role="DT_DELIVERY_GROUP" Type="Self.DT_DELIVERY_GROUP" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DT_DELIVERY_RESULT" Type="Self.DT_DELIVERY_RESULT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DELIVERY_GROUP">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DELIVERY_RESULT">
+              <PropertyRef Name="DELIVERY_GROUP_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DELIVERY_RESULT_FK3">
+          <End Role="DT_DEVICE" Type="Self.DT_DEVICE" Multiplicity="1" />
+          <End Role="DT_DELIVERY_RESULT" Type="Self.DT_DELIVERY_RESULT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DELIVERY_RESULT">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DEVICE_FILE_ATTRIBUTE_FK1">
+          <End Role="DT_DEVICE_FILE" Type="Self.DT_DEVICE_FILE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DT_DEVICE_FILE_ATTRIBUTE" Type="Self.DT_DEVICE_FILE_ATTRIBUTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE_FILE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DEVICE_FILE_ATTRIBUTE">
+              <PropertyRef Name="DEVICE_FILE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DEVICE_FILE_FK1">
+          <End Role="DT_DEVICE" Type="Self.DT_DEVICE" Multiplicity="1" />
+          <End Role="DT_DEVICE_FILE" Type="Self.DT_DEVICE_FILE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DEVICE_FILE">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DEVICE_FK1">
+          <End Role="MT_CONNECT_STATUS" Type="Self.MT_CONNECT_STATUS" Multiplicity="1" />
+          <End Role="DT_DEVICE" Type="Self.DT_DEVICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_CONNECT_STATUS">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DEVICE">
+              <PropertyRef Name="CONNECT_STATUS_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DEVICE_FK2">
+          <End Role="MT_INSTALL_TYPE" Type="Self.MT_INSTALL_TYPE" Multiplicity="1" />
+          <End Role="DT_DEVICE" Type="Self.DT_DEVICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_INSTALL_TYPE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DEVICE">
+              <PropertyRef Name="INSTALL_TYPE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DEVICE_FK3">
+          <End Role="MT_EQUIPMENT_MODEL" Type="Self.MT_EQUIPMENT_MODEL" Multiplicity="0..1" />
+          <End Role="DT_DEVICE" Type="Self.DT_DEVICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_EQUIPMENT_MODEL">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DEVICE">
+              <PropertyRef Name="EQUIPMENT_MODEL_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DIRECTORY_USAGE_FK1">
+          <End Role="DT_DEVICE" Type="Self.DT_DEVICE" Multiplicity="1" />
+          <End Role="DT_DIRECTORY_USAGE" Type="Self.DT_DIRECTORY_USAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DIRECTORY_USAGE">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DISK_DRIVE_FK1">
+          <End Role="DT_DEVICE" Type="Self.DT_DEVICE" Multiplicity="1" />
+          <End Role="DT_DISK_DRIVE" Type="Self.DT_DISK_DRIVE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DISK_DRIVE">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DRIVE_FK1">
+          <End Role="DT_DEVICE" Type="Self.DT_DEVICE" Multiplicity="1" />
+          <End Role="DT_DRIVE" Type="Self.DT_DRIVE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DRIVE">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DXA_BILL_LOG_FK1">
+          <End Role="DT_DEVICE" Type="Self.DT_DEVICE" Multiplicity="1" />
+          <End Role="DT_DXA_BILL_LOG" Type="Self.DT_DXA_BILL_LOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DXA_BILL_LOG">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DXA_QC_LOG_FK1">
+          <End Role="DT_DEVICE" Type="Self.DT_DEVICE" Multiplicity="1" />
+          <End Role="DT_DXA_QC_LOG" Type="Self.DT_DXA_QC_LOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DXA_QC_LOG">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_EQUIPMENT_USAGE_FK1">
+          <End Role="DT_DEVICE" Type="Self.DT_DEVICE" Multiplicity="1" />
+          <End Role="DT_EQUIPMENT_USAGE" Type="Self.DT_EQUIPMENT_USAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_EQUIPMENT_USAGE">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_INSTALL_RESULT_FK1">
+          <End Role="MT_INSTALL_RESULT_STATUS" Type="Self.MT_INSTALL_RESULT_STATUS" Multiplicity="1" />
+          <End Role="DT_INSTALL_RESULT" Type="Self.DT_INSTALL_RESULT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_INSTALL_RESULT_STATUS">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_INSTALL_RESULT">
+              <PropertyRef Name="INSTALL_RESULT_STATUS_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_INSTALL_RESULT_FK2">
+          <End Role="DT_DEVICE" Type="Self.DT_DEVICE" Multiplicity="1" />
+          <End Role="DT_INSTALL_RESULT" Type="Self.DT_INSTALL_RESULT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_INSTALL_RESULT">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_INSTALL_RESULT_FK3">
+          <End Role="DT_DELIVERY_RESULT" Type="Self.DT_DELIVERY_RESULT" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DT_INSTALL_RESULT" Type="Self.DT_INSTALL_RESULT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DELIVERY_RESULT">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_INSTALL_RESULT">
+              <PropertyRef Name="DELIVERY_RESULT_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_INVENTORY_FK1">
+          <End Role="DT_DEVICE" Type="Self.DT_DEVICE" Multiplicity="1" />
+          <End Role="DT_INVENTORY" Type="Self.DT_INVENTORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_INVENTORY">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_PARENT_CHILD_CONNECT_FK1">
+          <End Role="DT_DEVICE" Type="Self.DT_DEVICE" Multiplicity="1" />
+          <End Role="DT_PARENT_CHILD_CONNECT" Type="Self.DT_PARENT_CHILD_CONNECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_PARENT_CHILD_CONNECT">
+              <PropertyRef Name="PARENT_DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_PARENT_CHILD_CONNECT_FK2">
+          <End Role="DT_DEVICE" Type="Self.DT_DEVICE" Multiplicity="1" />
+          <End Role="DT_PARENT_CHILD_CONNECT" Type="Self.DT_PARENT_CHILD_CONNECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_PARENT_CHILD_CONNECT">
+              <PropertyRef Name="CHILD_DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_PLUS_SERVICE_BILL_LOG_FK1">
+          <End Role="DT_DEVICE" Type="Self.DT_DEVICE" Multiplicity="1" />
+          <End Role="DT_PLUS_SERVICE_BILL_LOG" Type="Self.DT_PLUS_SERVICE_BILL_LOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_PLUS_SERVICE_BILL_LOG">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_SCRIPT_CONFIG_FK1">
+          <End Role="MT_INSTALL_TYPE" Type="Self.MT_INSTALL_TYPE" Multiplicity="1" />
+          <End Role="DT_SCRIPT_CONFIG" Type="Self.DT_SCRIPT_CONFIG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_INSTALL_TYPE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_SCRIPT_CONFIG">
+              <PropertyRef Name="INSTALL_TYPE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_SOFT_VERSION_FK1">
+          <End Role="MT_EQUIPMENT_MODEL" Type="Self.MT_EQUIPMENT_MODEL" Multiplicity="1" />
+          <End Role="DT_SOFT_VERSION" Type="Self.DT_SOFT_VERSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_EQUIPMENT_MODEL">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_SOFT_VERSION">
+              <PropertyRef Name="EQUIPMENT_MODEL_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_SOFT_VERSION_FK2">
+          <End Role="DT_DEVICE" Type="Self.DT_DEVICE" Multiplicity="1" />
+          <End Role="DT_SOFT_VERSION" Type="Self.DT_SOFT_VERSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_SOFT_VERSION">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MT_EQUIPMENT_MODEL_FK1">
+          <End Role="MT_EQUIPMENT_TYPE" Type="Self.MT_EQUIPMENT_TYPE" Multiplicity="1" />
+          <End Role="MT_EQUIPMENT_MODEL" Type="Self.MT_EQUIPMENT_MODEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_EQUIPMENT_TYPE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="MT_EQUIPMENT_MODEL">
+              <PropertyRef Name="EQUIPMENT_TYPE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MT_INSTALL_TYPE_FK1">
+          <End Role="MT_EQUIPMENT_TYPE" Type="Self.MT_EQUIPMENT_TYPE" Multiplicity="1" />
+          <End Role="MT_INSTALL_TYPE" Type="Self.MT_INSTALL_TYPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_EQUIPMENT_TYPE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="MT_INSTALL_TYPE">
+              <PropertyRef Name="EQUIPMENT_TYPE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MT_SOFT_VERSION_CONVERT_FK1">
+          <End Role="MT_EQUIPMENT_MODEL" Type="Self.MT_EQUIPMENT_MODEL" Multiplicity="1" />
+          <End Role="MT_SOFT_VERSION_CONVERT" Type="Self.MT_SOFT_VERSION_CONVERT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_EQUIPMENT_MODEL">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="MT_SOFT_VERSION_CONVERT">
+              <PropertyRef Name="EQUIPMENT_MODEL_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="metarmstrialModelStoreContainer">
+          <EntitySet Name="DT_DELIVERY_FILE" EntityType="Self.DT_DELIVERY_FILE" Schema="core" store:Type="Tables" />
+          <EntitySet Name="DT_DELIVERY_GROUP" EntityType="Self.DT_DELIVERY_GROUP" Schema="core" store:Type="Tables" />
+          <EntitySet Name="DT_DELIVERY_MODEL" EntityType="Self.DT_DELIVERY_MODEL" Schema="core" store:Type="Tables" />
+          <EntitySet Name="DT_DELIVERY_RESULT" EntityType="Self.DT_DELIVERY_RESULT" Schema="core" store:Type="Tables" />
+          <EntitySet Name="DT_DEVICE" EntityType="Self.DT_DEVICE" Schema="core" store:Type="Tables" />
+          <EntitySet Name="DT_DEVICE_FILE" EntityType="Self.DT_DEVICE_FILE" Schema="core" store:Type="Tables" />
+          <EntitySet Name="DT_DEVICE_FILE_ATTRIBUTE" EntityType="Self.DT_DEVICE_FILE_ATTRIBUTE" Schema="core" store:Type="Tables" />
+          <EntitySet Name="DT_DIRECTORY_USAGE" EntityType="Self.DT_DIRECTORY_USAGE" Schema="core" store:Type="Tables" />
+          <EntitySet Name="DT_DISK_DRIVE" EntityType="Self.DT_DISK_DRIVE" Schema="core" store:Type="Tables" />
+          <EntitySet Name="DT_DRIVE" EntityType="Self.DT_DRIVE" Schema="core" store:Type="Tables" />
+          <EntitySet Name="DT_DXA_BILL_LOG" EntityType="Self.DT_DXA_BILL_LOG" Schema="core" store:Type="Tables" />
+          <EntitySet Name="DT_DXA_QC_LOG" EntityType="Self.DT_DXA_QC_LOG" Schema="core" store:Type="Tables" />
+          <EntitySet Name="DT_EQUIPMENT_USAGE" EntityType="Self.DT_EQUIPMENT_USAGE" Schema="core" store:Type="Tables" />
+          <EntitySet Name="DT_INSTALL_RESULT" EntityType="Self.DT_INSTALL_RESULT" Schema="core" store:Type="Tables" />
+          <EntitySet Name="DT_INVENTORY" EntityType="Self.DT_INVENTORY" Schema="core" store:Type="Tables" />
+          <EntitySet Name="DT_PARENT_CHILD_CONNECT" EntityType="Self.DT_PARENT_CHILD_CONNECT" Schema="core" store:Type="Tables" />
+          <EntitySet Name="DT_PLUS_SERVICE_BILL_LOG" EntityType="Self.DT_PLUS_SERVICE_BILL_LOG" Schema="core" store:Type="Tables" />
+          <EntitySet Name="DT_SCRIPT_CONFIG" EntityType="Self.DT_SCRIPT_CONFIG" Schema="core" store:Type="Tables" />
+          <EntitySet Name="DT_SOFT_VERSION" EntityType="Self.DT_SOFT_VERSION" Schema="core" store:Type="Tables" />
+          <EntitySet Name="DT_STORAGE_CONFIG" EntityType="Self.DT_STORAGE_CONFIG" Schema="core" store:Type="Tables" />
+          <EntitySet Name="MT_CONNECT_STATUS" EntityType="Self.MT_CONNECT_STATUS" Schema="core" store:Type="Tables" />
+          <EntitySet Name="MT_DELIVERY_FILE_TYPE" EntityType="Self.MT_DELIVERY_FILE_TYPE" Schema="core" store:Type="Tables" />
+          <EntitySet Name="MT_DELIVERY_GROUP_STATUS" EntityType="Self.MT_DELIVERY_GROUP_STATUS" Schema="core" store:Type="Tables" />
+          <EntitySet Name="MT_EQUIPMENT_MODEL" EntityType="Self.MT_EQUIPMENT_MODEL" Schema="core" store:Type="Tables" />
+          <EntitySet Name="MT_EQUIPMENT_TYPE" EntityType="Self.MT_EQUIPMENT_TYPE" Schema="core" store:Type="Tables" />
+          <EntitySet Name="MT_INSTALL_RESULT_STATUS" EntityType="Self.MT_INSTALL_RESULT_STATUS" Schema="core" store:Type="Tables" />
+          <EntitySet Name="MT_INSTALL_TYPE" EntityType="Self.MT_INSTALL_TYPE" Schema="core" store:Type="Tables" />
+          <EntitySet Name="MT_SOFT_VERSION_CONVERT" EntityType="Self.MT_SOFT_VERSION_CONVERT" Schema="core" store:Type="Tables" />
+          <AssociationSet Name="DT_DELIVERY_FILE_FK1" Association="Self.DT_DELIVERY_FILE_FK1">
+            <End Role="MT_DELIVERY_FILE_TYPE" EntitySet="MT_DELIVERY_FILE_TYPE" />
+            <End Role="DT_DELIVERY_FILE" EntitySet="DT_DELIVERY_FILE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DELIVERY_FILE_FK2" Association="Self.DT_DELIVERY_FILE_FK2">
+            <End Role="MT_INSTALL_TYPE" EntitySet="MT_INSTALL_TYPE" />
+            <End Role="DT_DELIVERY_FILE" EntitySet="DT_DELIVERY_FILE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DELIVERY_GROUP_FK1" Association="Self.DT_DELIVERY_GROUP_FK1">
+            <End Role="DT_DELIVERY_FILE" EntitySet="DT_DELIVERY_FILE" />
+            <End Role="DT_DELIVERY_GROUP" EntitySet="DT_DELIVERY_GROUP" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DELIVERY_GROUP_FK2" Association="Self.DT_DELIVERY_GROUP_FK2">
+            <End Role="MT_DELIVERY_GROUP_STATUS" EntitySet="MT_DELIVERY_GROUP_STATUS" />
+            <End Role="DT_DELIVERY_GROUP" EntitySet="DT_DELIVERY_GROUP" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DELIVERY_MODEL_FK1" Association="Self.DT_DELIVERY_MODEL_FK1">
+            <End Role="DT_DELIVERY_FILE" EntitySet="DT_DELIVERY_FILE" />
+            <End Role="DT_DELIVERY_MODEL" EntitySet="DT_DELIVERY_MODEL" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DELIVERY_MODEL_FK2" Association="Self.DT_DELIVERY_MODEL_FK2">
+            <End Role="MT_EQUIPMENT_MODEL" EntitySet="MT_EQUIPMENT_MODEL" />
+            <End Role="DT_DELIVERY_MODEL" EntitySet="DT_DELIVERY_MODEL" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DELIVERY_RESULT_FK1" Association="Self.DT_DELIVERY_RESULT_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_DELIVERY_RESULT" EntitySet="DT_DELIVERY_RESULT" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DELIVERY_RESULT_FK2" Association="Self.DT_DELIVERY_RESULT_FK2">
+            <End Role="DT_DELIVERY_GROUP" EntitySet="DT_DELIVERY_GROUP" />
+            <End Role="DT_DELIVERY_RESULT" EntitySet="DT_DELIVERY_RESULT" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DELIVERY_RESULT_FK3" Association="Self.DT_DELIVERY_RESULT_FK3">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_DELIVERY_RESULT" EntitySet="DT_DELIVERY_RESULT" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DEVICE_FILE_ATTRIBUTE_FK1" Association="Self.DT_DEVICE_FILE_ATTRIBUTE_FK1">
+            <End Role="DT_DEVICE_FILE" EntitySet="DT_DEVICE_FILE" />
+            <End Role="DT_DEVICE_FILE_ATTRIBUTE" EntitySet="DT_DEVICE_FILE_ATTRIBUTE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DEVICE_FILE_FK1" Association="Self.DT_DEVICE_FILE_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_DEVICE_FILE" EntitySet="DT_DEVICE_FILE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DEVICE_FK1" Association="Self.DT_DEVICE_FK1">
+            <End Role="MT_CONNECT_STATUS" EntitySet="MT_CONNECT_STATUS" />
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DEVICE_FK2" Association="Self.DT_DEVICE_FK2">
+            <End Role="MT_INSTALL_TYPE" EntitySet="MT_INSTALL_TYPE" />
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DEVICE_FK3" Association="Self.DT_DEVICE_FK3">
+            <End Role="MT_EQUIPMENT_MODEL" EntitySet="MT_EQUIPMENT_MODEL" />
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DIRECTORY_USAGE_FK1" Association="Self.DT_DIRECTORY_USAGE_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_DIRECTORY_USAGE" EntitySet="DT_DIRECTORY_USAGE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DISK_DRIVE_FK1" Association="Self.DT_DISK_DRIVE_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_DISK_DRIVE" EntitySet="DT_DISK_DRIVE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DRIVE_FK1" Association="Self.DT_DRIVE_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_DRIVE" EntitySet="DT_DRIVE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DXA_BILL_LOG_FK1" Association="Self.DT_DXA_BILL_LOG_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_DXA_BILL_LOG" EntitySet="DT_DXA_BILL_LOG" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DXA_QC_LOG_FK1" Association="Self.DT_DXA_QC_LOG_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_DXA_QC_LOG" EntitySet="DT_DXA_QC_LOG" />
+          </AssociationSet>
+          <AssociationSet Name="DT_EQUIPMENT_USAGE_FK1" Association="Self.DT_EQUIPMENT_USAGE_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_EQUIPMENT_USAGE" EntitySet="DT_EQUIPMENT_USAGE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_INSTALL_RESULT_FK1" Association="Self.DT_INSTALL_RESULT_FK1">
+            <End Role="MT_INSTALL_RESULT_STATUS" EntitySet="MT_INSTALL_RESULT_STATUS" />
+            <End Role="DT_INSTALL_RESULT" EntitySet="DT_INSTALL_RESULT" />
+          </AssociationSet>
+          <AssociationSet Name="DT_INSTALL_RESULT_FK2" Association="Self.DT_INSTALL_RESULT_FK2">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_INSTALL_RESULT" EntitySet="DT_INSTALL_RESULT" />
+          </AssociationSet>
+          <AssociationSet Name="DT_INSTALL_RESULT_FK3" Association="Self.DT_INSTALL_RESULT_FK3">
+            <End Role="DT_DELIVERY_RESULT" EntitySet="DT_DELIVERY_RESULT" />
+            <End Role="DT_INSTALL_RESULT" EntitySet="DT_INSTALL_RESULT" />
+          </AssociationSet>
+          <AssociationSet Name="DT_INVENTORY_FK1" Association="Self.DT_INVENTORY_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_INVENTORY" EntitySet="DT_INVENTORY" />
+          </AssociationSet>
+          <AssociationSet Name="DT_PARENT_CHILD_CONNECT_FK1" Association="Self.DT_PARENT_CHILD_CONNECT_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_PARENT_CHILD_CONNECT" EntitySet="DT_PARENT_CHILD_CONNECT" />
+          </AssociationSet>
+          <AssociationSet Name="DT_PARENT_CHILD_CONNECT_FK2" Association="Self.DT_PARENT_CHILD_CONNECT_FK2">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_PARENT_CHILD_CONNECT" EntitySet="DT_PARENT_CHILD_CONNECT" />
+          </AssociationSet>
+          <AssociationSet Name="DT_PLUS_SERVICE_BILL_LOG_FK1" Association="Self.DT_PLUS_SERVICE_BILL_LOG_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_PLUS_SERVICE_BILL_LOG" EntitySet="DT_PLUS_SERVICE_BILL_LOG" />
+          </AssociationSet>
+          <AssociationSet Name="DT_SCRIPT_CONFIG_FK1" Association="Self.DT_SCRIPT_CONFIG_FK1">
+            <End Role="MT_INSTALL_TYPE" EntitySet="MT_INSTALL_TYPE" />
+            <End Role="DT_SCRIPT_CONFIG" EntitySet="DT_SCRIPT_CONFIG" />
+          </AssociationSet>
+          <AssociationSet Name="DT_SOFT_VERSION_FK1" Association="Self.DT_SOFT_VERSION_FK1">
+            <End Role="MT_EQUIPMENT_MODEL" EntitySet="MT_EQUIPMENT_MODEL" />
+            <End Role="DT_SOFT_VERSION" EntitySet="DT_SOFT_VERSION" />
+          </AssociationSet>
+          <AssociationSet Name="DT_SOFT_VERSION_FK2" Association="Self.DT_SOFT_VERSION_FK2">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_SOFT_VERSION" EntitySet="DT_SOFT_VERSION" />
+          </AssociationSet>
+          <AssociationSet Name="MT_EQUIPMENT_MODEL_FK1" Association="Self.MT_EQUIPMENT_MODEL_FK1">
+            <End Role="MT_EQUIPMENT_TYPE" EntitySet="MT_EQUIPMENT_TYPE" />
+            <End Role="MT_EQUIPMENT_MODEL" EntitySet="MT_EQUIPMENT_MODEL" />
+          </AssociationSet>
+          <AssociationSet Name="MT_INSTALL_TYPE_FK1" Association="Self.MT_INSTALL_TYPE_FK1">
+            <End Role="MT_EQUIPMENT_TYPE" EntitySet="MT_EQUIPMENT_TYPE" />
+            <End Role="MT_INSTALL_TYPE" EntitySet="MT_INSTALL_TYPE" />
+          </AssociationSet>
+          <AssociationSet Name="MT_SOFT_VERSION_CONVERT_FK1" Association="Self.MT_SOFT_VERSION_CONVERT_FK1">
+            <End Role="MT_EQUIPMENT_MODEL" EntitySet="MT_EQUIPMENT_MODEL" />
+            <End Role="MT_SOFT_VERSION_CONVERT" EntitySet="MT_SOFT_VERSION_CONVERT" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="meta.rms.trialModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DT_DELIVERY_FILE" EntityType="meta.rms.trialModel.DT_DELIVERY_FILE" />
+          <EntitySet Name="DT_DELIVERY_GROUP" EntityType="meta.rms.trialModel.DT_DELIVERY_GROUP" />
+          <EntitySet Name="DT_DELIVERY_MODEL" EntityType="meta.rms.trialModel.DT_DELIVERY_MODEL" />
+          <EntitySet Name="DT_DELIVERY_RESULT" EntityType="meta.rms.trialModel.DT_DELIVERY_RESULT" />
+          <EntitySet Name="DT_DEVICE" EntityType="meta.rms.trialModel.DT_DEVICE" />
+          <EntitySet Name="DT_DEVICE_FILE" EntityType="meta.rms.trialModel.DT_DEVICE_FILE" />
+          <EntitySet Name="DT_DEVICE_FILE_ATTRIBUTE" EntityType="meta.rms.trialModel.DT_DEVICE_FILE_ATTRIBUTE" />
+          <EntitySet Name="DT_DIRECTORY_USAGE" EntityType="meta.rms.trialModel.DT_DIRECTORY_USAGE" />
+          <EntitySet Name="DT_DISK_DRIVE" EntityType="meta.rms.trialModel.DT_DISK_DRIVE" />
+          <EntitySet Name="DT_DRIVE" EntityType="meta.rms.trialModel.DT_DRIVE" />
+          <EntitySet Name="DT_DXA_BILL_LOG" EntityType="meta.rms.trialModel.DT_DXA_BILL_LOG" />
+          <EntitySet Name="DT_DXA_QC_LOG" EntityType="meta.rms.trialModel.DT_DXA_QC_LOG" />
+          <EntitySet Name="DT_EQUIPMENT_USAGE" EntityType="meta.rms.trialModel.DT_EQUIPMENT_USAGE" />
+          <EntitySet Name="DT_INSTALL_RESULT" EntityType="meta.rms.trialModel.DT_INSTALL_RESULT" />
+          <EntitySet Name="DT_INVENTORY" EntityType="meta.rms.trialModel.DT_INVENTORY" />
+          <EntitySet Name="DT_PARENT_CHILD_CONNECT" EntityType="meta.rms.trialModel.DT_PARENT_CHILD_CONNECT" />
+          <EntitySet Name="DT_PLUS_SERVICE_BILL_LOG" EntityType="meta.rms.trialModel.DT_PLUS_SERVICE_BILL_LOG" />
+          <EntitySet Name="DT_SCRIPT_CONFIG" EntityType="meta.rms.trialModel.DT_SCRIPT_CONFIG" />
+          <EntitySet Name="DT_SOFT_VERSION" EntityType="meta.rms.trialModel.DT_SOFT_VERSION" />
+          <EntitySet Name="DT_STORAGE_CONFIG" EntityType="meta.rms.trialModel.DT_STORAGE_CONFIG" />
+          <EntitySet Name="MT_CONNECT_STATUS" EntityType="meta.rms.trialModel.MT_CONNECT_STATUS" />
+          <EntitySet Name="MT_DELIVERY_FILE_TYPE" EntityType="meta.rms.trialModel.MT_DELIVERY_FILE_TYPE" />
+          <EntitySet Name="MT_DELIVERY_GROUP_STATUS" EntityType="meta.rms.trialModel.MT_DELIVERY_GROUP_STATUS" />
+          <EntitySet Name="MT_EQUIPMENT_MODEL" EntityType="meta.rms.trialModel.MT_EQUIPMENT_MODEL" />
+          <EntitySet Name="MT_EQUIPMENT_TYPE" EntityType="meta.rms.trialModel.MT_EQUIPMENT_TYPE" />
+          <EntitySet Name="MT_INSTALL_RESULT_STATUS" EntityType="meta.rms.trialModel.MT_INSTALL_RESULT_STATUS" />
+          <EntitySet Name="MT_INSTALL_TYPE" EntityType="meta.rms.trialModel.MT_INSTALL_TYPE" />
+          <EntitySet Name="MT_SOFT_VERSION_CONVERT" EntityType="meta.rms.trialModel.MT_SOFT_VERSION_CONVERT" />
+          <AssociationSet Name="DT_DELIVERY_FILE_FK1" Association="meta.rms.trialModel.DT_DELIVERY_FILE_FK1">
+            <End Role="MT_DELIVERY_FILE_TYPE" EntitySet="MT_DELIVERY_FILE_TYPE" />
+            <End Role="DT_DELIVERY_FILE" EntitySet="DT_DELIVERY_FILE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DELIVERY_FILE_FK2" Association="meta.rms.trialModel.DT_DELIVERY_FILE_FK2">
+            <End Role="MT_INSTALL_TYPE" EntitySet="MT_INSTALL_TYPE" />
+            <End Role="DT_DELIVERY_FILE" EntitySet="DT_DELIVERY_FILE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DELIVERY_GROUP_FK1" Association="meta.rms.trialModel.DT_DELIVERY_GROUP_FK1">
+            <End Role="DT_DELIVERY_FILE" EntitySet="DT_DELIVERY_FILE" />
+            <End Role="DT_DELIVERY_GROUP" EntitySet="DT_DELIVERY_GROUP" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DELIVERY_MODEL_FK1" Association="meta.rms.trialModel.DT_DELIVERY_MODEL_FK1">
+            <End Role="DT_DELIVERY_FILE" EntitySet="DT_DELIVERY_FILE" />
+            <End Role="DT_DELIVERY_MODEL" EntitySet="DT_DELIVERY_MODEL" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DELIVERY_GROUP_FK2" Association="meta.rms.trialModel.DT_DELIVERY_GROUP_FK2">
+            <End Role="MT_DELIVERY_GROUP_STATUS" EntitySet="MT_DELIVERY_GROUP_STATUS" />
+            <End Role="DT_DELIVERY_GROUP" EntitySet="DT_DELIVERY_GROUP" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DELIVERY_RESULT_FK2" Association="meta.rms.trialModel.DT_DELIVERY_RESULT_FK2">
+            <End Role="DT_DELIVERY_GROUP" EntitySet="DT_DELIVERY_GROUP" />
+            <End Role="DT_DELIVERY_RESULT" EntitySet="DT_DELIVERY_RESULT" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DELIVERY_MODEL_FK2" Association="meta.rms.trialModel.DT_DELIVERY_MODEL_FK2">
+            <End Role="MT_EQUIPMENT_MODEL" EntitySet="MT_EQUIPMENT_MODEL" />
+            <End Role="DT_DELIVERY_MODEL" EntitySet="DT_DELIVERY_MODEL" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DELIVERY_RESULT_FK1" Association="meta.rms.trialModel.DT_DELIVERY_RESULT_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_DELIVERY_RESULT" EntitySet="DT_DELIVERY_RESULT" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DELIVERY_RESULT_FK3" Association="meta.rms.trialModel.DT_DELIVERY_RESULT_FK3">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_DELIVERY_RESULT" EntitySet="DT_DELIVERY_RESULT" />
+          </AssociationSet>
+          <AssociationSet Name="DT_INSTALL_RESULT_FK3" Association="meta.rms.trialModel.DT_INSTALL_RESULT_FK3">
+            <End Role="DT_DELIVERY_RESULT" EntitySet="DT_DELIVERY_RESULT" />
+            <End Role="DT_INSTALL_RESULT" EntitySet="DT_INSTALL_RESULT" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DEVICE_FILE_FK1" Association="meta.rms.trialModel.DT_DEVICE_FILE_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_DEVICE_FILE" EntitySet="DT_DEVICE_FILE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DEVICE_FK1" Association="meta.rms.trialModel.DT_DEVICE_FK1">
+            <End Role="MT_CONNECT_STATUS" EntitySet="MT_CONNECT_STATUS" />
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DEVICE_FK2" Association="meta.rms.trialModel.DT_DEVICE_FK2">
+            <End Role="MT_INSTALL_TYPE" EntitySet="MT_INSTALL_TYPE" />
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DEVICE_FK3" Association="meta.rms.trialModel.DT_DEVICE_FK3">
+            <End Role="MT_EQUIPMENT_MODEL" EntitySet="MT_EQUIPMENT_MODEL" />
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DIRECTORY_USAGE_FK1" Association="meta.rms.trialModel.DT_DIRECTORY_USAGE_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_DIRECTORY_USAGE" EntitySet="DT_DIRECTORY_USAGE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DISK_DRIVE_FK1" Association="meta.rms.trialModel.DT_DISK_DRIVE_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_DISK_DRIVE" EntitySet="DT_DISK_DRIVE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DRIVE_FK1" Association="meta.rms.trialModel.DT_DRIVE_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_DRIVE" EntitySet="DT_DRIVE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DXA_BILL_LOG_FK1" Association="meta.rms.trialModel.DT_DXA_BILL_LOG_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_DXA_BILL_LOG" EntitySet="DT_DXA_BILL_LOG" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DXA_QC_LOG_FK1" Association="meta.rms.trialModel.DT_DXA_QC_LOG_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_DXA_QC_LOG" EntitySet="DT_DXA_QC_LOG" />
+          </AssociationSet>
+          <AssociationSet Name="DT_EQUIPMENT_USAGE_FK1" Association="meta.rms.trialModel.DT_EQUIPMENT_USAGE_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_EQUIPMENT_USAGE" EntitySet="DT_EQUIPMENT_USAGE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_INSTALL_RESULT_FK2" Association="meta.rms.trialModel.DT_INSTALL_RESULT_FK2">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_INSTALL_RESULT" EntitySet="DT_INSTALL_RESULT" />
+          </AssociationSet>
+          <AssociationSet Name="DT_INVENTORY_FK1" Association="meta.rms.trialModel.DT_INVENTORY_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_INVENTORY" EntitySet="DT_INVENTORY" />
+          </AssociationSet>
+          <AssociationSet Name="DT_PARENT_CHILD_CONNECT_FK1" Association="meta.rms.trialModel.DT_PARENT_CHILD_CONNECT_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_PARENT_CHILD_CONNECT" EntitySet="DT_PARENT_CHILD_CONNECT" />
+          </AssociationSet>
+          <AssociationSet Name="DT_PARENT_CHILD_CONNECT_FK2" Association="meta.rms.trialModel.DT_PARENT_CHILD_CONNECT_FK2">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_PARENT_CHILD_CONNECT" EntitySet="DT_PARENT_CHILD_CONNECT" />
+          </AssociationSet>
+          <AssociationSet Name="DT_PLUS_SERVICE_BILL_LOG_FK1" Association="meta.rms.trialModel.DT_PLUS_SERVICE_BILL_LOG_FK1">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_PLUS_SERVICE_BILL_LOG" EntitySet="DT_PLUS_SERVICE_BILL_LOG" />
+          </AssociationSet>
+          <AssociationSet Name="DT_SOFT_VERSION_FK2" Association="meta.rms.trialModel.DT_SOFT_VERSION_FK2">
+            <End Role="DT_DEVICE" EntitySet="DT_DEVICE" />
+            <End Role="DT_SOFT_VERSION" EntitySet="DT_SOFT_VERSION" />
+          </AssociationSet>
+          <AssociationSet Name="DT_DEVICE_FILE_ATTRIBUTE_FK1" Association="meta.rms.trialModel.DT_DEVICE_FILE_ATTRIBUTE_FK1">
+            <End Role="DT_DEVICE_FILE" EntitySet="DT_DEVICE_FILE" />
+            <End Role="DT_DEVICE_FILE_ATTRIBUTE" EntitySet="DT_DEVICE_FILE_ATTRIBUTE" />
+          </AssociationSet>
+          <AssociationSet Name="DT_INSTALL_RESULT_FK1" Association="meta.rms.trialModel.DT_INSTALL_RESULT_FK1">
+            <End Role="MT_INSTALL_RESULT_STATUS" EntitySet="MT_INSTALL_RESULT_STATUS" />
+            <End Role="DT_INSTALL_RESULT" EntitySet="DT_INSTALL_RESULT" />
+          </AssociationSet>
+          <AssociationSet Name="DT_SCRIPT_CONFIG_FK1" Association="meta.rms.trialModel.DT_SCRIPT_CONFIG_FK1">
+            <End Role="MT_INSTALL_TYPE" EntitySet="MT_INSTALL_TYPE" />
+            <End Role="DT_SCRIPT_CONFIG" EntitySet="DT_SCRIPT_CONFIG" />
+          </AssociationSet>
+          <AssociationSet Name="DT_SOFT_VERSION_FK1" Association="meta.rms.trialModel.DT_SOFT_VERSION_FK1">
+            <End Role="MT_EQUIPMENT_MODEL" EntitySet="MT_EQUIPMENT_MODEL" />
+            <End Role="DT_SOFT_VERSION" EntitySet="DT_SOFT_VERSION" />
+          </AssociationSet>
+          <AssociationSet Name="MT_EQUIPMENT_MODEL_FK1" Association="meta.rms.trialModel.MT_EQUIPMENT_MODEL_FK1">
+            <End Role="MT_EQUIPMENT_TYPE" EntitySet="MT_EQUIPMENT_TYPE" />
+            <End Role="MT_EQUIPMENT_MODEL" EntitySet="MT_EQUIPMENT_MODEL" />
+          </AssociationSet>
+          <AssociationSet Name="MT_SOFT_VERSION_CONVERT_FK1" Association="meta.rms.trialModel.MT_SOFT_VERSION_CONVERT_FK1">
+            <End Role="MT_EQUIPMENT_MODEL" EntitySet="MT_EQUIPMENT_MODEL" />
+            <End Role="MT_SOFT_VERSION_CONVERT" EntitySet="MT_SOFT_VERSION_CONVERT" />
+          </AssociationSet>
+          <AssociationSet Name="MT_INSTALL_TYPE_FK1" Association="meta.rms.trialModel.MT_INSTALL_TYPE_FK1">
+            <End Role="MT_EQUIPMENT_TYPE" EntitySet="MT_EQUIPMENT_TYPE" />
+            <End Role="MT_INSTALL_TYPE" EntitySet="MT_INSTALL_TYPE" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DT_DELIVERY_FILE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DELIVERY_FILE_TYPE_SID" Type="Int64" Nullable="false" />
+          <Property Name="INSTALL_TYPE_SID" Type="Int64" />
+          <Property Name="FILE_PATH" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VERSION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="INSTALLABLE_VERSION" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="INFORMATION_ID" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="IS_CANCELED" Type="Boolean" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UPDATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ROW_VERSION" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="MT_DELIVERY_FILE_TYPE" Relationship="meta.rms.trialModel.DT_DELIVERY_FILE_FK1" FromRole="DT_DELIVERY_FILE" ToRole="MT_DELIVERY_FILE_TYPE" />
+          <NavigationProperty Name="MT_INSTALL_TYPE" Relationship="meta.rms.trialModel.DT_DELIVERY_FILE_FK2" FromRole="DT_DELIVERY_FILE" ToRole="MT_INSTALL_TYPE" />
+          <NavigationProperty Name="DT_DELIVERY_GROUP" Relationship="meta.rms.trialModel.DT_DELIVERY_GROUP_FK1" FromRole="DT_DELIVERY_FILE" ToRole="DT_DELIVERY_GROUP" />
+          <NavigationProperty Name="DT_DELIVERY_MODEL" Relationship="meta.rms.trialModel.DT_DELIVERY_MODEL_FK1" FromRole="DT_DELIVERY_FILE" ToRole="DT_DELIVERY_MODEL" />
+        </EntityType>
+        <EntityType Name="DT_DELIVERY_GROUP">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DELIVERY_FILE_SID" Type="Int64" Nullable="false" />
+          <Property Name="DELIVERY_GROUP_STATUS_SID" Type="Int64" Nullable="false" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="START_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="DOWNLOAD_DELAY_TIME" Type="Int16" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UPDATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ROW_VERSION" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="DT_DELIVERY_FILE" Relationship="meta.rms.trialModel.DT_DELIVERY_GROUP_FK1" FromRole="DT_DELIVERY_GROUP" ToRole="DT_DELIVERY_FILE" />
+          <NavigationProperty Name="MT_DELIVERY_GROUP_STATUS" Relationship="meta.rms.trialModel.DT_DELIVERY_GROUP_FK2" FromRole="DT_DELIVERY_GROUP" ToRole="MT_DELIVERY_GROUP_STATUS" />
+          <NavigationProperty Name="DT_DELIVERY_RESULT" Relationship="meta.rms.trialModel.DT_DELIVERY_RESULT_FK2" FromRole="DT_DELIVERY_GROUP" ToRole="DT_DELIVERY_RESULT" />
+        </EntityType>
+        <EntityType Name="DT_DELIVERY_MODEL">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DELIVERY_FILE_SID" Type="Int64" Nullable="false" />
+          <Property Name="EQUIPMENT_MODEL_SID" Type="Int64" Nullable="false" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_DELIVERY_FILE" Relationship="meta.rms.trialModel.DT_DELIVERY_MODEL_FK1" FromRole="DT_DELIVERY_MODEL" ToRole="DT_DELIVERY_FILE" />
+          <NavigationProperty Name="MT_EQUIPMENT_MODEL" Relationship="meta.rms.trialModel.DT_DELIVERY_MODEL_FK2" FromRole="DT_DELIVERY_MODEL" ToRole="MT_EQUIPMENT_MODEL" />
+        </EntityType>
+        <EntityType Name="DT_DELIVERY_RESULT">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEVICE_SID" Type="Int64" Nullable="false" />
+          <Property Name="GW_DEVICE_SID" Type="Int64" Nullable="false" />
+          <Property Name="DELIVERY_GROUP_SID" Type="Int64" Nullable="false" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_DELIVERY_GROUP" Relationship="meta.rms.trialModel.DT_DELIVERY_RESULT_FK2" FromRole="DT_DELIVERY_RESULT" ToRole="DT_DELIVERY_GROUP" />
+          <NavigationProperty Name="DT_DEVICE" Relationship="meta.rms.trialModel.DT_DELIVERY_RESULT_FK1" FromRole="DT_DELIVERY_RESULT" ToRole="DT_DEVICE" />
+          <NavigationProperty Name="DT_DEVICE1" Relationship="meta.rms.trialModel.DT_DELIVERY_RESULT_FK3" FromRole="DT_DELIVERY_RESULT" ToRole="DT_DEVICE" />
+          <NavigationProperty Name="DT_INSTALL_RESULT" Relationship="meta.rms.trialModel.DT_INSTALL_RESULT_FK3" FromRole="DT_DELIVERY_RESULT" ToRole="DT_INSTALL_RESULT" />
+        </EntityType>
+        <EntityType Name="DT_DEVICE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EQUIPMENT_MODEL_SID" Type="Int64" />
+          <Property Name="INSTALL_TYPE_SID" Type="Int64" Nullable="false" />
+          <Property Name="CONNECT_STATUS_SID" Type="Int64" Nullable="false" />
+          <Property Name="EDGE_ID" Type="Guid" Nullable="false" />
+          <Property Name="EQUIPMENT_UID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="REMOTE_CONNECT_UID" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="RMS_SOFT_VERSION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CONNECT_START_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="CONNECT_UPDATE_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UPDATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_DELIVERY_RESULT" Relationship="meta.rms.trialModel.DT_DELIVERY_RESULT_FK1" FromRole="DT_DEVICE" ToRole="DT_DELIVERY_RESULT" />
+          <NavigationProperty Name="DT_DELIVERY_RESULT1" Relationship="meta.rms.trialModel.DT_DELIVERY_RESULT_FK3" FromRole="DT_DEVICE" ToRole="DT_DELIVERY_RESULT" />
+          <NavigationProperty Name="DT_DEVICE_FILE" Relationship="meta.rms.trialModel.DT_DEVICE_FILE_FK1" FromRole="DT_DEVICE" ToRole="DT_DEVICE_FILE" />
+          <NavigationProperty Name="MT_CONNECT_STATUS" Relationship="meta.rms.trialModel.DT_DEVICE_FK1" FromRole="DT_DEVICE" ToRole="MT_CONNECT_STATUS" />
+          <NavigationProperty Name="MT_INSTALL_TYPE" Relationship="meta.rms.trialModel.DT_DEVICE_FK2" FromRole="DT_DEVICE" ToRole="MT_INSTALL_TYPE" />
+          <NavigationProperty Name="MT_EQUIPMENT_MODEL" Relationship="meta.rms.trialModel.DT_DEVICE_FK3" FromRole="DT_DEVICE" ToRole="MT_EQUIPMENT_MODEL" />
+          <NavigationProperty Name="DT_DIRECTORY_USAGE" Relationship="meta.rms.trialModel.DT_DIRECTORY_USAGE_FK1" FromRole="DT_DEVICE" ToRole="DT_DIRECTORY_USAGE" />
+          <NavigationProperty Name="DT_DISK_DRIVE" Relationship="meta.rms.trialModel.DT_DISK_DRIVE_FK1" FromRole="DT_DEVICE" ToRole="DT_DISK_DRIVE" />
+          <NavigationProperty Name="DT_DRIVE" Relationship="meta.rms.trialModel.DT_DRIVE_FK1" FromRole="DT_DEVICE" ToRole="DT_DRIVE" />
+          <NavigationProperty Name="DT_DXA_BILL_LOG" Relationship="meta.rms.trialModel.DT_DXA_BILL_LOG_FK1" FromRole="DT_DEVICE" ToRole="DT_DXA_BILL_LOG" />
+          <NavigationProperty Name="DT_DXA_QC_LOG" Relationship="meta.rms.trialModel.DT_DXA_QC_LOG_FK1" FromRole="DT_DEVICE" ToRole="DT_DXA_QC_LOG" />
+          <NavigationProperty Name="DT_EQUIPMENT_USAGE" Relationship="meta.rms.trialModel.DT_EQUIPMENT_USAGE_FK1" FromRole="DT_DEVICE" ToRole="DT_EQUIPMENT_USAGE" />
+          <NavigationProperty Name="DT_INSTALL_RESULT" Relationship="meta.rms.trialModel.DT_INSTALL_RESULT_FK2" FromRole="DT_DEVICE" ToRole="DT_INSTALL_RESULT" />
+          <NavigationProperty Name="DT_INVENTORY" Relationship="meta.rms.trialModel.DT_INVENTORY_FK1" FromRole="DT_DEVICE" ToRole="DT_INVENTORY" />
+          <NavigationProperty Name="DT_PARENT_CHILD_CONNECT" Relationship="meta.rms.trialModel.DT_PARENT_CHILD_CONNECT_FK1" FromRole="DT_DEVICE" ToRole="DT_PARENT_CHILD_CONNECT" />
+          <NavigationProperty Name="DT_PARENT_CHILD_CONNECT1" Relationship="meta.rms.trialModel.DT_PARENT_CHILD_CONNECT_FK2" FromRole="DT_DEVICE" ToRole="DT_PARENT_CHILD_CONNECT" />
+          <NavigationProperty Name="DT_PLUS_SERVICE_BILL_LOG" Relationship="meta.rms.trialModel.DT_PLUS_SERVICE_BILL_LOG_FK1" FromRole="DT_DEVICE" ToRole="DT_PLUS_SERVICE_BILL_LOG" />
+          <NavigationProperty Name="DT_SOFT_VERSION" Relationship="meta.rms.trialModel.DT_SOFT_VERSION_FK2" FromRole="DT_DEVICE" ToRole="DT_SOFT_VERSION" />
+        </EntityType>
+        <EntityType Name="DT_DEVICE_FILE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEVICE_SID" Type="Int64" Nullable="false" />
+          <Property Name="SOURCE_EQUIPMENT_UID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CONTAINER" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="FILE_PATH" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="COLLECT_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UPDATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_DEVICE" Relationship="meta.rms.trialModel.DT_DEVICE_FILE_FK1" FromRole="DT_DEVICE_FILE" ToRole="DT_DEVICE" />
+          <NavigationProperty Name="DT_DEVICE_FILE_ATTRIBUTE" Relationship="meta.rms.trialModel.DT_DEVICE_FILE_ATTRIBUTE_FK1" FromRole="DT_DEVICE_FILE" ToRole="DT_DEVICE_FILE_ATTRIBUTE" />
+        </EntityType>
+        <EntityType Name="DT_DEVICE_FILE_ATTRIBUTE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEVICE_FILE_SID" Type="Int64" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="VALUE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UPDATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_DEVICE_FILE" Relationship="meta.rms.trialModel.DT_DEVICE_FILE_ATTRIBUTE_FK1" FromRole="DT_DEVICE_FILE_ATTRIBUTE" ToRole="DT_DEVICE_FILE" />
+        </EntityType>
+        <EntityType Name="DT_DIRECTORY_USAGE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEVICE_SID" Type="Int64" Nullable="false" />
+          <Property Name="SOURCE_EQUIPMENT_UID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DETAIL_INFO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="COLLECT_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="MESSAGE_ID" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_DEVICE" Relationship="meta.rms.trialModel.DT_DIRECTORY_USAGE_FK1" FromRole="DT_DIRECTORY_USAGE" ToRole="DT_DEVICE" />
+        </EntityType>
+        <EntityType Name="DT_DISK_DRIVE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEVICE_SID" Type="Int64" Nullable="false" />
+          <Property Name="SOURCE_EQUIPMENT_UID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MODEL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MEDIA_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="INTERFACE_TYPE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SERIAL_NUMBER" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SMART_ATTRIBUTE_INFO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="COLLECT_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="MESSAGE_ID" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_DEVICE" Relationship="meta.rms.trialModel.DT_DISK_DRIVE_FK1" FromRole="DT_DISK_DRIVE" ToRole="DT_DEVICE" />
+        </EntityType>
+        <EntityType Name="DT_DRIVE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEVICE_SID" Type="Int64" Nullable="false" />
+          <Property Name="SOURCE_EQUIPMENT_UID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DETAIL_INFO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="COLLECT_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="MESSAGE_ID" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_DEVICE" Relationship="meta.rms.trialModel.DT_DRIVE_FK1" FromRole="DT_DRIVE" ToRole="DT_DEVICE" />
+        </EntityType>
+        <EntityType Name="DT_DXA_BILL_LOG">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEVICE_SID" Type="Int64" Nullable="false" />
+          <Property Name="SOUECE_EQUIPMENT_UID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="STUDY_INSTANCE_UID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="PATIENT_ID" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="TYPE_NAME" Type="Byte" />
+          <Property Name="STUDY_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="MEASURE_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="OPTION_DXA" Type="Boolean" />
+          <Property Name="SERVICE_MODE" Type="Boolean" />
+          <Property Name="COLLECT_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UPDATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_DEVICE" Relationship="meta.rms.trialModel.DT_DXA_BILL_LOG_FK1" FromRole="DT_DXA_BILL_LOG" ToRole="DT_DEVICE" />
+        </EntityType>
+        <EntityType Name="DT_DXA_QC_LOG">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEVICE_SID" Type="Int64" Nullable="false" />
+          <Property Name="SOURCE_EQUIPMENT_UID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="STUDY_INSTANCE_UID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="SOP_INSTANCE_UID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="STUDY_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="MEASURE_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="PANEL_SERIAL_ID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TECHNIQUE_CODE" Type="Byte" />
+          <Property Name="TYPE_NAME" Type="Byte" />
+          <Property Name="QC_RESULT" Type="Int64" />
+          <Property Name="BMC_DXA_A_TEST" Type="Double" />
+          <Property Name="BMC_DXA_B_TEST" Type="Double" />
+          <Property Name="BMC_DXA_C_TEST" Type="Double" />
+          <Property Name="AREA_DXA_A_TEST" Type="Double" />
+          <Property Name="AREA_DXA_B_TEST" Type="Double" />
+          <Property Name="AREA_DXA_C_TEST" Type="Double" />
+          <Property Name="BMD_DXA_A_TEST" Type="Double" />
+          <Property Name="BMD_DXA_B_TEST" Type="Double" />
+          <Property Name="BMD_DXA_C_TEST" Type="Double" />
+          <Property Name="BMD_LINEARITY_TEST" Type="Double" />
+          <Property Name="QL_CSI_BONE_A_TEST" Type="Double" />
+          <Property Name="QL_CSI_BONE_B_TEST" Type="Double" />
+          <Property Name="QL_CSI_BONE_C_TEST" Type="Double" />
+          <Property Name="QL_CSI_SOFT_LA_TEST" Type="Double" />
+          <Property Name="QL_CSI_SOFT_LB_TEST" Type="Double" />
+          <Property Name="QL_CSI_SOFT_LC_TEST" Type="Double" />
+          <Property Name="QL_CSI_SOFT_RA_TEST" Type="Double" />
+          <Property Name="QL_CSI_SOFT_RB_TEST" Type="Double" />
+          <Property Name="QL_CSI_SOFT_RC_TEST" Type="Double" />
+          <Property Name="QL_GOS_BONE_A_TEST" Type="Double" />
+          <Property Name="QL_GOS_BONE_B_TEST" Type="Double" />
+          <Property Name="QL_GOS_BONE_C_TEST" Type="Double" />
+          <Property Name="QL_GOS_SOFT_LA_TEST" Type="Double" />
+          <Property Name="QL_GOS_SOFT_LB_TEST" Type="Double" />
+          <Property Name="QL_GOS_SOFT_LC_TEST" Type="Double" />
+          <Property Name="QL_GOS_SOFT_RA_TEST" Type="Double" />
+          <Property Name="QL_GOS_SOFT_RB_TEST" Type="Double" />
+          <Property Name="QL_GOS_SOFT_RC_TEST" Type="Double" />
+          <Property Name="QL_DXA_BONE_A_TEST" Type="Double" />
+          <Property Name="QL_DXA_BONE_B_TEST" Type="Double" />
+          <Property Name="QL_DXA_BONE_C_TEST" Type="Double" />
+          <Property Name="QL_DXA_SOFT_LA_TEST" Type="Double" />
+          <Property Name="QL_DXA_SOFT_LB_TEST" Type="Double" />
+          <Property Name="QL_DXA_SOFT_LC_TEST" Type="Double" />
+          <Property Name="QL_DXA_SOFT_RA_TEST" Type="Double" />
+          <Property Name="QL_DXA_SOFT_RB_TEST" Type="Double" />
+          <Property Name="QL_DXA_SOFT_RC_TEST" Type="Double" />
+          <Property Name="STD_CSI_BONE_A_TEST" Type="Double" />
+          <Property Name="STD_CSI_BONE_B_TEST" Type="Double" />
+          <Property Name="STD_CSI_BONE_C_TEST" Type="Double" />
+          <Property Name="STD_CSI_SOFT_LA_TEST" Type="Double" />
+          <Property Name="STD_CSI_SOFT_LB_TEST" Type="Double" />
+          <Property Name="STD_CSI_SOFT_LC_TEST" Type="Double" />
+          <Property Name="STD_CSI_SOFT_RA_TEST" Type="Double" />
+          <Property Name="STD_CSI_SOFT_RB_TEST" Type="Double" />
+          <Property Name="STD_CSI_SOFT_RC_TEST" Type="Double" />
+          <Property Name="STD_GOS_BONE_A_TEST" Type="Double" />
+          <Property Name="STD_GOS_BONE_B_TEST" Type="Double" />
+          <Property Name="STD_GOS_BONE_C_TEST" Type="Double" />
+          <Property Name="STD_GOS_SOFT_LA_TEST" Type="Double" />
+          <Property Name="STD_GOS_SOFT_LB_TEST" Type="Double" />
+          <Property Name="STD_GOS_SOFT_LC_TEST" Type="Double" />
+          <Property Name="STD_GOS_SOFT_RA_TEST" Type="Double" />
+          <Property Name="STD_GOS_SOFT_RB_TEST" Type="Double" />
+          <Property Name="STD_GOS_SOFT_RC_TEST" Type="Double" />
+          <Property Name="STD_DXA_BONE_A_TEST" Type="Double" />
+          <Property Name="STD_DXA_BONE_B_TEST" Type="Double" />
+          <Property Name="STD_DXA_BONE_C_TEST" Type="Double" />
+          <Property Name="STD_DXA_SOFT_LA_TEST" Type="Double" />
+          <Property Name="STD_DXA_SOFT_LB_TEST" Type="Double" />
+          <Property Name="STD_DXA_SOFT_LC_TEST" Type="Double" />
+          <Property Name="STD_DXA_SOFT_RA_TEST" Type="Double" />
+          <Property Name="STD_DXA_SOFT_RB_TEST" Type="Double" />
+          <Property Name="STD_DXA_SOFT_RC_TEST" Type="Double" />
+          <Property Name="BMD_DXA_A_BASVAL_TEST" Type="Double" />
+          <Property Name="BMD_DXA_B_BASVAL_TEST" Type="Double" />
+          <Property Name="BMD_DXA_C_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_CSI_BONE_A_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_CSI_BONE_B_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_CSI_BONE_C_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_CSI_SOFT_LA_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_CSI_SOFT_LB_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_CSI_SOFT_LC_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_CSI_SOFT_RA_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_CSI_SOFT_RB_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_CSI_SOFT_RC_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_GOS_BONE_A_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_GOS_BONE_B_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_GOS_BONE_C_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_GOS_SOFT_LA_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_GOS_SOFT_LB_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_GOS_SOFT_LC_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_GOS_SOFT_RA_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_GOS_SOFT_RB_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_GOS_SOFT_RC_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_DXA_BONE_A_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_DXA_BONE_B_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_DXA_BONE_C_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_DXA_SOFT_LA_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_DXA_SOFT_LB_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_DXA_SOFT_LC_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_DXA_SOFT_RA_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_DXA_SOFT_RB_BASVAL_TEST" Type="Double" />
+          <Property Name="QL_DXA_SOFT_RC_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_CSI_BONE_A_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_CSI_BONE_B_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_CSI_BONE_C_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_CSI_SOFT_LA_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_CSI_SOFT_LB_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_CSI_SOFT_LC_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_CSI_SOFT_RA_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_CSI_SOFT_RB_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_CSI_SOFT_RC_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_GOS_BONE_A_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_GOS_BONE_B_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_GOS_BONE_C_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_GOS_SOFT_LA_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_GOS_SOFT_LB_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_GOS_SOFT_LC_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_GOS_SOFT_RA_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_GOS_SOFT_RB_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_GOS_SOFT_RC_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_DXA_BONE_A_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_DXA_BONE_B_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_DXA_BONE_C_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_DXA_SOFT_LA_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_DXA_SOFT_LB_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_DXA_SOFT_LC_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_DXA_SOFT_RA_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_DXA_SOFT_RB_BASVAL_TEST" Type="Double" />
+          <Property Name="STD_DXA_SOFT_RC_BASVAL_TEST" Type="Double" />
+          <Property Name="COLLECT_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="MESSAGE_ID" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_DEVICE" Relationship="meta.rms.trialModel.DT_DXA_QC_LOG_FK1" FromRole="DT_DXA_QC_LOG" ToRole="DT_DEVICE" />
+        </EntityType>
+        <EntityType Name="DT_EQUIPMENT_USAGE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEVICE_SID" Type="Int64" Nullable="false" />
+          <Property Name="SOURCE_EQUIPMENT_UID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DETAIL_INFO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="COLLECT_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="MESSAGE_ID" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_DEVICE" Relationship="meta.rms.trialModel.DT_EQUIPMENT_USAGE_FK1" FromRole="DT_EQUIPMENT_USAGE" ToRole="DT_DEVICE" />
+        </EntityType>
+        <EntityType Name="DT_INSTALL_RESULT">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEVICE_SID" Type="Int64" Nullable="false" />
+          <Property Name="DELIVERY_RESULT_SID" Type="Int64" />
+          <Property Name="INSTALL_RESULT_STATUS_SID" Type="Int64" Nullable="false" />
+          <Property Name="SOURCE_EQUIPMENT_UID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="RELEASE_VERSION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="BEFORE_VERSION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="AFTER_VERVION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IS_SUCCESS" Type="Boolean" />
+          <Property Name="ERROR_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ERROR_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IS_AUTO" Type="Boolean" />
+          <Property Name="METHOD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PROCESS" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATE_STRAT_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="UPDATE_END_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="COMPUTER_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IP_ADDRESS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SERVER_CLIENT_KIND" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="HAS_REPAIR_REPORT" Type="Boolean" />
+          <Property Name="EVENT_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="COLLECT_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="MESSAGE_ID" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_DELIVERY_RESULT" Relationship="meta.rms.trialModel.DT_INSTALL_RESULT_FK3" FromRole="DT_INSTALL_RESULT" ToRole="DT_DELIVERY_RESULT" />
+          <NavigationProperty Name="DT_DEVICE" Relationship="meta.rms.trialModel.DT_INSTALL_RESULT_FK2" FromRole="DT_INSTALL_RESULT" ToRole="DT_DEVICE" />
+          <NavigationProperty Name="MT_INSTALL_RESULT_STATUS" Relationship="meta.rms.trialModel.DT_INSTALL_RESULT_FK1" FromRole="DT_INSTALL_RESULT" ToRole="MT_INSTALL_RESULT_STATUS" />
+        </EntityType>
+        <EntityType Name="DT_INVENTORY">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEVICE_SID" Type="Int64" Nullable="false" />
+          <Property Name="SOURCE_EQUIPMENT_UID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DETAIL_INFO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="COLLECT_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="MESSAGE_ID" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_DEVICE" Relationship="meta.rms.trialModel.DT_INVENTORY_FK1" FromRole="DT_INVENTORY" ToRole="DT_DEVICE" />
+        </EntityType>
+        <EntityType Name="DT_PARENT_CHILD_CONNECT">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PARENT_DEVICE_SID" Type="Int64" Nullable="false" />
+          <Property Name="CHILD_DEVICE_SID" Type="Int64" Nullable="false" />
+          <Property Name="PARENT_RESULT" Type="Boolean" />
+          <Property Name="PARENT_CONFIRM_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="PARENT_LAST_CONNECT_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="CHILD_RESULT" Type="Boolean" />
+          <Property Name="CHILD_CONFIRM_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="CHILD_LAST_CONNECT_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UPDATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_DEVICE" Relationship="meta.rms.trialModel.DT_PARENT_CHILD_CONNECT_FK1" FromRole="DT_PARENT_CHILD_CONNECT" ToRole="DT_DEVICE" />
+          <NavigationProperty Name="DT_DEVICE1" Relationship="meta.rms.trialModel.DT_PARENT_CHILD_CONNECT_FK2" FromRole="DT_PARENT_CHILD_CONNECT" ToRole="DT_DEVICE" />
+        </EntityType>
+        <EntityType Name="DT_PLUS_SERVICE_BILL_LOG">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEVICE_SID" Type="Int64" Nullable="false" />
+          <Property Name="SOURCE_EQUIPMENT_UID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TYPE_NAME" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="BILL_FLG" Type="Boolean" />
+          <Property Name="PATIENT_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="SEX" Type="Byte" />
+          <Property Name="AGE" Type="Byte" />
+          <Property Name="STUDY_INSTANCE_UID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="SOP_INSTANCE_UID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="STUDY_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="MEASURE_VALUE" Type="Double" />
+          <Property Name="MEASURE_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="COLLECT_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UPDATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_DEVICE" Relationship="meta.rms.trialModel.DT_PLUS_SERVICE_BILL_LOG_FK1" FromRole="DT_PLUS_SERVICE_BILL_LOG" ToRole="DT_DEVICE" />
+        </EntityType>
+        <EntityType Name="DT_SCRIPT_CONFIG">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="INSTALL_TYPE_SID" Type="Int64" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="VERSION" Type="Int16" />
+          <Property Name="FILE_NAME" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="LOCATION" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="MT_INSTALL_TYPE" Relationship="meta.rms.trialModel.DT_SCRIPT_CONFIG_FK1" FromRole="DT_SCRIPT_CONFIG" ToRole="MT_INSTALL_TYPE" />
+        </EntityType>
+        <EntityType Name="DT_SOFT_VERSION">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEVICE_SID" Type="Int64" Nullable="false" />
+          <Property Name="EQUIPMENT_MODEL_SID" Type="Int64" Nullable="false" />
+          <Property Name="SOURCE_EQUIPMENT_UID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="VERSION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MESSAGE_ID" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="COLLECT_DATETIME" Type="DateTime" Precision="7" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_DEVICE" Relationship="meta.rms.trialModel.DT_SOFT_VERSION_FK2" FromRole="DT_SOFT_VERSION" ToRole="DT_DEVICE" />
+          <NavigationProperty Name="MT_EQUIPMENT_MODEL" Relationship="meta.rms.trialModel.DT_SOFT_VERSION_FK1" FromRole="DT_SOFT_VERSION" ToRole="MT_EQUIPMENT_MODEL" />
+        </EntityType>
+        <EntityType Name="DT_STORAGE_CONFIG">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="URL" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="SAS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UPDATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="MT_CONNECT_STATUS">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_DEVICE" Relationship="meta.rms.trialModel.DT_DEVICE_FK1" FromRole="MT_CONNECT_STATUS" ToRole="DT_DEVICE" />
+        </EntityType>
+        <EntityType Name="MT_DELIVERY_FILE_TYPE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_DELIVERY_FILE" Relationship="meta.rms.trialModel.DT_DELIVERY_FILE_FK1" FromRole="MT_DELIVERY_FILE_TYPE" ToRole="DT_DELIVERY_FILE" />
+        </EntityType>
+        <EntityType Name="MT_DELIVERY_GROUP_STATUS">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_DELIVERY_GROUP" Relationship="meta.rms.trialModel.DT_DELIVERY_GROUP_FK2" FromRole="MT_DELIVERY_GROUP_STATUS" ToRole="DT_DELIVERY_GROUP" />
+        </EntityType>
+        <EntityType Name="MT_EQUIPMENT_MODEL">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EQUIPMENT_TYPE_SID" Type="Int64" Nullable="false" />
+          <Property Name="CODE" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_DELIVERY_MODEL" Relationship="meta.rms.trialModel.DT_DELIVERY_MODEL_FK2" FromRole="MT_EQUIPMENT_MODEL" ToRole="DT_DELIVERY_MODEL" />
+          <NavigationProperty Name="DT_DEVICE" Relationship="meta.rms.trialModel.DT_DEVICE_FK3" FromRole="MT_EQUIPMENT_MODEL" ToRole="DT_DEVICE" />
+          <NavigationProperty Name="DT_SOFT_VERSION" Relationship="meta.rms.trialModel.DT_SOFT_VERSION_FK1" FromRole="MT_EQUIPMENT_MODEL" ToRole="DT_SOFT_VERSION" />
+          <NavigationProperty Name="MT_EQUIPMENT_TYPE" Relationship="meta.rms.trialModel.MT_EQUIPMENT_MODEL_FK1" FromRole="MT_EQUIPMENT_MODEL" ToRole="MT_EQUIPMENT_TYPE" />
+          <NavigationProperty Name="MT_SOFT_VERSION_CONVERT" Relationship="meta.rms.trialModel.MT_SOFT_VERSION_CONVERT_FK1" FromRole="MT_EQUIPMENT_MODEL" ToRole="MT_SOFT_VERSION_CONVERT" />
+        </EntityType>
+        <EntityType Name="MT_EQUIPMENT_TYPE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODE" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="MT_EQUIPMENT_MODEL" Relationship="meta.rms.trialModel.MT_EQUIPMENT_MODEL_FK1" FromRole="MT_EQUIPMENT_TYPE" ToRole="MT_EQUIPMENT_MODEL" />
+          <NavigationProperty Name="MT_INSTALL_TYPE" Relationship="meta.rms.trialModel.MT_INSTALL_TYPE_FK1" FromRole="MT_EQUIPMENT_TYPE" ToRole="MT_INSTALL_TYPE" />
+        </EntityType>
+        <EntityType Name="MT_INSTALL_RESULT_STATUS">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_INSTALL_RESULT" Relationship="meta.rms.trialModel.DT_INSTALL_RESULT_FK1" FromRole="MT_INSTALL_RESULT_STATUS" ToRole="DT_INSTALL_RESULT" />
+        </EntityType>
+        <EntityType Name="MT_INSTALL_TYPE">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EQUIPMENT_TYPE_SID" Type="Int64" Nullable="false" />
+          <Property Name="CODE" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DT_DELIVERY_FILE" Relationship="meta.rms.trialModel.DT_DELIVERY_FILE_FK2" FromRole="MT_INSTALL_TYPE" ToRole="DT_DELIVERY_FILE" />
+          <NavigationProperty Name="DT_DEVICE" Relationship="meta.rms.trialModel.DT_DEVICE_FK2" FromRole="MT_INSTALL_TYPE" ToRole="DT_DEVICE" />
+          <NavigationProperty Name="DT_SCRIPT_CONFIG" Relationship="meta.rms.trialModel.DT_SCRIPT_CONFIG_FK1" FromRole="MT_INSTALL_TYPE" ToRole="DT_SCRIPT_CONFIG" />
+          <NavigationProperty Name="MT_EQUIPMENT_TYPE" Relationship="meta.rms.trialModel.MT_INSTALL_TYPE_FK1" FromRole="MT_INSTALL_TYPE" ToRole="MT_EQUIPMENT_TYPE" />
+        </EntityType>
+        <EntityType Name="MT_SOFT_VERSION_CONVERT">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EQUIPMENT_MODEL_SID" Type="Int64" Nullable="false" />
+          <Property Name="DISPLAY_VERSION" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="INTERNAL_VERSION" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CREATE_DATETIME" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="MT_EQUIPMENT_MODEL" Relationship="meta.rms.trialModel.MT_SOFT_VERSION_CONVERT_FK1" FromRole="MT_SOFT_VERSION_CONVERT" ToRole="MT_EQUIPMENT_MODEL" />
+        </EntityType>
+        <Association Name="DT_DELIVERY_FILE_FK1">
+          <End Type="meta.rms.trialModel.MT_DELIVERY_FILE_TYPE" Role="MT_DELIVERY_FILE_TYPE" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_DELIVERY_FILE" Role="DT_DELIVERY_FILE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_DELIVERY_FILE_TYPE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DELIVERY_FILE">
+              <PropertyRef Name="DELIVERY_FILE_TYPE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DELIVERY_FILE_FK2">
+          <End Type="meta.rms.trialModel.MT_INSTALL_TYPE" Role="MT_INSTALL_TYPE" Multiplicity="0..1" />
+          <End Type="meta.rms.trialModel.DT_DELIVERY_FILE" Role="DT_DELIVERY_FILE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_INSTALL_TYPE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DELIVERY_FILE">
+              <PropertyRef Name="INSTALL_TYPE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DELIVERY_GROUP_FK1">
+          <End Type="meta.rms.trialModel.DT_DELIVERY_FILE" Role="DT_DELIVERY_FILE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="meta.rms.trialModel.DT_DELIVERY_GROUP" Role="DT_DELIVERY_GROUP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DELIVERY_FILE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DELIVERY_GROUP">
+              <PropertyRef Name="DELIVERY_FILE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DELIVERY_MODEL_FK1">
+          <End Type="meta.rms.trialModel.DT_DELIVERY_FILE" Role="DT_DELIVERY_FILE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="meta.rms.trialModel.DT_DELIVERY_MODEL" Role="DT_DELIVERY_MODEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DELIVERY_FILE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DELIVERY_MODEL">
+              <PropertyRef Name="DELIVERY_FILE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DELIVERY_GROUP_FK2">
+          <End Type="meta.rms.trialModel.MT_DELIVERY_GROUP_STATUS" Role="MT_DELIVERY_GROUP_STATUS" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_DELIVERY_GROUP" Role="DT_DELIVERY_GROUP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_DELIVERY_GROUP_STATUS">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DELIVERY_GROUP">
+              <PropertyRef Name="DELIVERY_GROUP_STATUS_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DELIVERY_RESULT_FK2">
+          <End Type="meta.rms.trialModel.DT_DELIVERY_GROUP" Role="DT_DELIVERY_GROUP" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="meta.rms.trialModel.DT_DELIVERY_RESULT" Role="DT_DELIVERY_RESULT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DELIVERY_GROUP">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DELIVERY_RESULT">
+              <PropertyRef Name="DELIVERY_GROUP_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DELIVERY_MODEL_FK2">
+          <End Type="meta.rms.trialModel.MT_EQUIPMENT_MODEL" Role="MT_EQUIPMENT_MODEL" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_DELIVERY_MODEL" Role="DT_DELIVERY_MODEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_EQUIPMENT_MODEL">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DELIVERY_MODEL">
+              <PropertyRef Name="EQUIPMENT_MODEL_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DELIVERY_RESULT_FK1">
+          <End Type="meta.rms.trialModel.DT_DEVICE" Role="DT_DEVICE" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_DELIVERY_RESULT" Role="DT_DELIVERY_RESULT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DELIVERY_RESULT">
+              <PropertyRef Name="GW_DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DELIVERY_RESULT_FK3">
+          <End Type="meta.rms.trialModel.DT_DEVICE" Role="DT_DEVICE" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_DELIVERY_RESULT" Role="DT_DELIVERY_RESULT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DELIVERY_RESULT">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_INSTALL_RESULT_FK3">
+          <End Type="meta.rms.trialModel.DT_DELIVERY_RESULT" Role="DT_DELIVERY_RESULT" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="meta.rms.trialModel.DT_INSTALL_RESULT" Role="DT_INSTALL_RESULT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DELIVERY_RESULT">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_INSTALL_RESULT">
+              <PropertyRef Name="DELIVERY_RESULT_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DEVICE_FILE_FK1">
+          <End Type="meta.rms.trialModel.DT_DEVICE" Role="DT_DEVICE" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_DEVICE_FILE" Role="DT_DEVICE_FILE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DEVICE_FILE">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DEVICE_FK1">
+          <End Type="meta.rms.trialModel.MT_CONNECT_STATUS" Role="MT_CONNECT_STATUS" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_DEVICE" Role="DT_DEVICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_CONNECT_STATUS">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DEVICE">
+              <PropertyRef Name="CONNECT_STATUS_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DEVICE_FK2">
+          <End Type="meta.rms.trialModel.MT_INSTALL_TYPE" Role="MT_INSTALL_TYPE" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_DEVICE" Role="DT_DEVICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_INSTALL_TYPE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DEVICE">
+              <PropertyRef Name="INSTALL_TYPE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DEVICE_FK3">
+          <End Type="meta.rms.trialModel.MT_EQUIPMENT_MODEL" Role="MT_EQUIPMENT_MODEL" Multiplicity="0..1" />
+          <End Type="meta.rms.trialModel.DT_DEVICE" Role="DT_DEVICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_EQUIPMENT_MODEL">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DEVICE">
+              <PropertyRef Name="EQUIPMENT_MODEL_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DIRECTORY_USAGE_FK1">
+          <End Type="meta.rms.trialModel.DT_DEVICE" Role="DT_DEVICE" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_DIRECTORY_USAGE" Role="DT_DIRECTORY_USAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DIRECTORY_USAGE">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DISK_DRIVE_FK1">
+          <End Type="meta.rms.trialModel.DT_DEVICE" Role="DT_DEVICE" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_DISK_DRIVE" Role="DT_DISK_DRIVE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DISK_DRIVE">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DRIVE_FK1">
+          <End Type="meta.rms.trialModel.DT_DEVICE" Role="DT_DEVICE" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_DRIVE" Role="DT_DRIVE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DRIVE">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DXA_BILL_LOG_FK1">
+          <End Type="meta.rms.trialModel.DT_DEVICE" Role="DT_DEVICE" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_DXA_BILL_LOG" Role="DT_DXA_BILL_LOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DXA_BILL_LOG">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DXA_QC_LOG_FK1">
+          <End Type="meta.rms.trialModel.DT_DEVICE" Role="DT_DEVICE" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_DXA_QC_LOG" Role="DT_DXA_QC_LOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DXA_QC_LOG">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_EQUIPMENT_USAGE_FK1">
+          <End Type="meta.rms.trialModel.DT_DEVICE" Role="DT_DEVICE" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_EQUIPMENT_USAGE" Role="DT_EQUIPMENT_USAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_EQUIPMENT_USAGE">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_INSTALL_RESULT_FK2">
+          <End Type="meta.rms.trialModel.DT_DEVICE" Role="DT_DEVICE" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_INSTALL_RESULT" Role="DT_INSTALL_RESULT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_INSTALL_RESULT">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_INVENTORY_FK1">
+          <End Type="meta.rms.trialModel.DT_DEVICE" Role="DT_DEVICE" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_INVENTORY" Role="DT_INVENTORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_INVENTORY">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_PARENT_CHILD_CONNECT_FK1">
+          <End Type="meta.rms.trialModel.DT_DEVICE" Role="DT_DEVICE" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_PARENT_CHILD_CONNECT" Role="DT_PARENT_CHILD_CONNECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_PARENT_CHILD_CONNECT">
+              <PropertyRef Name="PARENT_DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_PARENT_CHILD_CONNECT_FK2">
+          <End Type="meta.rms.trialModel.DT_DEVICE" Role="DT_DEVICE" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_PARENT_CHILD_CONNECT" Role="DT_PARENT_CHILD_CONNECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_PARENT_CHILD_CONNECT">
+              <PropertyRef Name="CHILD_DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_PLUS_SERVICE_BILL_LOG_FK1">
+          <End Type="meta.rms.trialModel.DT_DEVICE" Role="DT_DEVICE" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_PLUS_SERVICE_BILL_LOG" Role="DT_PLUS_SERVICE_BILL_LOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_PLUS_SERVICE_BILL_LOG">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_SOFT_VERSION_FK2">
+          <End Type="meta.rms.trialModel.DT_DEVICE" Role="DT_DEVICE" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_SOFT_VERSION" Role="DT_SOFT_VERSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_SOFT_VERSION">
+              <PropertyRef Name="DEVICE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_DEVICE_FILE_ATTRIBUTE_FK1">
+          <End Type="meta.rms.trialModel.DT_DEVICE_FILE" Role="DT_DEVICE_FILE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="meta.rms.trialModel.DT_DEVICE_FILE_ATTRIBUTE" Role="DT_DEVICE_FILE_ATTRIBUTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DT_DEVICE_FILE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_DEVICE_FILE_ATTRIBUTE">
+              <PropertyRef Name="DEVICE_FILE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_INSTALL_RESULT_FK1">
+          <End Type="meta.rms.trialModel.MT_INSTALL_RESULT_STATUS" Role="MT_INSTALL_RESULT_STATUS" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_INSTALL_RESULT" Role="DT_INSTALL_RESULT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_INSTALL_RESULT_STATUS">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_INSTALL_RESULT">
+              <PropertyRef Name="INSTALL_RESULT_STATUS_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_SCRIPT_CONFIG_FK1">
+          <End Type="meta.rms.trialModel.MT_INSTALL_TYPE" Role="MT_INSTALL_TYPE" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_SCRIPT_CONFIG" Role="DT_SCRIPT_CONFIG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_INSTALL_TYPE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_SCRIPT_CONFIG">
+              <PropertyRef Name="INSTALL_TYPE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DT_SOFT_VERSION_FK1">
+          <End Type="meta.rms.trialModel.MT_EQUIPMENT_MODEL" Role="MT_EQUIPMENT_MODEL" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.DT_SOFT_VERSION" Role="DT_SOFT_VERSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_EQUIPMENT_MODEL">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="DT_SOFT_VERSION">
+              <PropertyRef Name="EQUIPMENT_MODEL_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MT_EQUIPMENT_MODEL_FK1">
+          <End Type="meta.rms.trialModel.MT_EQUIPMENT_TYPE" Role="MT_EQUIPMENT_TYPE" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.MT_EQUIPMENT_MODEL" Role="MT_EQUIPMENT_MODEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_EQUIPMENT_TYPE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="MT_EQUIPMENT_MODEL">
+              <PropertyRef Name="EQUIPMENT_TYPE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MT_SOFT_VERSION_CONVERT_FK1">
+          <End Type="meta.rms.trialModel.MT_EQUIPMENT_MODEL" Role="MT_EQUIPMENT_MODEL" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.MT_SOFT_VERSION_CONVERT" Role="MT_SOFT_VERSION_CONVERT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_EQUIPMENT_MODEL">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="MT_SOFT_VERSION_CONVERT">
+              <PropertyRef Name="EQUIPMENT_MODEL_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MT_INSTALL_TYPE_FK1">
+          <End Type="meta.rms.trialModel.MT_EQUIPMENT_TYPE" Role="MT_EQUIPMENT_TYPE" Multiplicity="1" />
+          <End Type="meta.rms.trialModel.MT_INSTALL_TYPE" Role="MT_INSTALL_TYPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT_EQUIPMENT_TYPE">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="MT_INSTALL_TYPE">
+              <PropertyRef Name="EQUIPMENT_TYPE_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="metarmstrialModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="DT_DELIVERY_FILE">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.DT_DELIVERY_FILE">
+              <MappingFragment StoreEntitySet="DT_DELIVERY_FILE">
+                <ScalarProperty Name="ROW_VERSION" ColumnName="ROW_VERSION" />
+                <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="IS_CANCELED" ColumnName="IS_CANCELED" />
+                <ScalarProperty Name="INFORMATION_ID" ColumnName="INFORMATION_ID" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="INSTALLABLE_VERSION" ColumnName="INSTALLABLE_VERSION" />
+                <ScalarProperty Name="VERSION" ColumnName="VERSION" />
+                <ScalarProperty Name="FILE_PATH" ColumnName="FILE_PATH" />
+                <ScalarProperty Name="INSTALL_TYPE_SID" ColumnName="INSTALL_TYPE_SID" />
+                <ScalarProperty Name="DELIVERY_FILE_TYPE_SID" ColumnName="DELIVERY_FILE_TYPE_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_DELIVERY_GROUP">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.DT_DELIVERY_GROUP">
+              <MappingFragment StoreEntitySet="DT_DELIVERY_GROUP">
+                <ScalarProperty Name="ROW_VERSION" ColumnName="ROW_VERSION" />
+                <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="DOWNLOAD_DELAY_TIME" ColumnName="DOWNLOAD_DELAY_TIME" />
+                <ScalarProperty Name="START_DATETIME" ColumnName="START_DATETIME" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DELIVERY_GROUP_STATUS_SID" ColumnName="DELIVERY_GROUP_STATUS_SID" />
+                <ScalarProperty Name="DELIVERY_FILE_SID" ColumnName="DELIVERY_FILE_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_DELIVERY_MODEL">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.DT_DELIVERY_MODEL">
+              <MappingFragment StoreEntitySet="DT_DELIVERY_MODEL">
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="EQUIPMENT_MODEL_SID" ColumnName="EQUIPMENT_MODEL_SID" />
+                <ScalarProperty Name="DELIVERY_FILE_SID" ColumnName="DELIVERY_FILE_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_DELIVERY_RESULT">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.DT_DELIVERY_RESULT">
+              <MappingFragment StoreEntitySet="DT_DELIVERY_RESULT">
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="DELIVERY_GROUP_SID" ColumnName="DELIVERY_GROUP_SID" />
+                <ScalarProperty Name="GW_DEVICE_SID" ColumnName="GW_DEVICE_SID" />
+                <ScalarProperty Name="DEVICE_SID" ColumnName="DEVICE_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_DEVICE">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.DT_DEVICE">
+              <MappingFragment StoreEntitySet="DT_DEVICE">
+                <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="CONNECT_UPDATE_DATETIME" ColumnName="CONNECT_UPDATE_DATETIME" />
+                <ScalarProperty Name="CONNECT_START_DATETIME" ColumnName="CONNECT_START_DATETIME" />
+                <ScalarProperty Name="RMS_SOFT_VERSION" ColumnName="RMS_SOFT_VERSION" />
+                <ScalarProperty Name="REMOTE_CONNECT_UID" ColumnName="REMOTE_CONNECT_UID" />
+                <ScalarProperty Name="EQUIPMENT_UID" ColumnName="EQUIPMENT_UID" />
+                <ScalarProperty Name="EDGE_ID" ColumnName="EDGE_ID" />
+                <ScalarProperty Name="CONNECT_STATUS_SID" ColumnName="CONNECT_STATUS_SID" />
+                <ScalarProperty Name="INSTALL_TYPE_SID" ColumnName="INSTALL_TYPE_SID" />
+                <ScalarProperty Name="EQUIPMENT_MODEL_SID" ColumnName="EQUIPMENT_MODEL_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_DEVICE_FILE">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.DT_DEVICE_FILE">
+              <MappingFragment StoreEntitySet="DT_DEVICE_FILE">
+                <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="COLLECT_DATETIME" ColumnName="COLLECT_DATETIME" />
+                <ScalarProperty Name="FILE_PATH" ColumnName="FILE_PATH" />
+                <ScalarProperty Name="CONTAINER" ColumnName="CONTAINER" />
+                <ScalarProperty Name="SOURCE_EQUIPMENT_UID" ColumnName="SOURCE_EQUIPMENT_UID" />
+                <ScalarProperty Name="DEVICE_SID" ColumnName="DEVICE_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_DEVICE_FILE_ATTRIBUTE">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.DT_DEVICE_FILE_ATTRIBUTE">
+              <MappingFragment StoreEntitySet="DT_DEVICE_FILE_ATTRIBUTE">
+                <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DEVICE_FILE_SID" ColumnName="DEVICE_FILE_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_DIRECTORY_USAGE">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.DT_DIRECTORY_USAGE">
+              <MappingFragment StoreEntitySet="DT_DIRECTORY_USAGE">
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+                <ScalarProperty Name="COLLECT_DATETIME" ColumnName="COLLECT_DATETIME" />
+                <ScalarProperty Name="DETAIL_INFO" ColumnName="DETAIL_INFO" />
+                <ScalarProperty Name="SOURCE_EQUIPMENT_UID" ColumnName="SOURCE_EQUIPMENT_UID" />
+                <ScalarProperty Name="DEVICE_SID" ColumnName="DEVICE_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_DISK_DRIVE">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.DT_DISK_DRIVE">
+              <MappingFragment StoreEntitySet="DT_DISK_DRIVE">
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+                <ScalarProperty Name="COLLECT_DATETIME" ColumnName="COLLECT_DATETIME" />
+                <ScalarProperty Name="SMART_ATTRIBUTE_INFO" ColumnName="SMART_ATTRIBUTE_INFO" />
+                <ScalarProperty Name="SERIAL_NUMBER" ColumnName="SERIAL_NUMBER" />
+                <ScalarProperty Name="INTERFACE_TYPE" ColumnName="INTERFACE_TYPE" />
+                <ScalarProperty Name="MEDIA_TYPE" ColumnName="MEDIA_TYPE" />
+                <ScalarProperty Name="MODEL" ColumnName="MODEL" />
+                <ScalarProperty Name="SOURCE_EQUIPMENT_UID" ColumnName="SOURCE_EQUIPMENT_UID" />
+                <ScalarProperty Name="DEVICE_SID" ColumnName="DEVICE_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_DRIVE">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.DT_DRIVE">
+              <MappingFragment StoreEntitySet="DT_DRIVE">
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+                <ScalarProperty Name="COLLECT_DATETIME" ColumnName="COLLECT_DATETIME" />
+                <ScalarProperty Name="DETAIL_INFO" ColumnName="DETAIL_INFO" />
+                <ScalarProperty Name="SOURCE_EQUIPMENT_UID" ColumnName="SOURCE_EQUIPMENT_UID" />
+                <ScalarProperty Name="DEVICE_SID" ColumnName="DEVICE_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_DXA_BILL_LOG">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.DT_DXA_BILL_LOG">
+              <MappingFragment StoreEntitySet="DT_DXA_BILL_LOG">
+                <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="COLLECT_DATETIME" ColumnName="COLLECT_DATETIME" />
+                <ScalarProperty Name="SERVICE_MODE" ColumnName="SERVICE_MODE" />
+                <ScalarProperty Name="OPTION_DXA" ColumnName="OPTION_DXA" />
+                <ScalarProperty Name="MEASURE_DATETIME" ColumnName="MEASURE_DATETIME" />
+                <ScalarProperty Name="STUDY_DATETIME" ColumnName="STUDY_DATETIME" />
+                <ScalarProperty Name="TYPE_NAME" ColumnName="TYPE_NAME" />
+                <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
+                <ScalarProperty Name="STUDY_INSTANCE_UID" ColumnName="STUDY_INSTANCE_UID" />
+                <ScalarProperty Name="SOUECE_EQUIPMENT_UID" ColumnName="SOUECE_EQUIPMENT_UID" />
+                <ScalarProperty Name="DEVICE_SID" ColumnName="DEVICE_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_DXA_QC_LOG">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.DT_DXA_QC_LOG">
+              <MappingFragment StoreEntitySet="DT_DXA_QC_LOG">
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+                <ScalarProperty Name="COLLECT_DATETIME" ColumnName="COLLECT_DATETIME" />
+                <ScalarProperty Name="STD_DXA_SOFT_RC_BASVAL_TEST" ColumnName="STD_DXA_SOFT_RC_BASVAL_TEST" />
+                <ScalarProperty Name="STD_DXA_SOFT_RB_BASVAL_TEST" ColumnName="STD_DXA_SOFT_RB_BASVAL_TEST" />
+                <ScalarProperty Name="STD_DXA_SOFT_RA_BASVAL_TEST" ColumnName="STD_DXA_SOFT_RA_BASVAL_TEST" />
+                <ScalarProperty Name="STD_DXA_SOFT_LC_BASVAL_TEST" ColumnName="STD_DXA_SOFT_LC_BASVAL_TEST" />
+                <ScalarProperty Name="STD_DXA_SOFT_LB_BASVAL_TEST" ColumnName="STD_DXA_SOFT_LB_BASVAL_TEST" />
+                <ScalarProperty Name="STD_DXA_SOFT_LA_BASVAL_TEST" ColumnName="STD_DXA_SOFT_LA_BASVAL_TEST" />
+                <ScalarProperty Name="STD_DXA_BONE_C_BASVAL_TEST" ColumnName="STD_DXA_BONE_C_BASVAL_TEST" />
+                <ScalarProperty Name="STD_DXA_BONE_B_BASVAL_TEST" ColumnName="STD_DXA_BONE_B_BASVAL_TEST" />
+                <ScalarProperty Name="STD_DXA_BONE_A_BASVAL_TEST" ColumnName="STD_DXA_BONE_A_BASVAL_TEST" />
+                <ScalarProperty Name="STD_GOS_SOFT_RC_BASVAL_TEST" ColumnName="STD_GOS_SOFT_RC_BASVAL_TEST" />
+                <ScalarProperty Name="STD_GOS_SOFT_RB_BASVAL_TEST" ColumnName="STD_GOS_SOFT_RB_BASVAL_TEST" />
+                <ScalarProperty Name="STD_GOS_SOFT_RA_BASVAL_TEST" ColumnName="STD_GOS_SOFT_RA_BASVAL_TEST" />
+                <ScalarProperty Name="STD_GOS_SOFT_LC_BASVAL_TEST" ColumnName="STD_GOS_SOFT_LC_BASVAL_TEST" />
+                <ScalarProperty Name="STD_GOS_SOFT_LB_BASVAL_TEST" ColumnName="STD_GOS_SOFT_LB_BASVAL_TEST" />
+                <ScalarProperty Name="STD_GOS_SOFT_LA_BASVAL_TEST" ColumnName="STD_GOS_SOFT_LA_BASVAL_TEST" />
+                <ScalarProperty Name="STD_GOS_BONE_C_BASVAL_TEST" ColumnName="STD_GOS_BONE_C_BASVAL_TEST" />
+                <ScalarProperty Name="STD_GOS_BONE_B_BASVAL_TEST" ColumnName="STD_GOS_BONE_B_BASVAL_TEST" />
+                <ScalarProperty Name="STD_GOS_BONE_A_BASVAL_TEST" ColumnName="STD_GOS_BONE_A_BASVAL_TEST" />
+                <ScalarProperty Name="STD_CSI_SOFT_RC_BASVAL_TEST" ColumnName="STD_CSI_SOFT_RC_BASVAL_TEST" />
+                <ScalarProperty Name="STD_CSI_SOFT_RB_BASVAL_TEST" ColumnName="STD_CSI_SOFT_RB_BASVAL_TEST" />
+                <ScalarProperty Name="STD_CSI_SOFT_RA_BASVAL_TEST" ColumnName="STD_CSI_SOFT_RA_BASVAL_TEST" />
+                <ScalarProperty Name="STD_CSI_SOFT_LC_BASVAL_TEST" ColumnName="STD_CSI_SOFT_LC_BASVAL_TEST" />
+                <ScalarProperty Name="STD_CSI_SOFT_LB_BASVAL_TEST" ColumnName="STD_CSI_SOFT_LB_BASVAL_TEST" />
+                <ScalarProperty Name="STD_CSI_SOFT_LA_BASVAL_TEST" ColumnName="STD_CSI_SOFT_LA_BASVAL_TEST" />
+                <ScalarProperty Name="STD_CSI_BONE_C_BASVAL_TEST" ColumnName="STD_CSI_BONE_C_BASVAL_TEST" />
+                <ScalarProperty Name="STD_CSI_BONE_B_BASVAL_TEST" ColumnName="STD_CSI_BONE_B_BASVAL_TEST" />
+                <ScalarProperty Name="STD_CSI_BONE_A_BASVAL_TEST" ColumnName="STD_CSI_BONE_A_BASVAL_TEST" />
+                <ScalarProperty Name="QL_DXA_SOFT_RC_BASVAL_TEST" ColumnName="QL_DXA_SOFT_RC_BASVAL_TEST" />
+                <ScalarProperty Name="QL_DXA_SOFT_RB_BASVAL_TEST" ColumnName="QL_DXA_SOFT_RB_BASVAL_TEST" />
+                <ScalarProperty Name="QL_DXA_SOFT_RA_BASVAL_TEST" ColumnName="QL_DXA_SOFT_RA_BASVAL_TEST" />
+                <ScalarProperty Name="QL_DXA_SOFT_LC_BASVAL_TEST" ColumnName="QL_DXA_SOFT_LC_BASVAL_TEST" />
+                <ScalarProperty Name="QL_DXA_SOFT_LB_BASVAL_TEST" ColumnName="QL_DXA_SOFT_LB_BASVAL_TEST" />
+                <ScalarProperty Name="QL_DXA_SOFT_LA_BASVAL_TEST" ColumnName="QL_DXA_SOFT_LA_BASVAL_TEST" />
+                <ScalarProperty Name="QL_DXA_BONE_C_BASVAL_TEST" ColumnName="QL_DXA_BONE_C_BASVAL_TEST" />
+                <ScalarProperty Name="QL_DXA_BONE_B_BASVAL_TEST" ColumnName="QL_DXA_BONE_B_BASVAL_TEST" />
+                <ScalarProperty Name="QL_DXA_BONE_A_BASVAL_TEST" ColumnName="QL_DXA_BONE_A_BASVAL_TEST" />
+                <ScalarProperty Name="QL_GOS_SOFT_RC_BASVAL_TEST" ColumnName="QL_GOS_SOFT_RC_BASVAL_TEST" />
+                <ScalarProperty Name="QL_GOS_SOFT_RB_BASVAL_TEST" ColumnName="QL_GOS_SOFT_RB_BASVAL_TEST" />
+                <ScalarProperty Name="QL_GOS_SOFT_RA_BASVAL_TEST" ColumnName="QL_GOS_SOFT_RA_BASVAL_TEST" />
+                <ScalarProperty Name="QL_GOS_SOFT_LC_BASVAL_TEST" ColumnName="QL_GOS_SOFT_LC_BASVAL_TEST" />
+                <ScalarProperty Name="QL_GOS_SOFT_LB_BASVAL_TEST" ColumnName="QL_GOS_SOFT_LB_BASVAL_TEST" />
+                <ScalarProperty Name="QL_GOS_SOFT_LA_BASVAL_TEST" ColumnName="QL_GOS_SOFT_LA_BASVAL_TEST" />
+                <ScalarProperty Name="QL_GOS_BONE_C_BASVAL_TEST" ColumnName="QL_GOS_BONE_C_BASVAL_TEST" />
+                <ScalarProperty Name="QL_GOS_BONE_B_BASVAL_TEST" ColumnName="QL_GOS_BONE_B_BASVAL_TEST" />
+                <ScalarProperty Name="QL_GOS_BONE_A_BASVAL_TEST" ColumnName="QL_GOS_BONE_A_BASVAL_TEST" />
+                <ScalarProperty Name="QL_CSI_SOFT_RC_BASVAL_TEST" ColumnName="QL_CSI_SOFT_RC_BASVAL_TEST" />
+                <ScalarProperty Name="QL_CSI_SOFT_RB_BASVAL_TEST" ColumnName="QL_CSI_SOFT_RB_BASVAL_TEST" />
+                <ScalarProperty Name="QL_CSI_SOFT_RA_BASVAL_TEST" ColumnName="QL_CSI_SOFT_RA_BASVAL_TEST" />
+                <ScalarProperty Name="QL_CSI_SOFT_LC_BASVAL_TEST" ColumnName="QL_CSI_SOFT_LC_BASVAL_TEST" />
+                <ScalarProperty Name="QL_CSI_SOFT_LB_BASVAL_TEST" ColumnName="QL_CSI_SOFT_LB_BASVAL_TEST" />
+                <ScalarProperty Name="QL_CSI_SOFT_LA_BASVAL_TEST" ColumnName="QL_CSI_SOFT_LA_BASVAL_TEST" />
+                <ScalarProperty Name="QL_CSI_BONE_C_BASVAL_TEST" ColumnName="QL_CSI_BONE_C_BASVAL_TEST" />
+                <ScalarProperty Name="QL_CSI_BONE_B_BASVAL_TEST" ColumnName="QL_CSI_BONE_B_BASVAL_TEST" />
+                <ScalarProperty Name="QL_CSI_BONE_A_BASVAL_TEST" ColumnName="QL_CSI_BONE_A_BASVAL_TEST" />
+                <ScalarProperty Name="BMD_DXA_C_BASVAL_TEST" ColumnName="BMD_DXA_C_BASVAL_TEST" />
+                <ScalarProperty Name="BMD_DXA_B_BASVAL_TEST" ColumnName="BMD_DXA_B_BASVAL_TEST" />
+                <ScalarProperty Name="BMD_DXA_A_BASVAL_TEST" ColumnName="BMD_DXA_A_BASVAL_TEST" />
+                <ScalarProperty Name="STD_DXA_SOFT_RC_TEST" ColumnName="STD_DXA_SOFT_RC_TEST" />
+                <ScalarProperty Name="STD_DXA_SOFT_RB_TEST" ColumnName="STD_DXA_SOFT_RB_TEST" />
+                <ScalarProperty Name="STD_DXA_SOFT_RA_TEST" ColumnName="STD_DXA_SOFT_RA_TEST" />
+                <ScalarProperty Name="STD_DXA_SOFT_LC_TEST" ColumnName="STD_DXA_SOFT_LC_TEST" />
+                <ScalarProperty Name="STD_DXA_SOFT_LB_TEST" ColumnName="STD_DXA_SOFT_LB_TEST" />
+                <ScalarProperty Name="STD_DXA_SOFT_LA_TEST" ColumnName="STD_DXA_SOFT_LA_TEST" />
+                <ScalarProperty Name="STD_DXA_BONE_C_TEST" ColumnName="STD_DXA_BONE_C_TEST" />
+                <ScalarProperty Name="STD_DXA_BONE_B_TEST" ColumnName="STD_DXA_BONE_B_TEST" />
+                <ScalarProperty Name="STD_DXA_BONE_A_TEST" ColumnName="STD_DXA_BONE_A_TEST" />
+                <ScalarProperty Name="STD_GOS_SOFT_RC_TEST" ColumnName="STD_GOS_SOFT_RC_TEST" />
+                <ScalarProperty Name="STD_GOS_SOFT_RB_TEST" ColumnName="STD_GOS_SOFT_RB_TEST" />
+                <ScalarProperty Name="STD_GOS_SOFT_RA_TEST" ColumnName="STD_GOS_SOFT_RA_TEST" />
+                <ScalarProperty Name="STD_GOS_SOFT_LC_TEST" ColumnName="STD_GOS_SOFT_LC_TEST" />
+                <ScalarProperty Name="STD_GOS_SOFT_LB_TEST" ColumnName="STD_GOS_SOFT_LB_TEST" />
+                <ScalarProperty Name="STD_GOS_SOFT_LA_TEST" ColumnName="STD_GOS_SOFT_LA_TEST" />
+                <ScalarProperty Name="STD_GOS_BONE_C_TEST" ColumnName="STD_GOS_BONE_C_TEST" />
+                <ScalarProperty Name="STD_GOS_BONE_B_TEST" ColumnName="STD_GOS_BONE_B_TEST" />
+                <ScalarProperty Name="STD_GOS_BONE_A_TEST" ColumnName="STD_GOS_BONE_A_TEST" />
+                <ScalarProperty Name="STD_CSI_SOFT_RC_TEST" ColumnName="STD_CSI_SOFT_RC_TEST" />
+                <ScalarProperty Name="STD_CSI_SOFT_RB_TEST" ColumnName="STD_CSI_SOFT_RB_TEST" />
+                <ScalarProperty Name="STD_CSI_SOFT_RA_TEST" ColumnName="STD_CSI_SOFT_RA_TEST" />
+                <ScalarProperty Name="STD_CSI_SOFT_LC_TEST" ColumnName="STD_CSI_SOFT_LC_TEST" />
+                <ScalarProperty Name="STD_CSI_SOFT_LB_TEST" ColumnName="STD_CSI_SOFT_LB_TEST" />
+                <ScalarProperty Name="STD_CSI_SOFT_LA_TEST" ColumnName="STD_CSI_SOFT_LA_TEST" />
+                <ScalarProperty Name="STD_CSI_BONE_C_TEST" ColumnName="STD_CSI_BONE_C_TEST" />
+                <ScalarProperty Name="STD_CSI_BONE_B_TEST" ColumnName="STD_CSI_BONE_B_TEST" />
+                <ScalarProperty Name="STD_CSI_BONE_A_TEST" ColumnName="STD_CSI_BONE_A_TEST" />
+                <ScalarProperty Name="QL_DXA_SOFT_RC_TEST" ColumnName="QL_DXA_SOFT_RC_TEST" />
+                <ScalarProperty Name="QL_DXA_SOFT_RB_TEST" ColumnName="QL_DXA_SOFT_RB_TEST" />
+                <ScalarProperty Name="QL_DXA_SOFT_RA_TEST" ColumnName="QL_DXA_SOFT_RA_TEST" />
+                <ScalarProperty Name="QL_DXA_SOFT_LC_TEST" ColumnName="QL_DXA_SOFT_LC_TEST" />
+                <ScalarProperty Name="QL_DXA_SOFT_LB_TEST" ColumnName="QL_DXA_SOFT_LB_TEST" />
+                <ScalarProperty Name="QL_DXA_SOFT_LA_TEST" ColumnName="QL_DXA_SOFT_LA_TEST" />
+                <ScalarProperty Name="QL_DXA_BONE_C_TEST" ColumnName="QL_DXA_BONE_C_TEST" />
+                <ScalarProperty Name="QL_DXA_BONE_B_TEST" ColumnName="QL_DXA_BONE_B_TEST" />
+                <ScalarProperty Name="QL_DXA_BONE_A_TEST" ColumnName="QL_DXA_BONE_A_TEST" />
+                <ScalarProperty Name="QL_GOS_SOFT_RC_TEST" ColumnName="QL_GOS_SOFT_RC_TEST" />
+                <ScalarProperty Name="QL_GOS_SOFT_RB_TEST" ColumnName="QL_GOS_SOFT_RB_TEST" />
+                <ScalarProperty Name="QL_GOS_SOFT_RA_TEST" ColumnName="QL_GOS_SOFT_RA_TEST" />
+                <ScalarProperty Name="QL_GOS_SOFT_LC_TEST" ColumnName="QL_GOS_SOFT_LC_TEST" />
+                <ScalarProperty Name="QL_GOS_SOFT_LB_TEST" ColumnName="QL_GOS_SOFT_LB_TEST" />
+                <ScalarProperty Name="QL_GOS_SOFT_LA_TEST" ColumnName="QL_GOS_SOFT_LA_TEST" />
+                <ScalarProperty Name="QL_GOS_BONE_C_TEST" ColumnName="QL_GOS_BONE_C_TEST" />
+                <ScalarProperty Name="QL_GOS_BONE_B_TEST" ColumnName="QL_GOS_BONE_B_TEST" />
+                <ScalarProperty Name="QL_GOS_BONE_A_TEST" ColumnName="QL_GOS_BONE_A_TEST" />
+                <ScalarProperty Name="QL_CSI_SOFT_RC_TEST" ColumnName="QL_CSI_SOFT_RC_TEST" />
+                <ScalarProperty Name="QL_CSI_SOFT_RB_TEST" ColumnName="QL_CSI_SOFT_RB_TEST" />
+                <ScalarProperty Name="QL_CSI_SOFT_RA_TEST" ColumnName="QL_CSI_SOFT_RA_TEST" />
+                <ScalarProperty Name="QL_CSI_SOFT_LC_TEST" ColumnName="QL_CSI_SOFT_LC_TEST" />
+                <ScalarProperty Name="QL_CSI_SOFT_LB_TEST" ColumnName="QL_CSI_SOFT_LB_TEST" />
+                <ScalarProperty Name="QL_CSI_SOFT_LA_TEST" ColumnName="QL_CSI_SOFT_LA_TEST" />
+                <ScalarProperty Name="QL_CSI_BONE_C_TEST" ColumnName="QL_CSI_BONE_C_TEST" />
+                <ScalarProperty Name="QL_CSI_BONE_B_TEST" ColumnName="QL_CSI_BONE_B_TEST" />
+                <ScalarProperty Name="QL_CSI_BONE_A_TEST" ColumnName="QL_CSI_BONE_A_TEST" />
+                <ScalarProperty Name="BMD_LINEARITY_TEST" ColumnName="BMD_LINEARITY_TEST" />
+                <ScalarProperty Name="BMD_DXA_C_TEST" ColumnName="BMD_DXA_C_TEST" />
+                <ScalarProperty Name="BMD_DXA_B_TEST" ColumnName="BMD_DXA_B_TEST" />
+                <ScalarProperty Name="BMD_DXA_A_TEST" ColumnName="BMD_DXA_A_TEST" />
+                <ScalarProperty Name="AREA_DXA_C_TEST" ColumnName="AREA_DXA_C_TEST" />
+                <ScalarProperty Name="AREA_DXA_B_TEST" ColumnName="AREA_DXA_B_TEST" />
+                <ScalarProperty Name="AREA_DXA_A_TEST" ColumnName="AREA_DXA_A_TEST" />
+                <ScalarProperty Name="BMC_DXA_C_TEST" ColumnName="BMC_DXA_C_TEST" />
+                <ScalarProperty Name="BMC_DXA_B_TEST" ColumnName="BMC_DXA_B_TEST" />
+                <ScalarProperty Name="BMC_DXA_A_TEST" ColumnName="BMC_DXA_A_TEST" />
+                <ScalarProperty Name="QC_RESULT" ColumnName="QC_RESULT" />
+                <ScalarProperty Name="TYPE_NAME" ColumnName="TYPE_NAME" />
+                <ScalarProperty Name="TECHNIQUE_CODE" ColumnName="TECHNIQUE_CODE" />
+                <ScalarProperty Name="PANEL_SERIAL_ID" ColumnName="PANEL_SERIAL_ID" />
+                <ScalarProperty Name="MEASURE_DATETIME" ColumnName="MEASURE_DATETIME" />
+                <ScalarProperty Name="STUDY_DATETIME" ColumnName="STUDY_DATETIME" />
+                <ScalarProperty Name="SOP_INSTANCE_UID" ColumnName="SOP_INSTANCE_UID" />
+                <ScalarProperty Name="STUDY_INSTANCE_UID" ColumnName="STUDY_INSTANCE_UID" />
+                <ScalarProperty Name="SOURCE_EQUIPMENT_UID" ColumnName="SOURCE_EQUIPMENT_UID" />
+                <ScalarProperty Name="DEVICE_SID" ColumnName="DEVICE_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_EQUIPMENT_USAGE">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.DT_EQUIPMENT_USAGE">
+              <MappingFragment StoreEntitySet="DT_EQUIPMENT_USAGE">
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+                <ScalarProperty Name="COLLECT_DATETIME" ColumnName="COLLECT_DATETIME" />
+                <ScalarProperty Name="DETAIL_INFO" ColumnName="DETAIL_INFO" />
+                <ScalarProperty Name="SOURCE_EQUIPMENT_UID" ColumnName="SOURCE_EQUIPMENT_UID" />
+                <ScalarProperty Name="DEVICE_SID" ColumnName="DEVICE_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_INSTALL_RESULT">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.DT_INSTALL_RESULT">
+              <MappingFragment StoreEntitySet="DT_INSTALL_RESULT">
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+                <ScalarProperty Name="COLLECT_DATETIME" ColumnName="COLLECT_DATETIME" />
+                <ScalarProperty Name="EVENT_DATETIME" ColumnName="EVENT_DATETIME" />
+                <ScalarProperty Name="HAS_REPAIR_REPORT" ColumnName="HAS_REPAIR_REPORT" />
+                <ScalarProperty Name="SERVER_CLIENT_KIND" ColumnName="SERVER_CLIENT_KIND" />
+                <ScalarProperty Name="IP_ADDRESS" ColumnName="IP_ADDRESS" />
+                <ScalarProperty Name="COMPUTER_NAME" ColumnName="COMPUTER_NAME" />
+                <ScalarProperty Name="UPDATE_END_DATETIME" ColumnName="UPDATE_END_DATETIME" />
+                <ScalarProperty Name="UPDATE_STRAT_DATETIME" ColumnName="UPDATE_STRAT_DATETIME" />
+                <ScalarProperty Name="PROCESS" ColumnName="PROCESS" />
+                <ScalarProperty Name="METHOD" ColumnName="METHOD" />
+                <ScalarProperty Name="IS_AUTO" ColumnName="IS_AUTO" />
+                <ScalarProperty Name="ERROR_DESCRIPTION" ColumnName="ERROR_DESCRIPTION" />
+                <ScalarProperty Name="ERROR_CODE" ColumnName="ERROR_CODE" />
+                <ScalarProperty Name="IS_SUCCESS" ColumnName="IS_SUCCESS" />
+                <ScalarProperty Name="AFTER_VERVION" ColumnName="AFTER_VERVION" />
+                <ScalarProperty Name="BEFORE_VERSION" ColumnName="BEFORE_VERSION" />
+                <ScalarProperty Name="RELEASE_VERSION" ColumnName="RELEASE_VERSION" />
+                <ScalarProperty Name="SOURCE_EQUIPMENT_UID" ColumnName="SOURCE_EQUIPMENT_UID" />
+                <ScalarProperty Name="INSTALL_RESULT_STATUS_SID" ColumnName="INSTALL_RESULT_STATUS_SID" />
+                <ScalarProperty Name="DELIVERY_RESULT_SID" ColumnName="DELIVERY_RESULT_SID" />
+                <ScalarProperty Name="DEVICE_SID" ColumnName="DEVICE_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_INVENTORY">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.DT_INVENTORY">
+              <MappingFragment StoreEntitySet="DT_INVENTORY">
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+                <ScalarProperty Name="COLLECT_DATETIME" ColumnName="COLLECT_DATETIME" />
+                <ScalarProperty Name="DETAIL_INFO" ColumnName="DETAIL_INFO" />
+                <ScalarProperty Name="SOURCE_EQUIPMENT_UID" ColumnName="SOURCE_EQUIPMENT_UID" />
+                <ScalarProperty Name="DEVICE_SID" ColumnName="DEVICE_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_PARENT_CHILD_CONNECT">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.DT_PARENT_CHILD_CONNECT">
+              <MappingFragment StoreEntitySet="DT_PARENT_CHILD_CONNECT">
+                <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="CHILD_LAST_CONNECT_DATETIME" ColumnName="CHILD_LAST_CONNECT_DATETIME" />
+                <ScalarProperty Name="CHILD_CONFIRM_DATETIME" ColumnName="CHILD_CONFIRM_DATETIME" />
+                <ScalarProperty Name="CHILD_RESULT" ColumnName="CHILD_RESULT" />
+                <ScalarProperty Name="PARENT_LAST_CONNECT_DATETIME" ColumnName="PARENT_LAST_CONNECT_DATETIME" />
+                <ScalarProperty Name="PARENT_CONFIRM_DATETIME" ColumnName="PARENT_CONFIRM_DATETIME" />
+                <ScalarProperty Name="PARENT_RESULT" ColumnName="PARENT_RESULT" />
+                <ScalarProperty Name="CHILD_DEVICE_SID" ColumnName="CHILD_DEVICE_SID" />
+                <ScalarProperty Name="PARENT_DEVICE_SID" ColumnName="PARENT_DEVICE_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_PLUS_SERVICE_BILL_LOG">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.DT_PLUS_SERVICE_BILL_LOG">
+              <MappingFragment StoreEntitySet="DT_PLUS_SERVICE_BILL_LOG">
+                <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="COLLECT_DATETIME" ColumnName="COLLECT_DATETIME" />
+                <ScalarProperty Name="MEASURE_DATETIME" ColumnName="MEASURE_DATETIME" />
+                <ScalarProperty Name="MEASURE_VALUE" ColumnName="MEASURE_VALUE" />
+                <ScalarProperty Name="STUDY_DATETIME" ColumnName="STUDY_DATETIME" />
+                <ScalarProperty Name="SOP_INSTANCE_UID" ColumnName="SOP_INSTANCE_UID" />
+                <ScalarProperty Name="STUDY_INSTANCE_UID" ColumnName="STUDY_INSTANCE_UID" />
+                <ScalarProperty Name="AGE" ColumnName="AGE" />
+                <ScalarProperty Name="SEX" ColumnName="SEX" />
+                <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
+                <ScalarProperty Name="BILL_FLG" ColumnName="BILL_FLG" />
+                <ScalarProperty Name="TYPE_NAME" ColumnName="TYPE_NAME" />
+                <ScalarProperty Name="SOURCE_EQUIPMENT_UID" ColumnName="SOURCE_EQUIPMENT_UID" />
+                <ScalarProperty Name="DEVICE_SID" ColumnName="DEVICE_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_SCRIPT_CONFIG">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.DT_SCRIPT_CONFIG">
+              <MappingFragment StoreEntitySet="DT_SCRIPT_CONFIG">
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+                <ScalarProperty Name="FILE_NAME" ColumnName="FILE_NAME" />
+                <ScalarProperty Name="VERSION" ColumnName="VERSION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="INSTALL_TYPE_SID" ColumnName="INSTALL_TYPE_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_SOFT_VERSION">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.DT_SOFT_VERSION">
+              <MappingFragment StoreEntitySet="DT_SOFT_VERSION">
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="COLLECT_DATETIME" ColumnName="COLLECT_DATETIME" />
+                <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+                <ScalarProperty Name="VERSION" ColumnName="VERSION" />
+                <ScalarProperty Name="SOURCE_EQUIPMENT_UID" ColumnName="SOURCE_EQUIPMENT_UID" />
+                <ScalarProperty Name="EQUIPMENT_MODEL_SID" ColumnName="EQUIPMENT_MODEL_SID" />
+                <ScalarProperty Name="DEVICE_SID" ColumnName="DEVICE_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DT_STORAGE_CONFIG">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.DT_STORAGE_CONFIG">
+              <MappingFragment StoreEntitySet="DT_STORAGE_CONFIG">
+                <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="SAS" ColumnName="SAS" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MT_CONNECT_STATUS">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.MT_CONNECT_STATUS">
+              <MappingFragment StoreEntitySet="MT_CONNECT_STATUS">
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MT_DELIVERY_FILE_TYPE">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.MT_DELIVERY_FILE_TYPE">
+              <MappingFragment StoreEntitySet="MT_DELIVERY_FILE_TYPE">
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MT_DELIVERY_GROUP_STATUS">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.MT_DELIVERY_GROUP_STATUS">
+              <MappingFragment StoreEntitySet="MT_DELIVERY_GROUP_STATUS">
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MT_EQUIPMENT_MODEL">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.MT_EQUIPMENT_MODEL">
+              <MappingFragment StoreEntitySet="MT_EQUIPMENT_MODEL">
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="EQUIPMENT_TYPE_SID" ColumnName="EQUIPMENT_TYPE_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MT_EQUIPMENT_TYPE">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.MT_EQUIPMENT_TYPE">
+              <MappingFragment StoreEntitySet="MT_EQUIPMENT_TYPE">
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MT_INSTALL_RESULT_STATUS">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.MT_INSTALL_RESULT_STATUS">
+              <MappingFragment StoreEntitySet="MT_INSTALL_RESULT_STATUS">
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MT_INSTALL_TYPE">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.MT_INSTALL_TYPE">
+              <MappingFragment StoreEntitySet="MT_INSTALL_TYPE">
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="EQUIPMENT_TYPE_SID" ColumnName="EQUIPMENT_TYPE_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MT_SOFT_VERSION_CONVERT">
+            <EntityTypeMapping TypeName="meta.rms.trialModel.MT_SOFT_VERSION_CONVERT">
+              <MappingFragment StoreEntitySet="MT_SOFT_VERSION_CONVERT">
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="INTERNAL_VERSION" ColumnName="INTERNAL_VERSION" />
+                <ScalarProperty Name="DISPLAY_VERSION" ColumnName="DISPLAY_VERSION" />
+                <ScalarProperty Name="EQUIPMENT_MODEL_SID" ColumnName="EQUIPMENT_MODEL_SID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="なし" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

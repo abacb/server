@@ -1,0 +1,8 @@
+﻿No,in_InsertNewDataSqlPath,in_DeleteNewDataSqlPath,expected_DataJsonPath,expected_ExceptionType,expected_ExceptionMessage,Remarks
+1,TestData\Dispatcher\SaveFromParent_1\InsertNewData.sql,TestData\Dispatcher\SaveFromParent_1\DeleteNewData.sql,TestData\Dispatcher\SaveFromParent_1\ExpectData.json,,,【正常系】データを更新する(DBにデータなし)
+2,TestData\Dispatcher\SaveFromParent_2\InsertNewData.sql,TestData\Dispatcher\SaveFromParent_2\DeleteNewData.sql,TestData\Dispatcher\SaveFromParent_2\ExpectData.json,,,【正常系】データを更新する(DBに古いデータがある)
+3,TestData\Dispatcher\SaveFromParent_3\InsertNewData.sql,TestData\Dispatcher\SaveFromParent_3\DeleteNewData.sql,TestData\Dispatcher\SaveFromParent_3\ExpectData.json,,,【正常系】データを更新する(DBに新しいデータがある→更新できない)
+4_001,,,,Rms.Server.Core.Utility.Exceptions.RmsException,DT_PARENT_CHILD_CONNECTテーブルの更新処理に失敗しました。,【異常系】メソッドにnullを渡した(All)
+4_002,,,,Rms.Server.Core.Utility.Exceptions.RmsException,DT_PARENT_CHILD_CONNECTテーブルの更新処理に失敗しました。,【異常系】メソッドにnullのパラメータを渡した(ParentResult)
+4_003,,,,Rms.Server.Core.Utility.Exceptions.RmsException,DT_PARENT_CHILD_CONNECTテーブルの更新処理に失敗しました。,【異常系】メソッドにnullのパラメータを渡した(ParentConfirmDatetime)
+5,,,,Rms.Server.Core.Utility.Exceptions.RmsException,DT_PARENT_CHILD_CONNECTテーブルの更新処理に失敗しました。,【異常系】存在しないUIDをもったデータで更新しようとした

@@ -1,0 +1,15 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "AlarmQueueName": "alarm-queue",
+    "SystemName": "rms",
+    "SubSystemName": "connectionmonitor",
+    "AlarmCountThreshold": "3"
+  },
+  "ConnectionStrings": {
+    "PrimaryDbConnectionString": "Server=meta-rms-trial.database.windows.net;Database=meta.rms.trial.20200309;persist security info=True;user id=metaAdmin;password=FfRms_01;MultipleActiveResultSets=True",
+    "QueueStorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=metatechnotrialqueue;AccountKey=knL5xI/l8TZowaZbOsrh8NGNHF+JcEJz6JKFxBbxTnvgPmpaWVHY1nlDC9hzpQvQtr2vLONbP44LIT3iq0xQzA==;EndpointSuffix=core.windows.net"
+  }
+}

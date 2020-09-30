@@ -1,0 +1,87 @@
+{
+  "Value": {
+    "sid": 1,
+    "deliveryFileSid": 1,
+    "deliveryGroupStatusSid": 1,
+    "name": "'', '0001/01/01 00:00:00.0000000', '0005/04/01 00:00:00.0000000');--",
+    "startDatetime": "2099-12-31T09:00:00Z",
+    "downloadDelayTime": 10,
+    "createDatetime": "2020-04-01T09:00:00",
+    "updateDatetime": "2020-04-01T09:00:00",
+    "rowVersion": 0,
+    "deliveryDestinations": [
+      {
+        "sid": 1,
+        "deviceSid": 1,
+        "gatewayDeviceSid": 1,
+        "createDatetime": "2020-04-01T09:00:00",
+        "installResultHistories": [
+          {
+            "sid": 1,
+            "deviceSid": 1,
+            "deliveryResultSid": 1,
+            "installResultStatusSid": 1,
+            "sourceEquipmentUid": null,
+            "releaseVersion": null,
+            "beforeVersion": null,
+            "afterVervion": null,
+            "isSuccess": null,
+            "errorCode": null,
+            "errorDescription": null,
+            "isAuto": null,
+            "method": null,
+            "process": null,
+            "updateStratDatetime": null,
+            "updateEndDatetime": null,
+            "computerName": null,
+            "ipAddress": null,
+            "serverClientKind": null,
+            "hasRepairReport": null,
+            "eventDatetime": null,
+            "collectDatetime": "2020-04-01T09:00:00",
+            "messageId": null,
+            "createDatetime": "2020-04-01T09:00:00"
+          }
+        ]
+      },
+      {
+        "sid": 2,
+        "deviceSid": 2,
+        "gatewayDeviceSid": 1,
+        "createDatetime": "2020-04-01T09:00:00",
+        "installResultHistories": [
+          {
+            "sid": 2,
+            "deviceSid": 2,
+            "deliveryResultSid": 2,
+            "installResultStatusSid": 1,
+            "sourceEquipmentUid": null,
+            "releaseVersion": null,
+            "beforeVersion": null,
+            "afterVervion": null,
+            "isSuccess": null,
+            "errorCode": null,
+            "errorDescription": null,
+            "isAuto": null,
+            "method": null,
+            "process": null,
+            "updateStratDatetime": null,
+            "updateEndDatetime": null,
+            "computerName": null,
+            "ipAddress": null,
+            "serverClientKind": null,
+            "hasRepairReport": null,
+            "eventDatetime": null,
+            "collectDatetime": "2020-04-01T09:00:00",
+            "messageId": null,
+            "createDatetime": "2020-04-01T09:00:00"
+          }
+        ]
+      }
+    ]
+  },
+  "Formatters": [],
+  "ContentTypes": [],
+  "DeclaredType": null,
+  "StatusCode": 200
+}

@@ -1,0 +1,7 @@
+delete core.MT_INSTALL_RESULT_STATUS;
+delete core.MT_DELIVERY_FILE_TYPE;
+delete core.MT_CONNECT_STATUS;
+delete core.MT_DELIVERY_GROUP_STATUS;
+delete core.MT_EQUIPMENT_MODEL;
+delete core.MT_INSTALL_TYPE;
+delete core.MT_EQUIPMENT_TYPE;

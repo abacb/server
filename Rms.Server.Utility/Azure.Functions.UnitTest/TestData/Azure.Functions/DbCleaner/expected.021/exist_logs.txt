@@ -1,0 +1,2 @@
+[UT_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DtAlmilogAnalysisResult is invalid format.）
+[UT_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DtBloclogAnalysisResult is invalid format.）

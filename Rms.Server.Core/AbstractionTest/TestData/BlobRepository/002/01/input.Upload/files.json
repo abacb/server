@@ -1,0 +1,14 @@
+[
+  {
+    "FilePath": "a.txt",
+    "Contents": "this is test file. (a)"
+  },
+  {
+    "FilePath": "b.txt",
+    "Contents": "this is test file. (b)"
+  },
+  {
+    "FilePath": "c.txt",
+    "Contents": "this is test file. (c)"
+  }
+]

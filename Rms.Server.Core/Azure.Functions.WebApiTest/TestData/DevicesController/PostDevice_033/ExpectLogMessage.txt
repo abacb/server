@@ -1,0 +1,1 @@
+[CO_API_DVC_003] DB設定のためのパラメータが不正です。（EquipmentUid is only allowed for ASCII code characters.）

@@ -1,0 +1,5 @@
+ContainerName,Path,DB_Check,DB_Deleted,Blob_Check,Blob_Deleted
+log,369e2b6e-e1e1-4263-9af9-643f9c03ac5c/sub/20200312.json,FALSE,FALSE,FALSE,FALSE
+log,369e2b6e-e1e1-4263-9af9-643f9c03ac5c/sub/20200313.json,FALSE,FALSE,FALSE,FALSE
+error,369e2b6e-e1e1-4263-9af9-643f9c03ac5c/sub/20200317.json,TRUE,FALSE,TRUE,FALSE
+error,369e2b6e-e1e1-4263-9af9-643f9c03ac5c/sub/20200318.json,FALSE,FALSE,FALSE,FALSE

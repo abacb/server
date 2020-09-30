@@ -1,0 +1,2 @@
+[UT_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DtAlmilogAnalysisConfig is not supported.）
+[UT_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DtBloclogAnalysisConfig is not supported.）

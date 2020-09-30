@@ -1,0 +1,1 @@
+{"source_equipment_uid":"3507584","type_code":"rms_hobbit_server","error_code":"ActCode01090001","alarm_level":null,"alarm_title":"RelayAppでエラーが発生しています。","alarm_description":"設定ファイルが不正です。アラーム内容を伝え解析を依頼してください。","alarm_datetime":"2030-01-01T00:00:00Z","event_datetime":"2019-12-12T08:13:28Z","alarm_def_id":"rms_fail_1","message_id":"2ffd90c1-bbf7-4d95-9571-65f9524eeed0"}

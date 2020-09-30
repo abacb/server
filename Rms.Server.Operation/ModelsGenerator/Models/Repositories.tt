@@ -1,0 +1,1076 @@
+﻿<#@ template language="C#" debug="false" hostspecific="true"#>
+<#@ include file="EF6.Utility.CS.ttinclude"#><#@ 
+ output extension=".cs"#><#
+
+const string inputFile = @"Models.edmx";
+var textTransform = DynamicTextTransformation.Create(this);
+var code = new CodeGenerationTools(this);
+var ef = new MetadataTools(this);
+var typeMapper = new TypeMapper(code, ef, textTransform.Errors);
+var	fileManager = EntityFrameworkTemplateFileManager.Create(this);
+var itemCollection = new EdmMetadataLoader(textTransform.Host, textTransform.Errors).CreateEdmItemCollection(inputFile);
+var codeStringGenerator = new CodeStringGenerator(code, typeMapper, ef);
+
+if (!typeMapper.VerifyCaseInsensitiveTypeUniqueness(typeMapper.GetAllGlobalItems(itemCollection), inputFile))
+{
+    return string.Empty;
+}
+
+WriteHeader(codeStringGenerator, fileManager);
+
+foreach (var entity in typeMapper.GetItemsToGenerate<EntityType>(itemCollection))
+{
+    string updateDatetime = "";
+    string createDatetime = "";
+
+    fileManager.StartNewFile(StringCaseChanger.toPascal(entity.Name) + "Repository.cs");
+    var simpleProperties = typeMapper.GetSimpleProperties(entity);
+    if (simpleProperties.Any())
+    {
+        foreach (var edmProperty in simpleProperties)
+        {
+            string propertyName = StringCaseChanger.toPascal(code.Escape(edmProperty));
+            if(propertyName.Equals("UpdateDatetime") || propertyName.Equals("UpdatedDatetime"))
+            {
+                updateDatetime = "UpdateDatetime";
+            }
+            else if(propertyName.Equals("UpdatedDatetime"))
+            {
+                updateDatetime = "UpdatedDatetime";
+            }
+            else if(propertyName.Equals("CreateDatetime"))
+            {
+                createDatetime = "CreateDatetime";
+            }
+            else if(propertyName.Equals("CreatedDatetime"))
+            {
+                createDatetime = "CreatedDatetime";
+            }
+        }
+    }
+#>
+<#
+// CRUDメソッドを書き出すpartialクラスを作成
+#>
+<#=codeStringGenerator.UsingDirectives(inHeader: false)#>
+<#
+    BeginNamespace(code);
+    string eName = StringCaseChanger.toPascal(entity.Name);
+#>
+/// <summary>
+/// <#=entity.Name#>テーブルのリポジトリ
+/// </summary>
+<#=codeStringGenerator.EntityClassOpening(entity)#>
+{
+    /// <summary>ロガー</summary>
+    private readonly ILogger<<#=eName#>Repository> _logger;
+
+    /// <summary>DateTimeの提供元</summary>
+    private readonly ITimeProvider _timePrivder;
+
+    /// <summary>DB接続用のPolly</summary>
+    private readonly DBPolly _dbPolly;
+
+    /// <summary>アプリケーション設定</summary>
+    private readonly AppSettings _appSettings;
+
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <param name="logger">ロガー</param>
+    /// <param name="timePrivder">DateTimeの提供元</param>
+    /// <param name="dbPolly">DB接続用のPolly</param>
+    /// <param name="appSettings">アプリケーション設定</param>
+    public <#=eName#>Repository(ILogger<<#=eName#>Repository> logger, ITimeProvider timePrivder, DBPolly dbPolly, AppSettings appSettings)
+    {
+        Assert.IfNull(logger);
+        Assert.IfNull(timePrivder);
+        Assert.IfNull(dbPolly);
+        Assert.IfNull(appSettings);
+        _logger = logger;
+        _timePrivder = timePrivder;
+        _dbPolly = dbPolly;
+        _appSettings = appSettings;
+    }
+
+<#=CrudMethodsGenerator.WriteCreateMethod(entity, updateDatetime, createDatetime)#>
+
+<#=CrudMethodsGenerator.WriteReadMethod(entity)#>
+
+<#=CrudMethodsGenerator.WriteUpdateMethod(entity, updateDatetime)#>
+
+<#=CrudMethodsGenerator.WriteDeleteMethod(entity)#>
+}
+<#
+    EndNamespace(code);
+}
+
+foreach (var entity in typeMapper.GetItemsToGenerate<EntityType>(itemCollection))
+{
+    fileManager.StartNewFile("I" + StringCaseChanger.toPascal(entity.Name) + "Repository.cs");
+#>
+<#
+// CRUDメソッドを書き出すinterfaceを作成
+#>
+<#=codeStringGenerator.UsingDirectivesInterface(inHeader: false)#>
+<#
+    BeginNamespace(code);
+#>
+<#=codeStringGenerator.EntityInterfaceOpening(entity)#>
+{
+    <#=CrudMethodsGenerator.WriteInterface(StringCaseChanger.toPascal(entity.Name))#>
+}
+<#
+    EndNamespace(code);
+}
+
+foreach (var complex in typeMapper.GetItemsToGenerate<ComplexType>(itemCollection))
+{
+    fileManager.StartNewFile(complex.Name + ".cs");
+    BeginNamespace(code);
+#>
+<#=codeStringGenerator.UsingDirectives(inHeader: false, includeCollections: false)#>
+<#=Accessibility.ForType(complex)#> partial class <#=code.Escape(complex)#>
+{
+<#
+    var complexProperties = typeMapper.GetComplexProperties(complex);
+    var propertiesWithDefaultValues = typeMapper.GetPropertiesWithDefaultValues(complex);
+
+    if (propertiesWithDefaultValues.Any() || complexProperties.Any())
+    {
+
+#>
+    public <#=code.Escape(complex)#>()
+    {
+<#
+        foreach (var edmProperty in propertiesWithDefaultValues)
+        {
+#>
+        this.<#=StringCaseChanger.toPascal(code.Escape(edmProperty))#> = <#=typeMapper.CreateLiteral(edmProperty.DefaultValue)#>;
+<#
+        }
+
+        foreach (var complexProperty in complexProperties)
+        {
+#>
+        this.<#=StringCaseChanger.toPascal(code.Escape(complexProperty))#> = new <#=StringCaseChanger.toPascal(typeMapper.GetTypeName(complexProperty.TypeUsage))#>();
+<#
+        }
+#>
+    }
+
+<#
+    }
+
+    var simpleProperties = typeMapper.GetSimpleProperties(complex);
+    if (simpleProperties.Any())
+    {
+        foreach(var edmProperty in simpleProperties)
+        {
+#>
+    <#=StringCaseChanger.toPascal(codeStringGenerator.Property(edmProperty))#>
+<#
+        }
+    }
+
+    if (complexProperties.Any())
+    {
+#>
+<#
+        foreach(var edmProperty in complexProperties)
+        {
+#>
+    <#=StringCaseChanger.toPascal(codeStringGenerator.Property(edmProperty))#>
+<#
+        }
+    }
+#>
+}
+<#
+    EndNamespace(code);
+}
+
+foreach (var enumType in typeMapper.GetEnumItemsToGenerate(itemCollection))
+{
+    fileManager.StartNewFile(enumType.Name + ".cs");
+    BeginNamespace(code);
+#>
+<#=codeStringGenerator.UsingDirectives(inHeader: false, includeCollections: false)#>
+<#
+    if (typeMapper.EnumIsFlags(enumType))
+    {
+#>
+[Flags]
+<#
+    }
+#>
+<#=codeStringGenerator.EnumOpening(enumType)#>
+{
+<#
+    var foundOne = false;
+    
+    foreach (MetadataItem member in typeMapper.GetEnumMembers(enumType))
+    {
+        foundOne = true;
+#>
+    <#=code.Escape(typeMapper.GetEnumMemberName(member))#> = <#=typeMapper.GetEnumMemberValue(member)#>,
+<#
+    }
+
+    if (foundOne)
+    {
+        this.GenerationEnvironment.Remove(this.GenerationEnvironment.Length - 3, 1);
+    }
+#>
+}
+<#
+    EndNamespace(code);
+}
+
+fileManager.Process();
+
+#>
+<#+
+
+public void WriteHeader(CodeStringGenerator codeStringGenerator, EntityFrameworkTemplateFileManager fileManager)
+{
+    fileManager.StartHeader();
+#>
+//------------------------------------------------------------------------------
+// <auto-generated>
+// <#=CodeGenerationTools.GetResourceString("Template_GeneratedCodeCommentLine1")#>
+//
+// <#=CodeGenerationTools.GetResourceString("Template_GeneratedCodeCommentLine2")#>
+// <#=CodeGenerationTools.GetResourceString("Template_GeneratedCodeCommentLine3")#>
+// </auto-generated>
+//------------------------------------------------------------------------------
+<#=codeStringGenerator.UsingDirectives(inHeader: true)#>
+<#+
+    fileManager.EndBlock();
+}
+
+public void BeginNamespace(CodeGenerationTools code)
+{
+    var codeNamespace = code.VsNamespaceSuggestion();
+    if (!String.IsNullOrEmpty(codeNamespace))
+    {
+#>
+namespace Rms.Server.Operation.Abstraction.Repositories
+{
+<#+
+        PushIndent("    ");
+    }
+}
+
+public void EndNamespace(CodeGenerationTools code)
+{
+    if (!String.IsNullOrEmpty(code.VsNamespaceSuggestion()))
+    {
+        PopIndent();
+#>
+}
+<#+
+    }
+}
+
+public const string TemplateId = "CSharp_DbContext_Types_EF6";
+
+public class CodeStringGenerator
+{
+    private readonly CodeGenerationTools _code;
+    private readonly TypeMapper _typeMapper;
+    private readonly MetadataTools _ef;
+
+    public CodeStringGenerator(CodeGenerationTools code, TypeMapper typeMapper, MetadataTools ef)
+    {
+        ArgumentNotNull(code, "code");
+        ArgumentNotNull(typeMapper, "typeMapper");
+        ArgumentNotNull(ef, "ef");
+
+        _code = code;
+        _typeMapper = typeMapper;
+        _ef = ef;
+    }
+
+    public string Property(EdmProperty edmProperty)
+    {
+        return string.Format(
+            CultureInfo.InvariantCulture,
+            "{0} {1} {2} {{ {3}get; {4}set; }}",
+            Accessibility.ForProperty(edmProperty),
+            _typeMapper.GetTypeName(edmProperty.TypeUsage),
+            StringCaseChanger.toPascal(_code.Escape(edmProperty)),
+            _code.SpaceAfter(Accessibility.ForGetter(edmProperty)),
+            _code.SpaceAfter(Accessibility.ForSetter(edmProperty)));
+    }
+
+    public string NavigationProperty(NavigationProperty navProp)
+    {
+        var endType = _typeMapper.GetTypeName(navProp.ToEndMember.GetEntityType());
+        return string.Format(
+            CultureInfo.InvariantCulture,
+            "{0} {1} {2} {{ {3}get; {4}set; }}",
+            AccessibilityAndVirtual(Accessibility.ForNavigationProperty(navProp)),
+            navProp.ToEndMember.RelationshipMultiplicity == RelationshipMultiplicity.Many ? ("ICollection<" + StringCaseChanger.toPascal(endType) + ">") : StringCaseChanger.toPascal(endType),
+            StringCaseChanger.toPascal(_code.Escape(navProp)),
+            _code.SpaceAfter(Accessibility.ForGetter(navProp)),
+            _code.SpaceAfter(Accessibility.ForSetter(navProp)));
+    }
+    
+    public string AccessibilityAndVirtual(string accessibility)
+    {
+        return accessibility + (accessibility != "private" ? " virtual" : "");
+    }
+
+    public string EntityClassOpening(EntityType entity)
+    {
+        return string.Format(
+            CultureInfo.InvariantCulture,
+            "{0} {1}partial class {2}{3}",
+            Accessibility.ForType(entity),
+            _code.SpaceAfter(_code.AbstractOption(entity)),
+            StringCaseChanger.toPascal(_code.Escape(entity))+"Repository"+" : "+"I"+StringCaseChanger.toPascal(_code.Escape(entity))+"Repository",
+            _code.StringBefore(" : ", _typeMapper.GetTypeName(entity.BaseType)));
+    }
+    
+    public string EntityInterfaceOpening(EntityType entity)
+    {
+
+        return string.Format(
+            CultureInfo.InvariantCulture,
+            "{0} {1}interface {2}{3}",
+            Accessibility.ForType(entity),
+            _code.SpaceAfter(_code.AbstractOption(entity)),
+            "I"+StringCaseChanger.toPascal(_code.Escape(entity))+"Repository"+" : IRepository",
+            _code.StringBefore(" : ", _typeMapper.GetTypeName(entity.BaseType)));
+    }
+
+    public string EntityMetadataClassOpening(EntityType entity)
+    {
+        return string.Format(
+            CultureInfo.InvariantCulture,
+            "{0} {1} class {2}{3}",
+            Accessibility.ForType(entity),
+            _code.SpaceAfter(_code.AbstractOption(entity)),
+            StringCaseChanger.toPascal(_code.Escape(entity))+"ModelMetaData",
+            _code.StringBefore(" : ", _typeMapper.GetTypeName(entity.BaseType)));
+    }
+    
+    public string EnumOpening(SimpleType enumType)
+    {
+        return string.Format(
+            CultureInfo.InvariantCulture,
+            "{0} enum {1} : {2}",
+            Accessibility.ForType(enumType),
+            _code.Escape(enumType),
+            _code.Escape(_typeMapper.UnderlyingClrType(enumType)));
+        }
+    
+    public void WriteFunctionParameters(EdmFunction edmFunction, Action<string, string, string, string> writeParameter)
+    {
+        var parameters = FunctionImportParameter.Create(edmFunction.Parameters, _code, _ef);
+        foreach (var parameter in parameters.Where(p => p.NeedsLocalVariable))
+        {
+            var isNotNull = parameter.IsNullableOfT ? parameter.FunctionParameterName + ".HasValue" : parameter.FunctionParameterName + " != null";
+            var notNullInit = "new ObjectParameter(\"" + parameter.EsqlParameterName + "\", " + parameter.FunctionParameterName + ")";
+            var nullInit = "new ObjectParameter(\"" + parameter.EsqlParameterName + "\", typeof(" + TypeMapper.FixNamespaces(parameter.RawClrTypeName) + "))";
+            writeParameter(parameter.LocalVariableName, isNotNull, notNullInit, nullInit);
+        }
+    }
+    
+    public string ComposableFunctionMethod(EdmFunction edmFunction, string modelNamespace)
+    {
+        var parameters = _typeMapper.GetParameters(edmFunction);
+        
+        return string.Format(
+            CultureInfo.InvariantCulture,
+            "{0} IQueryable<{1}> {2}({3})",
+            AccessibilityAndVirtual(Accessibility.ForMethod(edmFunction)),
+            _typeMapper.GetTypeName(_typeMapper.GetReturnType(edmFunction), modelNamespace),
+            _code.Escape(edmFunction),
+            string.Join(", ", parameters.Select(p => TypeMapper.FixNamespaces(p.FunctionParameterType) + " " + p.FunctionParameterName).ToArray()));
+    }
+    
+    public string ComposableCreateQuery(EdmFunction edmFunction, string modelNamespace)
+    {
+        var parameters = _typeMapper.GetParameters(edmFunction);
+        
+        return string.Format(
+            CultureInfo.InvariantCulture,
+            "return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<{0}>(\"[{1}].[{2}]({3})\"{4});",
+            _typeMapper.GetTypeName(_typeMapper.GetReturnType(edmFunction), modelNamespace),
+            edmFunction.NamespaceName,
+            edmFunction.Name,
+            string.Join(", ", parameters.Select(p => "@" + p.EsqlParameterName).ToArray()),
+            _code.StringBefore(", ", string.Join(", ", parameters.Select(p => p.ExecuteParameterName).ToArray())));
+    }
+    
+    public string FunctionMethod(EdmFunction edmFunction, string modelNamespace, bool includeMergeOption)
+    {
+        var parameters = _typeMapper.GetParameters(edmFunction);
+        var returnType = _typeMapper.GetReturnType(edmFunction);
+
+        var paramList = String.Join(", ", parameters.Select(p => TypeMapper.FixNamespaces(p.FunctionParameterType) + " " + p.FunctionParameterName).ToArray());
+        if (includeMergeOption)
+        {
+            paramList = _code.StringAfter(paramList, ", ") + "MergeOption mergeOption";
+        }
+
+        return string.Format(
+            CultureInfo.InvariantCulture,
+            "{0} {1} {2}({3})",
+            AccessibilityAndVirtual(Accessibility.ForMethod(edmFunction)),
+            returnType == null ? "int" : "ObjectResult<" + _typeMapper.GetTypeName(returnType, modelNamespace) + ">",
+            _code.Escape(edmFunction),
+            paramList);
+    }
+    
+    public string ExecuteFunction(EdmFunction edmFunction, string modelNamespace, bool includeMergeOption)
+    {
+        var parameters = _typeMapper.GetParameters(edmFunction);
+        var returnType = _typeMapper.GetReturnType(edmFunction);
+
+        var callParams = _code.StringBefore(", ", String.Join(", ", parameters.Select(p => p.ExecuteParameterName).ToArray()));
+        if (includeMergeOption)
+        {
+            callParams = ", mergeOption" + callParams;
+        }
+        
+        return string.Format(
+            CultureInfo.InvariantCulture,
+            "return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction{0}(\"{1}\"{2});",
+            returnType == null ? "" : "<" + _typeMapper.GetTypeName(returnType, modelNamespace) + ">",
+            edmFunction.Name,
+            callParams);
+    }
+    
+    public string DbSet(EntitySet entitySet)
+    {
+        return string.Format(
+            CultureInfo.InvariantCulture,
+            "{0} virtual DbSet<{1}> {2} {{ get; set; }}",
+            Accessibility.ForReadOnlyProperty(entitySet),
+            _typeMapper.GetTypeName(entitySet.ElementType),
+            _code.Escape(entitySet));
+    }
+
+    public string UsingDirectives(bool inHeader, bool includeCollections = true)
+    {
+        return inHeader == string.IsNullOrEmpty(_code.VsNamespaceSuggestion())
+            ? string.Format(
+                CultureInfo.InvariantCulture,
+                "{0}using System;{1}" +
+                "{2}",
+                inHeader ? Environment.NewLine : "",
+                (includeCollections ? 
+                    (Environment.NewLine + "using System.ComponentModel.DataAnnotations;")
+                    +(Environment.NewLine + "using System.Linq;")
+                    +(Environment.NewLine + "using Microsoft.Extensions.Logging;")
+                    +(Environment.NewLine + "using Rms.Server.Core.Utility;")
+                    +(Environment.NewLine + "using Rms.Server.Core.Utility.Exceptions;")
+                    +(Environment.NewLine + "using Rms.Server.Core.Utility.Extensions;")
+					+(Environment.NewLine + "using Rms.Server.Core.Utility.Models;")
+                    +(Environment.NewLine + "using Rms.Server.Core.Utility.Pollies;")
+                    +(Environment.NewLine + "using Rms.Server.Operation.Utility.Models;")
+                    +(Environment.NewLine + "using Utility;")
+                    : ""),
+                inHeader ? "" : Environment.NewLine)
+            : "";
+    }
+
+    public string UsingDirectivesInterface(bool inHeader, bool includeCollections = true)
+    {
+        return inHeader == string.IsNullOrEmpty(_code.VsNamespaceSuggestion())
+            ? string.Format(
+                CultureInfo.InvariantCulture,
+                "{0}using System;{1}" +
+                "{2}",
+                inHeader ? Environment.NewLine : "",
+                (includeCollections ? 
+                    (Environment.NewLine + "using Rms.Server.Operation.Utility.Models;")
+					+(Environment.NewLine + "using Rms.Server.Core.Abstraction.Repositories;")
+                    +(Environment.NewLine + "using Rms.Server.Core.Utility.Models;")
+                    : ""),
+                inHeader ? "" : Environment.NewLine)
+            : "";
+    }
+}
+
+public class TypeMapper
+{
+    private const string ExternalTypeNameAttributeName = @"http://schemas.microsoft.com/ado/2006/04/codegeneration:ExternalTypeName";
+
+    private readonly System.Collections.IList _errors;
+    private readonly CodeGenerationTools _code;
+    private readonly MetadataTools _ef;
+
+    public TypeMapper(CodeGenerationTools code, MetadataTools ef, System.Collections.IList errors)
+    {
+        ArgumentNotNull(code, "code");
+        ArgumentNotNull(ef, "ef");
+        ArgumentNotNull(errors, "errors");
+
+        _code = code;
+        _ef = ef;
+        _errors = errors;
+    }
+
+    public static string FixNamespaces(string typeName)
+    {
+        return typeName.Replace("System.Data.Spatial.", "System.Data.Entity.Spatial.");
+    }
+
+    public string GetTypeName(TypeUsage typeUsage)
+    {
+        return typeUsage == null ? null : GetTypeName(typeUsage.EdmType, _ef.IsNullable(typeUsage), modelNamespace: null);
+    }
+
+    public string GetTypeName(EdmType edmType)
+    {
+        return GetTypeName(edmType, isNullable: null, modelNamespace: null);
+    }
+
+    public string GetTypeName(TypeUsage typeUsage, string modelNamespace)
+    {
+        return typeUsage == null ? null : GetTypeName(typeUsage.EdmType, _ef.IsNullable(typeUsage), modelNamespace);
+    }
+
+    public string GetTypeName(EdmType edmType, string modelNamespace)
+    {
+        return GetTypeName(edmType, isNullable: null, modelNamespace: modelNamespace);
+    }
+
+    public string GetTypeName(EdmType edmType, bool? isNullable, string modelNamespace)
+    {
+        if (edmType == null)
+        {
+            return null;
+        }
+
+        var collectionType = edmType as CollectionType;
+        if (collectionType != null)
+        {
+            return String.Format(CultureInfo.InvariantCulture, "ICollection<{0}>", GetTypeName(collectionType.TypeUsage, modelNamespace));
+        }
+
+        var typeName = _code.Escape(edmType.MetadataProperties
+                                .Where(p => p.Name == ExternalTypeNameAttributeName)
+                                .Select(p => (string)p.Value)
+                                .FirstOrDefault())
+            ?? (modelNamespace != null && edmType.NamespaceName != modelNamespace ?
+                _code.CreateFullName(_code.EscapeNamespace(edmType.NamespaceName), _code.Escape(edmType)) :
+                _code.Escape(edmType));
+
+        if (edmType is StructuralType)
+        {
+            return typeName;
+        }
+
+        if (edmType is SimpleType)
+        {
+            var clrType = UnderlyingClrType(edmType);
+            if (!IsEnumType(edmType))
+            {
+                typeName = _code.Escape(clrType);
+            }
+
+            typeName = FixNamespaces(typeName);
+
+            return clrType.IsValueType && isNullable == true ?
+                String.Format(CultureInfo.InvariantCulture, "Nullable<{0}>", typeName) :
+                typeName;
+        }
+
+        throw new ArgumentException("edmType");
+    }
+    
+    public Type UnderlyingClrType(EdmType edmType)
+    {
+        ArgumentNotNull(edmType, "edmType");
+
+        var primitiveType = edmType as PrimitiveType;
+        if (primitiveType != null)
+        {
+            return primitiveType.ClrEquivalentType;
+        }
+
+        if (IsEnumType(edmType))
+        {
+            return GetEnumUnderlyingType(edmType).ClrEquivalentType;
+        }
+
+        return typeof(object);
+    }
+    
+    public object GetEnumMemberValue(MetadataItem enumMember)
+    {
+        ArgumentNotNull(enumMember, "enumMember");
+        
+        var valueProperty = enumMember.GetType().GetProperty("Value");
+        return valueProperty == null ? null : valueProperty.GetValue(enumMember, null);
+    }
+    
+    public string GetEnumMemberName(MetadataItem enumMember)
+    {
+        ArgumentNotNull(enumMember, "enumMember");
+        
+        var nameProperty = enumMember.GetType().GetProperty("Name");
+        return nameProperty == null ? null : (string)nameProperty.GetValue(enumMember, null);
+    }
+
+    public System.Collections.IEnumerable GetEnumMembers(EdmType enumType)
+    {
+        ArgumentNotNull(enumType, "enumType");
+
+        var membersProperty = enumType.GetType().GetProperty("Members");
+        return membersProperty != null 
+            ? (System.Collections.IEnumerable)membersProperty.GetValue(enumType, null)
+            : Enumerable.Empty<MetadataItem>();
+    }
+    
+    public bool EnumIsFlags(EdmType enumType)
+    {
+        ArgumentNotNull(enumType, "enumType");
+        
+        var isFlagsProperty = enumType.GetType().GetProperty("IsFlags");
+        return isFlagsProperty != null && (bool)isFlagsProperty.GetValue(enumType, null);
+    }
+
+    public bool IsEnumType(GlobalItem edmType)
+    {
+        ArgumentNotNull(edmType, "edmType");
+
+        return edmType.GetType().Name == "EnumType";
+    }
+
+    public PrimitiveType GetEnumUnderlyingType(EdmType enumType)
+    {
+        ArgumentNotNull(enumType, "enumType");
+
+        return (PrimitiveType)enumType.GetType().GetProperty("UnderlyingType").GetValue(enumType, null);
+    }
+
+    public string CreateLiteral(object value)
+    {
+        if (value == null || value.GetType() != typeof(TimeSpan))
+        {
+            return _code.CreateLiteral(value);
+        }
+
+        return string.Format(CultureInfo.InvariantCulture, "new TimeSpan({0})", ((TimeSpan)value).Ticks);
+    }
+    
+    public bool VerifyCaseInsensitiveTypeUniqueness(IEnumerable<string> types, string sourceFile)
+    {
+        ArgumentNotNull(types, "types");
+        ArgumentNotNull(sourceFile, "sourceFile");
+        
+        var hash = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase);
+        if (types.Any(item => !hash.Add(item)))
+        {
+            _errors.Add(
+                new CompilerError(sourceFile, -1, -1, "6023",
+                    String.Format(CultureInfo.CurrentCulture, CodeGenerationTools.GetResourceString("Template_CaseInsensitiveTypeConflict"))));
+            return false;
+        }
+        return true;
+    }
+    
+    public IEnumerable<SimpleType> GetEnumItemsToGenerate(IEnumerable<GlobalItem> itemCollection)
+    {
+        return GetItemsToGenerate<SimpleType>(itemCollection)
+            .Where(e => IsEnumType(e));
+    }
+    
+    public IEnumerable<T> GetItemsToGenerate<T>(IEnumerable<GlobalItem> itemCollection) where T: EdmType
+    {
+        return itemCollection
+            .OfType<T>()
+            .Where(i => !i.MetadataProperties.Any(p => p.Name == ExternalTypeNameAttributeName))
+            .OrderBy(i => i.Name);
+    }
+
+    public IEnumerable<string> GetAllGlobalItems(IEnumerable<GlobalItem> itemCollection)
+    {
+        return itemCollection
+            .Where(i => i is EntityType || i is ComplexType || i is EntityContainer || IsEnumType(i))
+            .Select(g => GetGlobalItemName(g));
+    }
+
+    public string GetGlobalItemName(GlobalItem item)
+    {
+        if (item is EdmType)
+        {
+            return ((EdmType)item).Name;
+        }
+        else
+        {
+            return ((EntityContainer)item).Name;
+        }
+    }
+
+    public IEnumerable<EdmProperty> GetSimpleProperties(EntityType type)
+    {
+        return type.Properties.Where(p => p.TypeUsage.EdmType is SimpleType && p.DeclaringType == type);
+    }
+    
+    public IEnumerable<EdmProperty> GetSimpleProperties(ComplexType type)
+    {
+        return type.Properties.Where(p => p.TypeUsage.EdmType is SimpleType && p.DeclaringType == type);
+    }
+    
+    public IEnumerable<EdmProperty> GetComplexProperties(EntityType type)
+    {
+        return type.Properties.Where(p => p.TypeUsage.EdmType is ComplexType && p.DeclaringType == type);
+    }
+    
+    public IEnumerable<EdmProperty> GetComplexProperties(ComplexType type)
+    {
+        return type.Properties.Where(p => p.TypeUsage.EdmType is ComplexType && p.DeclaringType == type);
+    }
+
+    public IEnumerable<EdmProperty> GetPropertiesWithDefaultValues(EntityType type)
+    {
+        return type.Properties.Where(p => p.TypeUsage.EdmType is SimpleType && p.DeclaringType == type && p.DefaultValue != null);
+    }
+    
+    public IEnumerable<EdmProperty> GetPropertiesWithDefaultValues(ComplexType type)
+    {
+        return type.Properties.Where(p => p.TypeUsage.EdmType is SimpleType && p.DeclaringType == type && p.DefaultValue != null);
+    }
+
+    public IEnumerable<NavigationProperty> GetNavigationProperties(EntityType type)
+    {
+        return type.NavigationProperties.Where(np => np.DeclaringType == type);
+    }
+    
+    public IEnumerable<NavigationProperty> GetCollectionNavigationProperties(EntityType type)
+    {
+        return type.NavigationProperties.Where(np => np.DeclaringType == type && np.ToEndMember.RelationshipMultiplicity == RelationshipMultiplicity.Many);
+    }
+    
+    public FunctionParameter GetReturnParameter(EdmFunction edmFunction)
+    {
+        ArgumentNotNull(edmFunction, "edmFunction");
+
+        var returnParamsProperty = edmFunction.GetType().GetProperty("ReturnParameters");
+        return returnParamsProperty == null
+            ? edmFunction.ReturnParameter
+            : ((IEnumerable<FunctionParameter>)returnParamsProperty.GetValue(edmFunction, null)).FirstOrDefault();
+    }
+
+    public bool IsComposable(EdmFunction edmFunction)
+    {
+        ArgumentNotNull(edmFunction, "edmFunction");
+
+        var isComposableProperty = edmFunction.GetType().GetProperty("IsComposableAttribute");
+        return isComposableProperty != null && (bool)isComposableProperty.GetValue(edmFunction, null);
+    }
+
+    public IEnumerable<FunctionImportParameter> GetParameters(EdmFunction edmFunction)
+    {
+        return FunctionImportParameter.Create(edmFunction.Parameters, _code, _ef);
+    }
+
+    public TypeUsage GetReturnType(EdmFunction edmFunction)
+    {
+        var returnParam = GetReturnParameter(edmFunction);
+        return returnParam == null ? null : _ef.GetElementType(returnParam.TypeUsage);
+    }
+    
+    public bool GenerateMergeOptionFunction(EdmFunction edmFunction, bool includeMergeOption)
+    {
+        var returnType = GetReturnType(edmFunction);
+        return !includeMergeOption && returnType != null && returnType.EdmType.BuiltInTypeKind == BuiltInTypeKind.EntityType;
+    }
+}
+
+public static void ArgumentNotNull<T>(T arg, string name) where T : class
+{
+    if (arg == null)
+    {
+        throw new ArgumentNullException(name);
+    }
+}
+
+public static class StringCaseChanger
+{
+    public static string toPascal(string text){
+        text = text.ToLower();
+
+        return text
+            .Split( new[] { '_' }, StringSplitOptions.RemoveEmptyEntries )
+            .Select( s => char.ToUpperInvariant( s[ 0 ] ) + s.Substring( 1, s.Length - 1 ) )
+            .Aggregate( string.Empty, ( s1, s2 ) => s1 + s2 )
+            .Replace("CMt", "Mt") // とりあえずクラス名の先頭Cを外す動作
+        ;
+    }
+}
+
+public static class CrudMethodsGenerator
+{
+    public static string WriteInterface(string className)
+    {
+        return string.Format(
+            "Result<{0}> Create{0}({0} inData);"+Environment.NewLine+
+            "    Result<{0}> Read{0}(long sid);"+Environment.NewLine+
+            "    Result<{0}> Update{0}({0} inData);"+Environment.NewLine+
+            "    Result<{0}> Delete{0}(long sid);"+Environment.NewLine
+            , className);
+    }
+
+    public static string WriteCreateMethod(EntityType entity, string updateDatetime, string createDatetime)
+    {
+		string className = StringCaseChanger.toPascal(entity.Name);
+        
+        StringBuilder sb = new StringBuilder();
+		StringBuilder sb__ = sb;
+
+        sb__.AppendLine("    /// <summary>");
+        sb.AppendFormat("    /// 引数に指定した{0}を{1}テーブルへ登録する", className, entity.Name).AppendLine();
+        sb__.AppendLine("    /// </summary>");
+        sb__.AppendLine("    /// <param name=\"inData\">登録するデータ</param>");
+        sb__.AppendLine("    /// <returns>処理結果</returns>");
+		sb.AppendFormat("    public Result<{0}> Create{0}({0} inData)", className).AppendLine();
+        sb__.AppendLine("    {");
+        sb.AppendFormat("        Result<{0}> result = null;", className).AppendLine();
+        sb__.AppendLine("        try");
+        sb__.AppendLine("        {");
+        sb__.AppendLine("            _logger.EnterJson(\"{0}\", inData);");
+        sb__.AppendLine();
+        sb.AppendFormat("            DBAccessor.Models.{0} entity = new DBAccessor.Models.{0}(inData);", className).AppendLine();
+        sb__.AppendLine();
+        sb__.AppendLine("            // バリデーション");
+		sb__.AppendLine("            Validator.ValidateObject(entity, new ValidationContext(entity, null, null));");
+        sb__.AppendLine();
+        sb__.AppendLine("            _dbPolly.Execute(() =>");
+        sb__.AppendLine("            {");
+        if (!string.IsNullOrEmpty(createDatetime))
+        {
+        sb.AppendFormat("                entity.{0} = _timePrivder.UtcNow;", createDatetime).AppendLine();
+        }
+        if (!string.IsNullOrEmpty(updateDatetime))
+        {
+        sb.AppendFormat("                entity.{0} = _timePrivder.UtcNow;", updateDatetime).AppendLine();
+        }
+        sb__.AppendLine();
+        sb__.AppendLine("                using (DBAccessor.Models.RmsDbContext db = new DBAccessor.Models.RmsDbContext(_appSettings))");
+        sb__.AppendLine("                {");
+        sb.AppendFormat("                    var dbdata = db.{0}.Add(entity).Entity;", className).AppendLine();
+        sb__.AppendLine("                    db.SaveChanges();");
+        sb.AppendFormat("                    result = new Result<{0}>(ResultCode.Succeed, \"{1}テーブルへInsertしました。\", dbdata.ToModel());", className, entity.Name).AppendLine();
+        sb__.AppendLine("                }");
+        sb__.AppendLine("            });");
+        sb__.AppendLine();
+        sb__.AppendLine("            return result;");
+        sb__.AppendLine("        }");
+        sb__.AppendLine("        catch (ValidationException e)");
+        sb__.AppendLine("        {");
+        sb.AppendFormat("            result = new Result<{0}>(ResultCode.ParameterError, e.ValidationResult.ErrorMessage, inData);", className).AppendLine();
+        sb__.AppendLine("            return result;");
+        sb__.AppendLine("        }");
+        sb__.AppendLine("        catch (Exception e)");
+        sb__.AppendLine("        {");
+        sb.AppendFormat("            _logger.Error(e, \"{0}テーブルへのInsertに失敗しました。\");", entity.Name).AppendLine();
+		sb__.AppendLine("            throw;");
+        sb__.AppendLine("        }");
+        sb__.AppendLine("        finally");
+        sb__.AppendLine("        {");
+        sb__.AppendLine("            _logger.Leave($\"result={result?.ResultCode}\");");
+        sb__.AppendLine("        }");
+        sb__.Append("    }");
+
+        return sb.ToString();
+    }
+
+    public static string WriteReadMethod(EntityType entity)
+    {
+		string className = StringCaseChanger.toPascal(entity.Name);
+
+        StringBuilder sb = new StringBuilder();
+		StringBuilder sb__ = sb;
+        
+        sb__.AppendLine("    /// <summary>");
+        sb.AppendFormat("    /// {1}テーブルから{0}を取得する", className, entity.Name).AppendLine();
+        sb__.AppendLine("    /// </summary>");
+        sb__.AppendLine("    /// <param name=\"sid\">取得するデータのSID</param>");
+        sb__.AppendLine("    /// <returns>取得したデータ</returns>");
+		sb.AppendFormat("    public Result<{0}> Read{0}(long sid)", className).AppendLine();
+        sb__.AppendLine("    {");
+        sb.AppendFormat("        Result<{0}> result = null;", className).AppendLine();
+        sb__.AppendLine("        try");
+        sb__.AppendLine("        {");
+        sb__.AppendLine("            _logger.Enter($\"{nameof(sid)}={sid}\");");
+        sb__.AppendLine();
+		sb.AppendFormat("            DBAccessor.Models.{0} entity = null;", className).AppendLine();
+        sb__.AppendLine("            _dbPolly.Execute(() =>");
+        sb__.AppendLine("            {");
+        sb__.AppendLine("                using (DBAccessor.Models.RmsDbContext db = new DBAccessor.Models.RmsDbContext(_appSettings))");
+        sb__.AppendLine("                {");
+        sb.AppendFormat("                    entity = db.{0}.FirstOrDefault(x => x.Sid == sid);", className).AppendLine();
+        sb__.AppendLine("                }");
+        sb__.AppendLine("            });");
+        sb__.AppendLine();
+        sb__.AppendLine("            if (entity == null)");
+        sb__.AppendLine("            {");
+        sb.AppendFormat("                result = new Result<{0}>(ResultCode.NotFound, \"{1}テーブルに該当レコードが存在しません。\", new {0}() {{ Sid = sid }});", className, entity.Name).AppendLine();
+        sb__.AppendLine("            }");
+        sb__.AppendLine("            else");
+        sb__.AppendLine("            {");
+        sb.AppendFormat("                result = new Result<{0}>(ResultCode.Succeed, \"{1}テーブルをSelectしました。\", entity.ToModel());", className, entity.Name).AppendLine();
+        sb__.AppendLine("            }");
+        sb__.AppendLine();
+        sb__.AppendLine("            return result;");
+        sb__.AppendLine("        }");
+        sb__.AppendLine("        catch (ValidationException e)");
+        sb__.AppendLine("        {");
+        sb.AppendFormat("            result = new Result<{0}>(ResultCode.ParameterError, e.ValidationResult.ErrorMessage, new {0}() {{ Sid = sid }});", className).AppendLine();
+        sb__.AppendLine("            return result;");
+        sb__.AppendLine("        }");
+        sb__.AppendLine("        catch (Exception e)");
+        sb__.AppendLine("        {");
+        sb.AppendFormat("            _logger.Error(e, \"{0}テーブルのSelectに失敗しました。\");", entity.Name).AppendLine();
+		sb__.AppendLine("            throw;");
+        sb__.AppendLine("        }");
+        sb__.AppendLine("        finally");
+        sb__.AppendLine("        {");
+        sb__.AppendLine("            _logger.Leave($\"result={result?.ResultCode}\");");
+        sb__.AppendLine("        }");
+        sb__.Append("    }");
+
+        return sb.ToString();
+    }
+
+    public static string WriteUpdateMethod(EntityType entity, string updateDatetime)
+    {
+		string className = StringCaseChanger.toPascal(entity.Name);
+
+        StringBuilder sb = new StringBuilder();
+		StringBuilder sb__ = sb;
+        
+        sb__.AppendLine("    /// <summary>");
+        sb.AppendFormat("    /// 引数に指定した{0}で{1}テーブルを更新する", className, entity.Name).AppendLine();
+        sb__.AppendLine("    /// </summary>");
+        sb__.AppendLine("    /// <param name=\"inData\">更新するデータ</param>");
+        sb__.AppendLine("    /// <returns>更新したデータ</returns>");
+        sb.AppendFormat("    public Result<{0}> Update{0}({0} inData)", className).AppendLine();
+        sb__.AppendLine("    {");
+        sb.AppendFormat("        Result<{0}> result = null;", className).AppendLine();
+        sb__.AppendLine("        try");
+        sb__.AppendLine("        {");
+        sb__.AppendLine("            _logger.EnterJson(\"{0}\", inData);");
+        sb__.AppendLine();
+        sb.AppendFormat("            DBAccessor.Models.{0} entity = new DBAccessor.Models.{0}(inData);", className).AppendLine();
+        sb__.AppendLine();
+        sb__.AppendLine("            // バリデーション");
+        sb__.AppendLine("            Validator.ValidateObject(entity, new ValidationContext(entity, null, null));");
+        sb__.AppendLine();
+        sb__.AppendLine("            _dbPolly.Execute(() =>");
+        sb__.AppendLine("            {");
+        if (!string.IsNullOrEmpty(updateDatetime))
+        {
+        sb.AppendFormat("                entity.{0} = _timePrivder.UtcNow;", updateDatetime).AppendLine();
+        }
+        sb__.AppendLine();
+        sb__.AppendLine("                using (DBAccessor.Models.RmsDbContext db = new DBAccessor.Models.RmsDbContext(_appSettings))");
+        sb__.AppendLine("                {");
+        sb.AppendFormat("                    db.{0}.Attach(entity);", className).AppendLine();
+        sb__.AppendLine();
+        sb__.AppendLine("                    // 全フィールドを更新する");
+        sb__.AppendLine("                    //     TODO: 特定フィールドだけUpdateする場合は下記のように記述してください");
+        sb__.AppendLine("                    //     db.Entry(entity).Property(x => x.UpdateDatetime).IsModified = true;");
+        sb__.AppendLine("                    db.Entry(entity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;");
+        sb__.AppendLine();
+        sb__.AppendLine("                    db.SaveChanges();");
+        sb__.AppendLine("                    if (db.SaveChanges() > 0)");
+        sb__.AppendLine("                    {");
+        sb.AppendFormat("                        result = new Result<{0}>(ResultCode.Succeed, \"{1}テーブルをUpdateしました。\", entity.ToModel());", className, entity.Name).AppendLine();
+        sb__.AppendLine("                    }");
+        sb__.AppendLine("                    else");
+        sb__.AppendLine("                    {");
+        sb.AppendFormat("                        result = new Result<{0}>(ResultCode.NotFound, \"{1}テーブルにUpdate対象レコードが存在しません。\", entity.ToModel());", className, entity.Name).AppendLine();
+        sb__.AppendLine("                    }");
+        sb__.AppendLine("                }");
+        sb__.AppendLine("            });");
+        sb__.AppendLine();
+        sb__.AppendLine("            return result;");
+        sb__.AppendLine("        }");
+        sb__.AppendLine("        catch (ValidationException e)");
+        sb__.AppendLine("        {");
+        sb.AppendFormat("            result = new Result<{0}>(ResultCode.ParameterError, e.ValidationResult.ErrorMessage, inData);", className).AppendLine();
+        sb__.AppendLine("            return result;");
+        sb__.AppendLine("        }");
+        sb__.AppendLine("        catch (Exception e)");
+        sb__.AppendLine("        {");
+        sb.AppendFormat("            _logger.Error(e, \"{0}テーブルのUpdateに失敗しました。\");", entity.Name).AppendLine();
+        sb__.AppendLine("            throw;");
+        sb__.AppendLine("        }");
+        sb__.AppendLine("        finally");
+        sb__.AppendLine("        {");
+        sb__.AppendLine("            _logger.Leave($\"result={result?.ResultCode}\");");
+        sb__.AppendLine("        }");
+        sb__.Append("    }");
+
+        return sb.ToString();
+	}
+
+    public static string WriteDeleteMethod(EntityType entity)
+    {
+		string className = StringCaseChanger.toPascal(entity.Name);
+
+        StringBuilder sb = new StringBuilder();
+		StringBuilder sb__ = sb;
+
+        sb__.AppendLine("    /// <summary>");
+        sb.AppendFormat("    /// {1}テーブルから{0}を削除する", className, entity.Name).AppendLine();
+        sb__.AppendLine("    /// </summary>");
+        sb__.AppendLine("    /// <param name=\"sid\">削除するデータのSID</param>");
+        sb__.AppendLine("    /// <returns>削除したデータ</returns>");
+        sb.AppendFormat("    public Result<{0}> Delete{0}(long sid)", className).AppendLine();
+        sb__.AppendLine("    {");
+        sb.AppendFormat("        Result<{0}> result = null;", className).AppendLine();
+        sb__.AppendLine("        try");
+        sb__.AppendLine("        {");
+        sb__.AppendLine("            _logger.Enter($\"{nameof(sid)}={sid}\");");
+        sb__.AppendLine();
+        sb.AppendFormat("            DBAccessor.Models.{0} entity = new DBAccessor.Models.{0}() {{ Sid = sid }};", className).AppendLine();
+        sb__.AppendLine("            _dbPolly.Execute(() =>");
+        sb__.AppendLine("            {");
+        sb__.AppendLine("                using (DBAccessor.Models.RmsDbContext db = new DBAccessor.Models.RmsDbContext(_appSettings))");
+        sb__.AppendLine("                {");
+        sb.AppendFormat("                    db.{0}.Attach(entity);", className).AppendLine();
+        sb.AppendFormat("                    db.{0}.Remove(entity);", className).AppendLine();
+        sb__.AppendLine();
+        sb__.AppendLine("                    if (db.SaveChanges() > 0)");
+        sb__.AppendLine("                    {");
+        sb.AppendFormat("                        result = new Result<{0}>(ResultCode.Succeed, \"{1}テーブルをDeleteしました。\", entity.ToModel());", className, entity.Name).AppendLine();
+        sb__.AppendLine("                    }");
+        sb__.AppendLine("                    else");
+        sb__.AppendLine("                    {");
+        sb.AppendFormat("                        result = new Result<{0}>(ResultCode.NotFound, \"{1}テーブルにDelete対象レコードが存在しません。\", new {0}() {{ Sid = sid }});", className, entity.Name).AppendLine();
+        sb__.AppendLine("                    }");
+        sb__.AppendLine("                }");
+        sb__.AppendLine("            });");
+        sb__.AppendLine();
+        sb__.AppendLine("            return result;");
+        sb__.AppendLine("        }");
+        sb__.AppendLine("        catch (ValidationException e)");
+        sb__.AppendLine("        {");
+        sb.AppendFormat("            result = new Result<{0}>(ResultCode.ParameterError, e.ValidationResult.ErrorMessage, new {0}() {{ Sid = sid }});", className).AppendLine();
+        sb__.AppendLine("            return result;");
+        sb__.AppendLine("        }");
+        sb__.AppendLine("        catch (Exception e)");
+        sb__.AppendLine("        {");
+        sb.AppendFormat("            _logger.Error(e, \"{0}テーブルのDeleteに失敗しました。\");", entity.Name).AppendLine();
+        sb__.AppendLine("            throw;");
+        sb__.AppendLine("        }");
+        sb__.AppendLine("        finally");
+        sb__.AppendLine("        {");
+        sb__.AppendLine("            _logger.Leave($\"result={result?.ResultCode}\");");
+        sb__.AppendLine("        }");
+        sb__.Append("    }");
+
+		return sb.ToString();
+    }
+}
+#>

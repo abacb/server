@@ -1,0 +1,2 @@
+ContainerName,LocalFilePath,Path,sys_container,sys_owner,sys_sub_directory,sys_file_datetime,user,user2
+collect,TestData\UploadedFiles\018\log\120\file.json,log/120/file.json,log,120,,2020-04-24 00:00:00,,

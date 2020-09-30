@@ -1,0 +1,11 @@
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DtDeliveryGroup is not supported.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DtDeliveryResult is not supported.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DtDevice is not supported.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DtDeviceFile is not supported.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_MtConnectStatus is not supported.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_MtDeliveryFileType is not supported.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_MtDeliveryGroupStatus is not supported.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_MtEquipmentModel is not supported.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_MtEquipmentType is not supported.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_MtInstallResultStatus is not supported.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_MtInstallType is not supported.）

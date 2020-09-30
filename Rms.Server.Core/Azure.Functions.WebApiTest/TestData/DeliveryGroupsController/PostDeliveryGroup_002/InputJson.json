@@ -1,0 +1,16 @@
+{
+  "deliveryFileSid": 1,
+  "name": "123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789あ",
+  "startDatetime": "9999-12-31T23:59:59.9999999Z",
+  "downloadDelayTime": 32767,
+  "deliveryDestinations": [
+    {
+      "deviceSid": 1,
+      "gatewayDeviceSid": 1
+    },
+    {
+      "deviceSid": 2,
+      "gatewayDeviceSid": 1
+    }
+  ]
+}

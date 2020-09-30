@@ -1,0 +1,10 @@
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DTDIRECTORYUSAGE is not supported.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DTDISKDRIVE is not supported.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DTDRIVE is not supported.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DTDXABILLLOG is not supported.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DTDXAQCLOG is not supported.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DTEQUIPMENTUSAGE is not supported.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DTINSTALLRESULT is not supported.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DTINVENTORY is not supported.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DTPLUSSERVICEBILLLOG is not supported.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DTSOFTVERSION is not supported.）

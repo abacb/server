@@ -1,0 +1,7 @@
+﻿No,in_InsertNewDataSqlPath,in_DeleteNewDataSqlPath,expected_DataJsonPath,expected_ExceptionType,expected_ExceptionMessage,Remarks
+1_001,TestData\DtDeliveryFileRepository\UpdateCancelFlag_1\InsertNewData.sql,TestData\DtDeliveryFileRepository\UpdateCancelFlag_1\DeleteNewData.sql,TestData\DtDeliveryFileRepository\UpdateCancelFlag_1\ExpectData_001.json,,,【正常系】データを更新する(中止フラグをnullにする)
+1_002,TestData\DtDeliveryFileRepository\UpdateCancelFlag_1\InsertNewData.sql,TestData\DtDeliveryFileRepository\UpdateCancelFlag_1\DeleteNewData.sql,TestData\DtDeliveryFileRepository\UpdateCancelFlag_1\ExpectData_002.json,,,【正常系】データを更新する(中止フラグをtrueにする)
+1_003,TestData\DtDeliveryFileRepository\UpdateCancelFlag_1\InsertNewData.sql,TestData\DtDeliveryFileRepository\UpdateCancelFlag_1\DeleteNewData.sql,TestData\DtDeliveryFileRepository\UpdateCancelFlag_1\ExpectData_003.json,,,【正常系】データを更新する(中止フラグをfalseにする)
+2,,,TestData\DtDeliveryFileRepository\UpdateCancelFlag_2\ExpectData.json,,,【正常系】更新するデータがない
+3,TestData\DtDeliveryFileRepository\UpdateCancelFlag_3\InsertNewData.sql,TestData\DtDeliveryFileRepository\UpdateCancelFlag_3\DeleteNewData.sql,TestData\DtDeliveryFileRepository\UpdateCancelFlag_3\ExpectData.json,,,【正常系】配信グループに未開始以外のデータがあっても更新できる
+4,TestData\DtDeliveryFileRepository\UpdateCancelFlag_4\InsertNewData.sql,TestData\DtDeliveryFileRepository\UpdateCancelFlag_4\DeleteNewData.sql,,System.ArgumentNullException,Rms.Server.Core.Utility.Models.Entites.DtDeliveryFile is null.,【異常系】メソッドにnullを渡した

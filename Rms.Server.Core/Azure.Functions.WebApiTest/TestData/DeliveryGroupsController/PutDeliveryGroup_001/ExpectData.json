@@ -1,0 +1,18 @@
+{
+  "Value": {
+    "sid": 1,
+    "deliveryFileSid": 1,
+    "deliveryGroupStatusSid": 1,
+    "name": "WebApiUpdateTestい",
+    "startDatetime": "2050-12-31T09:00:00Z",
+    "downloadDelayTime": 30,
+    "createDatetime": "2020-04-01T09:00:00",
+    "updateDatetime": "2020-04-30T09:00:00",
+    "rowVersion": {0},
+    "deliveryDestinations": []
+  },
+  "Formatters": [],
+  "ContentTypes": [],
+  "DeclaredType": null,
+  "StatusCode": 200
+}

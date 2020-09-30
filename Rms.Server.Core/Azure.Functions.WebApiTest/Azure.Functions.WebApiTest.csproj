@@ -1,0 +1,1280 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <DebugType Condition="'$(Configuration)'=='DEBUG'">full</DebugType>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="..\Settings\test\local.settings.json" Link="local.settings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Azure.Functions.StartUp\Azure.Functions.StartUp.csproj" />
+    <ProjectReference Include="..\Azure.Functions.WebApi\Azure.Functions.WebApi.csproj" />
+    <ProjectReference Include="..\TestHelper\TestHelper.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="TestCases\DeliveryFilesContoroller\Controllers_DeliveryFilesContoroller_PutDeliveryFileStatus.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DeliveryGroupsContoroller\Controllers_DeliveryGroupsContoroller_DeleteDeliveryGroup.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DeliveryGroupsContoroller\Controllers_DeliveryGroupsContoroller_PostDeliveryGroup.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DeliveryGroupsContoroller\Controllers_DeliveryGroupsContoroller_PutDeliveryGroup.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DevicesContoroller\Controllers_DevicesContoroller_PostDevice.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DevicesContoroller\Controllers_DevicesContoroller_PutDevice.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\DataTableCsv\DeliveryFileData1C.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\DataTableCsv\DeliveryFileData1C_false.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\DataTableCsv\DeliveryFileData1C_true.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_001\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_002\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_003\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_004\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_005\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_006\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_007\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_008\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_009\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_010\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_010\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_010\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_010\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_010\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_001\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_001\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_001\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_001\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_002\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_002\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_002\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_002\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_003\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_003\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_003\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_003\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_004\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_004\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_004\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_004\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_005\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_005\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_005\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_005\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_006\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_006\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_006\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_006\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_007\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_007\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_007\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_007\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_008\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_008\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_008\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_008\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_009\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_009\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_009\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryFilesController\PutDeliveryFileStatus_009\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DataTableCsv\DeliveryGroupData1.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DataTableCsv\DeliveryGroupData2.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DataTableCsv\DeliveryGroupData3+4.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DataTableCsv\DeliveryGroupData3.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DataTableCsv\DeliveryGroupData4.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DataTableCsv\DeliveryGroupData5.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DataTableCsv\DeliveryGroupData6.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DataTableCsv\DeliveryGroupData7.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DataTableCsv\DeliveryResultData1.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DataTableCsv\DeliveryResultData2.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DataTableCsv\InstallResultData1.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DataTableCsv\InstallResultData2.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DeleteDeliveryGroup_001\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DeleteDeliveryGroup_001\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DeleteDeliveryGroup_001\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DeleteDeliveryGroup_002\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DeleteDeliveryGroup_002\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DeleteDeliveryGroup_002\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DeleteDeliveryGroup_003\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DeleteDeliveryGroup_003\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DeleteDeliveryGroup_003\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DeleteDeliveryGroup_004\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DeleteDeliveryGroup_004\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DeleteDeliveryGroup_004\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DeleteDeliveryGroup_005\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DeleteDeliveryGroup_005\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DeleteDeliveryGroup_005\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DeleteDeliveryGroup_006\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DeleteDeliveryGroup_006\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\DeleteDeliveryGroup_006\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_001\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_002\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_003\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_004\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_005\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_006\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_007\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_008\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_009\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_010\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_010\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_011\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_011\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_012\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_012\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_013\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_013\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_014\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_014\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_015\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_015\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_016\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_016\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_017\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_017\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_018\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_018\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_018\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_018\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_019\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_019\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_019\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_001\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_001\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_001\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_002\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_002\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_002\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_003\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_003\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_003\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_004\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_005\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_006\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_007\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_008\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_009\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_020\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_020\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_020\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_020\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_021\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_021\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_022\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PostDeliveryGroup_022\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_001\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_002\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_003\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_004\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_005\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_006\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_007\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_008\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_009\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_010\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_010\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_010\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_010\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_011\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_011\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_011\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_011\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_012\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_012\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_012\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_012\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_013\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_013\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_013\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_013\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_014\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_014\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_014\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_014\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_015\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_015\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_015\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_015\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_016\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_016\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_016\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_016\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_017\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_017\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_017\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_017\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_017\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_001\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_001\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_001\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_001\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_002\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_002\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_002\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_003\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_003\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_003\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_004\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_004\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_004\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_005\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_005\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_005\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_006\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_006\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_006\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_007\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_007\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_007\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_008\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_008\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_008\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_009\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_009\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_009\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_018\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_018\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_018\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_018\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_019\DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_019\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_019\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeliveryGroupsController\PutDeliveryGroup_019\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\Common_DeleteNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\Common_InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\DataTableCsv\DeviceData1.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\DataTableCsv\DeviceData2.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\DataTableCsv\DeviceData3.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\DataTableCsv\DeviceData4.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\DataTableCsv\DeviceData5.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\ExpectedUploadedDeliveringBlob\installbase_1C.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\ExpectedUploadedDeliveringBlob\installbase_1C_Initial.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\ExpectedUploadedDeliveringBlob\installbase_1C_SQL.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\ExpectedUploadedDeliveringBlob\installbase_1F.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\ExpectedUploadedDeliveringBlob\installbase_2C.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\ExpectedUploadedDeliveringBlob\installbase_2C_Initial.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\ExpectedUploadedDeliveringBlob\installbase_2F.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\ExpectedUploadedDeliveringBlob\installbase_3C.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\ExpectedUploadedDeliveringBlob\installbase_3F.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\ExpectedUploadedDeliveringBlob\installbase_4C.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\ExpectedUploadedDeliveringBlob\installbase_4F.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_001\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_001\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_001\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_002\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_002\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_002\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_003\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_003\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_003\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_004\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_004\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_004\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_005\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_005\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_005\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_006\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_006\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_006\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_007\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_007\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_007\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_008\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_008\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_009\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_009\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_010\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_010\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_011\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_011\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_012\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_012\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_013\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_013\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_014\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_014\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_015\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_015\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_016\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_016\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_017\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_017\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_018\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_018\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_019\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_019\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_020\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_020\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_021\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_021\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_022\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_022\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_023\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_023\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_024\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_024\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_025\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_025\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_026\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_026\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_027\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_027\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_028\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_028\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_029\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_029\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_030\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_030\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_031\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_031\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_032\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_032\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_033\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_033\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_034\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_034\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_035\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_035\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_036\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_036\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_037\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_037\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_038\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_038\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_039\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_039\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_040\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_040\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_041\DeleteUnconnectedData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_041\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_041\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PostDevice_041\ReseedMtConnectStatusTable.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_001\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_001\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_001\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_002\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_002\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_002\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_002\InsertNewData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_003\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_003\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_003\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_004\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_004\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_004\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_005\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_005\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_005\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_006\ExpectData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_006\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_006\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_007\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_007\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_008\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_008\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_009\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_009\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_010\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_010\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_011\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_011\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_012\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_012\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_013\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_013\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_014\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_014\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_015\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_015\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_016\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_016\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_017\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_017\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_018\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_018\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_019\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_019\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_020\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_020\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_021\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_021\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_022\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_022\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_023\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_023\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_024\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_024\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_025\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_025\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_026\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_026\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_027\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_027\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_028\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_028\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_029\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_029\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_030\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_030\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_031\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_031\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_032\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_032\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_033\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_033\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_034\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_034\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_035\ExpectLogMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DevicesController\PutDevice_035\InputJson.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ErrorStatusResponse\400_BadRequest.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ErrorStatusResponse\403_Forbidden.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ErrorStatusResponse\404_NotFound.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ErrorStatusResponse\409_Conflict.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ErrorStatusResponse\500_ServerError.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\MakeDeviceAndDeliveryFileData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\MakeMasterTableData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ReseedDeliveryFileChildren.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ReseedDeliveryGroupChildren.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ReseedDevice.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

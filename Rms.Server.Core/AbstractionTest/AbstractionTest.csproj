@@ -1,0 +1,832 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <DebugType Condition="'$(Configuration)'=='DEBUG'">full</DebugType>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="..\Settings\test\local.settings.json" Link="local.settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Abstraction\Abstraction.csproj" />
+    <ProjectReference Include="..\Azure.Functions.StartUp\Azure.Functions.StartUp.csproj" />
+    <ProjectReference Include="..\TestHelper\TestHelper.csproj" />
+    <ProjectReference Include="..\Utility\Utility.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="TestCases\auto-generated\Repositories_DtDeliveryResult_CreateDtDeliveryResult.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\auto-generated\Repositories_DtDeliveryResult_DeleteDtDeliveryResult.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\auto-generated\Repositories_DtDeliveryResult_ReadDtDeliveryResult.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\auto-generated\Repositories_DtDeliveryResult_UpdateDtDeliveryResult.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Dispatcher\Repositories_DtDirectoryUsage_CreateDtDirectoryUsageIfAlreadyMessageThrowEx.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Dispatcher\Repositories_DtParentChildConnectRepository_SaveFromChild.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Dispatcher\Repositories_DtParentChildConnectRepository_SaveFromParent.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DtDeliveryFileRepository\Repositories_DtDeliveryFileRepository_DeleteDtDeliveryFile.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DtDeliveryFileRepository\Repositories_DtDeliveryFileRepository_ReadDtDeliveryFile.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DtDeliveryFileRepository\Repositories_DtDeliveryFileRepository_UpdateCancelFlag.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DtDeliveryFileRepository\Repositories_DtDeliveryFileRepository_UpdateDtDeliveryFileIfNoGroupStarted.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DtDeliveryGroupRepository\Repositories_DtDeliveryGroupRepository_DeleteDtDeliveryGroup.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DtDeliveryGroupRepository\Repositories_DtDeliveryGroupRepository_ReadDeliveryIncludedDtDeliveryGroup.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DtDeliveryGroupRepository\Repositories_DtDeliveryGroupRepository_ReadDtDeliveryGroup.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DtDeliveryGroupRepository\Repositories_DtDeliveryGroupRepository_ReadStartableDtDeliveryGroup.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DtDeliveryGroupRepository\Repositories_DtDeliveryGroupRepository_UpdateDtDeliveryGroupIfDeliveryNotStart.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DtDeliveryGroupRepository\Repositories_DtDeliveryGroupRepository_UpdateDtDeliveryGroupStatusStarted.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DtDeviceRepository\Repositories_DtDeliveryFileRepository_ReadDtDevice.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DtDeviceRepository\Repositories_DtDeviceRepository_ReadDtDevice.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DtDeviceRepository\Repositories_DtDeviceRepository_ReadDtDeviceOnlineGateway.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DtDeviceRepository\Repositories_DtDeviceRepository_UpdateDeviceInfoByTwinChanged.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Repositories_BlobRepository_Copy.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Repositories_BlobRepository_Upload.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Repositories_BlobRepository_GetArchiveFiles.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Repositories_BlobRepository_Delete.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\auto-generated\CreateDtDeliveryResult_1\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\auto-generated\CreateDtDeliveryResult_1\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\auto-generated\CreateDtDeliveryResult_1\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\auto-generated\DeleteDtDeliveryResult_1\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\auto-generated\DeleteDtDeliveryResult_1\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\auto-generated\DeleteDtDeliveryResult_1\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\auto-generated\ReadDtDeliveryResult_1\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\auto-generated\ReadDtDeliveryResult_1\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\auto-generated\ReadDtDeliveryResult_1\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\auto-generated\UpdateDtDeliveryResult_1\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\auto-generated\UpdateDtDeliveryResult_1\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\auto-generated\UpdateDtDeliveryResult_1\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\001\expected.Upload\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\001\expected.Copy\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\001\input.Upload\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\001\expected.GetArchiveFiles\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\001\initial\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\01\expected.Copy\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\01\expected.Upload\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\01\expected.Upload\b.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\01\expected.Upload\c.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\01\input.Upload\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\02\expected.Copy\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\02\expected.Copy\b.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\02\expected.Upload\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\02\input.Upload\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\03\expected.Copy\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\03\expected.Copy\b.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\03\expected.Copy\c.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\03\expected.Upload\a_1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\03\expected.Upload\a_2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\03\expected.Upload\a_3.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\03\input.Upload\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\04\expected.Upload\1\a_1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\04\expected.Upload\1\a_2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\04\expected.Upload\1\a_3.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\04\input.Upload\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\expected.GetArchiveFiles\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\initial\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\initial\b.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\initial\c.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\003\expected.Upload\123">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\003\expected.Copy\123">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\003\expected.GetArchiveFiles\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\003\initial\123">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\003\input.Upload\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\004\expected.Upload\abc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\004\expected.Copy\abc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\004\expected.GetArchiveFiles\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\004\initial\abc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\004\input.Upload\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\005\expected.Upload\ABC">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\005\expected.Copy\ABC">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\005\expected.GetArchiveFiles\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\005\initial\ABC">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\005\input.Upload\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\006\expected.Upload\あいうえお">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\006\expected.Copy\あいうえお">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\006\expected.GetArchiveFiles\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\006\initial\あいうえお">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\006\input.Upload\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\007\expected.Upload\!$'()=~`{+}_-^@.[;]">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\007\expected.Copy\!%24%27%28%29=~`{+}_-^%40.[%3b]">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\007\expected.GetArchiveFiles\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\007\expected.Upload\!%24%27%28%29=~`{+}_-^%40.[%3b]">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\007\expected\!$'()=~`{+}_-^@.[;]">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\007\initial\!$'()=~`{+}_-^@.[;]">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\007\initial\!%24%27%28%29=~`{+}_-^%40.[%3b]">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\007\input.Upload\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\008\expected.Upload\1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\008\expected.Copy\1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\008\expected.GetArchiveFiles\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\008\initial\1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\008\input.Upload\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\009\02\expected.GetArchiveFiles\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\009\expected.Upload\1\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\009\expected.Copy\1\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\009\01\expected.GetArchiveFiles\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\009\initial\1\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\009\input.Upload\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\010\expected.Upload\1\2\3\4\5\6\7\8\9\10\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\010\input.Upload\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\01\expected.GetArchiveFiles\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\02\expected.GetArchiveFiles\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\expected.Copy\1\2\3\4\5\6\7\8\9\10\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\expected.Delete\1\2\3\4\5\6\7\8\9\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\expected.Delete\1\2\3\4\5\6\7\8\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\expected.Delete\1\2\3\4\5\6\7\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\expected.Delete\1\2\3\4\5\6\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\expected.Delete\1\2\3\4\5\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\expected.Delete\1\2\3\4\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\expected.Delete\1\2\3\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\expected.Delete\1\2\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\expected.Delete\1\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\expected.Upload\1\2\3\4\5\6\7\8\9\10\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\expected.Upload\1\2\3\4\5\6\7\8\9\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\expected.Upload\1\2\3\4\5\6\7\8\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\expected.Upload\1\2\3\4\5\6\7\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\expected.Upload\1\2\3\4\5\6\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\expected.Upload\1\2\3\4\5\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\expected.Upload\1\2\3\4\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\expected.Upload\1\2\3\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\expected.Upload\1\2\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\expected.Upload\1\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\initial\1\2\3\4\5\6\7\8\9\10\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\010\01\expected.GetArchiveFiles\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\010\02\expected.GetArchiveFiles\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\010\expected.Copy\1\2\3\4\5\6\7\8\9\10\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\010\initial\1\2\3\4\5\6\7\8\9\10\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\01\expected.Delete\b.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\01\expected.Delete\c.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\02\expected.Delete\c.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\04\expected.Delete\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\04\expected.Delete\b.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\002\04\expected.Delete\c.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\initial\1\2\3\4\5\6\7\8\9\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\initial\1\2\3\4\5\6\7\8\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\initial\1\2\3\4\5\6\7\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\initial\1\2\3\4\5\6\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\initial\1\2\3\4\5\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\initial\1\2\3\4\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\initial\1\2\3\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\initial\1\2\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\initial\1\a.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\BlobRepository\011\input.Upload\files.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\CreateDtDirectoryUsageIfAlreadyMessageThrowEx_1\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\CreateDtDirectoryUsageIfAlreadyMessageThrowEx_1\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\CreateDtDirectoryUsageIfAlreadyMessageThrowEx_1\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\CreateDtDirectoryUsageIfAlreadyMessageThrowEx_4\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\CreateDtDirectoryUsageIfAlreadyMessageThrowEx_4\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\CreateDtDirectoryUsageIfAlreadyMessageThrowEx_5\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\CreateDtDirectoryUsageIfAlreadyMessageThrowEx_5\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\SaveFromChild_1\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\SaveFromChild_1\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\SaveFromChild_1\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\SaveFromChild_2\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\SaveFromChild_2\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\SaveFromChild_2\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\SaveFromChild_3\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\SaveFromChild_3\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\SaveFromChild_3\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\SaveFromParent_1\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\SaveFromParent_1\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\SaveFromParent_1\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\SaveFromParent_2\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\SaveFromParent_2\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\SaveFromParent_2\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\SaveFromParent_3\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\SaveFromParent_3\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Dispatcher\SaveFromParent_3\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\DeleteDtDeliveryFile_1\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\DeleteDtDeliveryFile_3\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\DeleteDtDeliveryFile_3\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\ReadDtDeliveryFile_1\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\ReadDtDeliveryFile_1\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\ReadDtDeliveryFile_1\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\ReadDtDeliveryFile_2\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\UpdateCancelFlag_1\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\UpdateCancelFlag_1\ExpectData_001.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\UpdateCancelFlag_1\ExpectData_002.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\UpdateCancelFlag_1\ExpectData_003.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\UpdateCancelFlag_1\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\UpdateCancelFlag_2\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\UpdateCancelFlag_3\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\UpdateCancelFlag_3\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\UpdateCancelFlag_3\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\UpdateCancelFlag_4\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\UpdateCancelFlag_4\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\UpdateDtDeliveryFileIfNoGroupStarted_1\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\UpdateDtDeliveryFileIfNoGroupStarted_1\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\UpdateDtDeliveryFileIfNoGroupStarted_1\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\UpdateDtDeliveryFileIfNoGroupStarted_2\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\UpdateDtDeliveryFileIfNoGroupStarted_3\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\UpdateDtDeliveryFileIfNoGroupStarted_3\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\UpdateDtDeliveryFileIfNoGroupStarted_4\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryFileRepository\UpdateDtDeliveryFileIfNoGroupStarted_4\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\DeleteDtDeliveryGroup_1\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\DeleteDtDeliveryGroup_1\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\DeleteDtDeliveryGroup_3\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\DeleteDtDeliveryGroup_3\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\ReadDeliveryIncludedDtDeliveryGroup_1\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\ReadDeliveryIncludedDtDeliveryGroup_1\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\ReadDeliveryIncludedDtDeliveryGroup_1\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\ReadDeliveryIncludedDtDeliveryGroup_2\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\ReadDtDeliveryGroup_1\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\ReadDtDeliveryGroup_1\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\ReadDtDeliveryGroup_1\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\ReadDtDeliveryGroup_2\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\ReadStartableDtDeliveryGroup_1\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\ReadStartableDtDeliveryGroup_1\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\ReadStartableDtDeliveryGroup_1\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\ReadStartableDtDeliveryGroup_2\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\ReadStartableDtDeliveryGroup_2\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\ReadStartableDtDeliveryGroup_2\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\ReadStartableDtDeliveryGroup_3\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\ReadStartableDtDeliveryGroup_3\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\ReadStartableDtDeliveryGroup_3\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\UpdateDtDeliveryGroupIfDeliveryNotStart_1\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\UpdateDtDeliveryGroupIfDeliveryNotStart_1\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\UpdateDtDeliveryGroupIfDeliveryNotStart_1\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\UpdateDtDeliveryGroupIfDeliveryNotStart_2\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\UpdateDtDeliveryGroupIfDeliveryNotStart_3\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\UpdateDtDeliveryGroupIfDeliveryNotStart_3\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\UpdateDtDeliveryGroupIfDeliveryNotStart_4\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\UpdateDtDeliveryGroupIfDeliveryNotStart_4\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\UpdateDtDeliveryGroupStatusStarted_1\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\UpdateDtDeliveryGroupStatusStarted_1\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\UpdateDtDeliveryGroupStatusStarted_1\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\UpdateDtDeliveryGroupStatusStarted_2\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\UpdateDtDeliveryGroupStatusStarted_3\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeliveryGroupRepository\UpdateDtDeliveryGroupStatusStarted_3\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_1\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_1\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_1\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_2\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_2\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_2\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_3\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_3\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_3\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_4\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_4\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\ReadDtDevice_1\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\ReadDtDevice_1\ExpectData_001.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\ReadDtDevice_1\ExpectData_002.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\ReadDtDevice_1\ExpectData_003.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\ReadDtDevice_1\ExpectData_004.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\ReadDtDevice_1\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\UpdateDeviceInfoByTwinChanged_1\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\UpdateDeviceInfoByTwinChanged_1\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\UpdateDeviceInfoByTwinChanged_1\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\UpdateDeviceInfoByTwinChanged_2\ExpectData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\UpdateDeviceInfoByTwinChanged_3\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\UpdateDeviceInfoByTwinChanged_3\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\UpdateDeviceInfoByTwinChanged_4\DeleteNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DtDeviceRepository\UpdateDeviceInfoByTwinChanged_4\InsertNewData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TestData\BlobRepository\002\04\expected.Copy\" />
+    <Folder Include="TestData\BlobRepository\010\expected.Delete\" />
+    <Folder Include="TestData\BlobRepository\009\expected.Delete\" />
+    <Folder Include="TestData\BlobRepository\001\expected.Delete\" />
+    <Folder Include="TestData\BlobRepository\002\03\expected.Delete\" />
+    <Folder Include="TestData\BlobRepository\003\expected.Delete\" />
+    <Folder Include="TestData\BlobRepository\004\expected.Delete\" />
+    <Folder Include="TestData\BlobRepository\005\expected.Delete\" />
+    <Folder Include="TestData\BlobRepository\006\expected.Delete\" />
+    <Folder Include="TestData\BlobRepository\007\expected.Delete\" />
+    <Folder Include="TestData\BlobRepository\008\expected.Delete\" />
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="rd /q /s $(TargetDir)TestData&#xD;&#xA;rd /q /s $(TargetDir)TestCases" />
+  </Target>
+
+</Project>

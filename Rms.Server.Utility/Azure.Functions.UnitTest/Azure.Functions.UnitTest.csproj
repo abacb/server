@@ -1,0 +1,426 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <DebugType Condition="'$(Configuration)'=='DEBUG'">full</DebugType>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="Moq" Version="4.13.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
+    <PackageReference Include="OpenCover" Version="4.7.922" />
+    <PackageReference Include="ReportGenerator" Version="4.5.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Rms.Server.Core.Abstraction">
+      <HintPath>..\lib\Rms.Server.Core.Abstraction.dll</HintPath>
+    </Reference>
+    <Reference Include="Rms.Server.Core.Service">
+      <HintPath>..\lib\Rms.Server.Core.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="Rms.Server.Core.Utility">
+      <HintPath>..\lib\Rms.Server.Core.Utility.dll</HintPath>
+    </Reference>
+    <Reference Include="Rms.Server.Operation.Utility">
+      <HintPath>..\lib\Rms.Server.Operation.Utility.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TestData\Azure.Functions\CalibrationPremonitor\001\expected.FailureBlob\" />
+    <Folder Include="TestData\Azure.Functions\CalibrationPremonitor\001\initial.SQL\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Azure.Functions.CalibrationPremonitor\Azure.Functions.CalibrationPremonitor.csproj" />
+    <ProjectReference Include="..\Azure.Functions.ConnectionMonitor\Azure.Functions.ConnectionMonitor.csproj" />
+    <ProjectReference Include="..\Azure.Functions.DbCleaner\Azure.Functions.DbCleaner.csproj" />
+    <ProjectReference Include="..\Azure.Functions.DipAlmiLogAnalyzer\Azure.Functions.DipAlmiLogAnalyzer.csproj" />
+    <ProjectReference Include="..\Azure.Functions.DipAlmiLogPremonitor\Azure.Functions.DipAlmiLogPremonitor.csproj" />
+    <ProjectReference Include="..\Azure.Functions.DipBlocLogAnalyzer\Azure.Functions.DipBlocLogAnalyzer.csproj" />
+    <ProjectReference Include="..\Azure.Functions.DirectoryUsageMonitor\Azure.Functions.DirectoryUsageMonitor.csproj" />
+    <ProjectReference Include="..\Azure.Functions.FailureMonitor\Azure.Functions.FailureMonitor.csproj" />
+    <ProjectReference Include="..\Azure.Functions.FailurePremonitor\Azure.Functions.FailurePremonitor.csproj" />
+    <ProjectReference Include="..\Azure.Functions.InstallMonitor\Azure.Functions.InstallMonitor.csproj" />
+    <ProjectReference Include="..\Azure.Functions.PanelDefectPremonitor\Azure.Functions.PanelDefectPremonitor.csproj" />
+    <ProjectReference Include="..\Azure.Functions.PanelDeschargeBreakdownPremonitor\Azure.Functions.PanelDischargeBreakdownPremonitor.csproj" />
+    <ProjectReference Include="..\Azure.Functions.SmartPremonitor\Azure.Functions.DiskDrivePremonitor.csproj" />
+    <ProjectReference Include="..\Azure.Functions.StartUp\Azure.Functions.StartUp.csproj" />
+    <ProjectReference Include="..\Azure.Functions.TemperatureSensorMonitor\Azure.Functions.TemperatureSensorMonitor.csproj" />
+    <ProjectReference Include="..\Azure.Functions.TubeCurrentDeteriorationPremonitor\Azure.Functions.TubeCurrentDeteriorationPremonitor.csproj" />
+    <ProjectReference Include="..\Azure.Functions.TubeDeteriorationPremonitor\Azure.Functions.TubeDeteriorationPremonitor.csproj" />
+    <ProjectReference Include="..\TestHelper\TestHelper.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="local.settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Functions_DbCleaner_CleanDb.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Functions_DiskDrivePremonitor_ReceiveDiskDrive.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Functions_ParentChildrenConnectionMonitor_MonitorParentChildConnectTable.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Functions_DipAlmiLogAnalyzer_ReceiveDipAlmiSlopeLog.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Functions_DeviceConnectionMonitor_MonitorDeviceConnectionTable.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Functions_DipAlmiLogPremonitor_MonitorAlmilogAnalysisResultTable.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Functions_TubeDeteriorationPremonitor_ReceiveTubeDeteriorationPredictiveResutLog.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Functions_TubeCurrentDeteriorationPremonitor_ReceiveTubeCurrentDeteriorationPredictiveResutLog.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Functions_TemperatureSensorMonitor_ReceiveTemperatureSensorLog.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Functions_PanelDischargeBreakdownPremonitor_ReceivePanelDischargeBreakdownPredictiveResutLog.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Functions_PanelDefectPremonitor_ReceivePanelDefectPredictiveResutLog.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Functions_InstallMonitor_ReceiveInstallResult.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Functions_FailurePremonitor_ReceiveFailurePredictiveResultLog.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Functions_FailureMonitor_ReceiveErrorLog.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Functions_DirectoryUsageMonitor_ReceiveDirectoryUsage.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Functions_CalibrationPremonitor_ReceiveCalibrationPredictiveResutLog.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\CalibrationPremonitor\001\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\CalibrationPremonitor\001\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\CalibrationPremonitor\001\expected.AlarmQueue\001.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\CalibrationPremonitor\001\initial.SQL\DT_ALARM_DEF_CALIBRATION_PREMONITOR_001.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_001.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_002.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_003.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_004.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_005.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_006.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_007.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_008.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_009.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_010.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_011.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_012.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_013.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.006\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.006\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.006\utility.DT_BLOCLOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.006\utility.DT_ALMILOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.007\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.007\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.007\utility.DT_BLOCLOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.007\utility.DT_ALMILOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.008\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.008\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.008\utility.DT_BLOCLOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.008\utility.DT_ALMILOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.009\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.009\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.009\utility.DT_BLOCLOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.009\utility.DT_ALMILOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.011\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.011\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.011\utility.DT_BLOCLOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.011\utility.DT_ALMILOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.015\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.015\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.015\utility.DT_BLOCLOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.015\utility.DT_ALMILOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.016\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.016\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.016\utility.DT_BLOCLOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.016\utility.DT_ALMILOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.017\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.017\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.017\utility.DT_BLOCLOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.017\utility.DT_ALMILOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.018\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.018\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.018\utility.DT_BLOCLOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.018\utility.DT_ALMILOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.019\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.019\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.019\utility.DT_BLOCLOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.019\utility.DT_ALMILOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.020\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.020\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.020\utility.DT_BLOCLOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.020\utility.DT_ALMILOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.021\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.021\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.021\utility.DT_BLOCLOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.021\utility.DT_ALMILOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.022\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.022\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.022\utility.DT_BLOCLOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.022\utility.DT_ALMILOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.023\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.023\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.023\utility.DT_BLOCLOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.023\utility.DT_ALMILOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.024\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.024\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.024\utility.DT_BLOCLOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.024\utility.DT_ALMILOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.025\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.025\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.025\utility.DT_BLOCLOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.025\utility.DT_ALMILOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.026\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.026\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.026\utility.DT_BLOCLOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.026\utility.DT_ALMILOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.027\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.027\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.027\utility.DT_BLOCLOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.027\utility.DT_ALMILOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.all\utility.DT_ALMILOG_ANALYSIS_CONFIG.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.all\utility.DT_BLOCLOG_ANALYSIS_CONFIG.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\SQL_DBCleaner_in%28削除対象外%29_001.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\SQL_DBCleaner_in_001.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\SQL_DBCleaner_in_002.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\SQL_DBCleaner_in_003.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\SQL_DBCleaner_in_004.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\SQL_DBCleaner_in_005.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\SQL_DBCleaner_in_006.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\SQL_DBCleaner_in_007.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\SQL_DBCleaner_in_008.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\SQL_DBCleaner_in_009.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DipAlmiLogAnalyzer\001\utility.DT_ALMILOG_ANALYSIS_RESULT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="rd /q /s $(TargetDir)TestData&#xD;&#xA;rd /q /s $(TargetDir)TestCases&#xD;&#xA;" />
+  </Target>
+
+</Project>

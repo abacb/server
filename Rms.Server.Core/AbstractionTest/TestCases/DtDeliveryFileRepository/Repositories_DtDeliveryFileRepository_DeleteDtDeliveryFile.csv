@@ -1,0 +1,4 @@
+﻿No,in_InsertNewDataSqlPath,in_DeleteNewDataSqlPath,expected_DataJsonPath,expected_ExceptionType,expected_ExceptionMessage,Remarks
+1,TestData\DtDeliveryFileRepository\DeleteDtDeliveryFile_1\InsertNewData.sql,,,,,【正常系】データを削除する
+2,,,,,,【正常系】削除するデータがない
+3,TestData\DtDeliveryFileRepository\DeleteDtDeliveryFile_3\InsertNewData.sql,TestData\DtDeliveryFileRepository\DeleteDtDeliveryFile_3\DeleteNewData.sql,,Rms.Server.Core.Utility.Exceptions.RmsCannotChangeDeliveredFileException,配信前状態ではないDT_DELIVERY_FILEテーブルのレコードをDeleteしようとしました。(DT_DELIVERY_FILE.SID = 2),【異常系】未開始以外のデータを削除しようとした

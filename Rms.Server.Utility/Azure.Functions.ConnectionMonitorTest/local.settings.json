@@ -1,0 +1,16 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "ConnectionString": "Endpoint=sb://meta-tril-eventhubs-ms-01.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=RN1Ku2Q5Lc+Qf1An2eMjUkwk/IRM1Me8T+m5UxlI9DI=",
+    "OperationAlarmQueueName": "alarm-queue",
+    "SystemName": "rms",
+    "SubSystemName": "connectionmonitor"
+  },
+  "ConnectionStrings": {
+    "CorePrimaryDbConnectionString": "Server=tcp:rms-core-emu-jp-sqlsvr01-failover-group-rms-utility-db01.database.windows.net,1433;Database=rms-utility-db01;Uid=rmsutility;Pwd=7HxkkNtBL8R6;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;",
+    "OperationQueueStorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=metatechnotrialqueue;AccountKey=knL5xI/l8TZowaZbOsrh8NGNHF+JcEJz6JKFxBbxTnvgPmpaWVHY1nlDC9hzpQvQtr2vLONbP44LIT3iq0xQzA==;EndpointSuffix=core.windows.net",
+    "UtilityStorageFailureConnectionString": "DefaultEndpointsProtocol=https;AccountName=metatechnotrial;AccountKey=7eHSzMoqgdQmruEd2DUDUOOIMsPgkHS0mvQ9SZvuWpP8SKILqH1N1La8Y5jkYnQbKzd9mfYLbIEeH9BBNV7jvg==;EndpointSuffix=core.windows.net"
+  }
+}

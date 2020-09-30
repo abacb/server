@@ -1,0 +1,6 @@
+﻿No,in_InsertNewDataSqlPath,in_DeleteNewDataSqlPath,expected_DataJsonPath,expected_ExceptionType,expected_ExceptionMessage,Remarks
+1,TestData\DtDeviceRepository\UpdateDeviceInfoByTwinChanged_1\InsertNewData.sql,TestData\DtDeviceRepository\UpdateDeviceInfoByTwinChanged_1\DeleteNewData.sql,TestData\DtDeviceRepository\UpdateDeviceInfoByTwinChanged_1\ExpectData.json,,,【正常系】データを更新する
+2,,,TestData\DtDeviceRepository\UpdateDeviceInfoByTwinChanged_2\ExpectData.json,,,【正常系】更新するデータが存在しない
+3_001,TestData\DtDeviceRepository\UpdateDeviceInfoByTwinChanged_3\InsertNewData.sql,TestData\DtDeviceRepository\UpdateDeviceInfoByTwinChanged_3\DeleteNewData.sql,,Rms.Server.Core.Utility.Exceptions.RmsParameterException,RemoteConnectUid length should be less than 64 symbols.,【異常系】更新データが異常値を含んでいる
+3_002,TestData\DtDeviceRepository\UpdateDeviceInfoByTwinChanged_3\InsertNewData.sql,TestData\DtDeviceRepository\UpdateDeviceInfoByTwinChanged_3\DeleteNewData.sql,,Rms.Server.Core.Utility.Exceptions.RmsParameterException,RmsSoftVersion length should be less than 30 symbols.,【異常系】更新データが異常値を含んでいる
+4,TestData\DtDeviceRepository\UpdateDeviceInfoByTwinChanged_4\InsertNewData.sql,TestData\DtDeviceRepository\UpdateDeviceInfoByTwinChanged_4\DeleteNewData.sql,,System.ArgumentNullException,Rms.Server.Core.Utility.Models.Entites.DtDeliveryFile is null.,【異常系】メソッドにnullを渡した

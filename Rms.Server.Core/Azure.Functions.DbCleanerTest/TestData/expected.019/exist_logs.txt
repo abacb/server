@@ -1,0 +1,10 @@
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DtDirectoryUsage is invalid format.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DtDiskDrive is invalid format.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DtDrive is invalid format.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DtDxaBillLog is invalid format.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DtDxaQcLog is invalid format.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DtEquipmentUsage is invalid format.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DtInstallResult is invalid format.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DtInventory is invalid format.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DtPlusServiceBillLog is invalid format.）
+[CO_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_DtSoftVersion is invalid format.）

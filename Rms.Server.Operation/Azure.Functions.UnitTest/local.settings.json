@@ -1,0 +1,18 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+
+    "※本jsonに関する説明※": "本ファイルは単体テスト向けのjsonではあるが、単体テストではコード上local.settings.jsonのValues値は参照できない。",
+    "なぜか1": "単体テスト時にlocal.settings.jsonのValuesを読む場合、コード上で「.SetBasePath(context.FunctionAppDirectory)」を実行するか、設定値フルパス(Values.hoge)を指定する必要がある。",
+    "なぜか2": "しかしDIを使用する場合、単体テスト上でcontextインスタンスが取得できない。そのため、単体テスト上でlocal.settings.jsonのValuesは使用しない。",
+    "どうするか": "かわりにTestDiProviderBuilderクラスを作成したので、テスト固有の設定値を指定したい場合これを使用すること。",
+    "備考": "なお実環境では普通にValuesを読み込めるため、本問題は単体テスト時のみ気にする必要がある。"
+  },
+  "ConnectionStrings": {
+    "PrimaryDbConnectionString": "Server=meta-rms-test.database.windows.net;Database=meta-rms-test20200514;persist security info=True;user id=metaAdmin;password=FfRms_02;MultipleActiveResultSets=True",
+    "MailQueueConnectionString": "BlobEndpoint=https://rmsopemujpemain01.blob.core.windows.net/;QueueEndpoint=https://rmsopemujpemain01.queue.core.windows.net/;FileEndpoint=https://rmsopemujpemain01.file.core.windows.net/;TableEndpoint=https://rmsopemujpemain01.table.core.windows.net/;SharedAccessSignature=sv=2019-02-02&ss=bfqt&srt=sco&sp=rwdlacup&se=9999-12-31T14:59:59Z&st=2019-12-31T15:00:00Z&spr=https&sig=df0HxgGoFo3k%2Fk8gIsfYxOPVolY7xCcP%2Be5G%2BpVYJT0%3D",
+    "FailureBlobConnectionString": "BlobEndpoint=https://rmsopemujpefail01.blob.core.windows.net/;QueueEndpoint=https://rmsopemujpefail01.queue.core.windows.net/;FileEndpoint=https://rmsopemujpefail01.file.core.windows.net/;TableEndpoint=https://rmsopemujpefail01.table.core.windows.net/;SharedAccessSignature=sv=2019-02-02&ss=bfqt&srt=sco&sp=rwdlacup&se=9999-12-31T14:59:59Z&st=2019-12-31T15:00:00Z&spr=https&sig=%2Fj9CCdh9ZWd8gBugVQ%2BiapRJ85fPKr0sKxPh5hZTt8Y%3D"
+  }
+}

@@ -1,0 +1,1 @@
+[CO_API_DGU_002] パラメータが不正です。（ / The Name field is required.）

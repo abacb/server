@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\Rms.Server.Test\CloudBlobClientExtensions.cs" Link="Rms.Server.Test\CloudBlobClientExtensions.cs" />
+    <Compile Include="..\..\Rms.Server.Test\CsvDataSoureceAttribute.cs" Link="Rms.Server.Test\CsvDataSoureceAttribute.cs" />
+    <Compile Include="..\..\Rms.Server.Test\DataTableHelper.cs" Link="Rms.Server.Test\DataTableHelper.cs" />
+    <Compile Include="..\..\Rms.Server.Test\TestDiProviderBuilder.cs" Link="Rms.Server.Test\TestDiProviderBuilder.cs" />
+    <Compile Include="..\..\Rms.Server.Test\TestLog.cs" Link="Rms.Server.Test\TestLog.cs" />
+    <Compile Include="..\..\Rms.Server.Test\TestLogger.cs" Link="Rms.Server.Test\TestLogger.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Rms.Server.Test\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="15.0.4" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Azure.Functions.StartUp\Azure.Functions.StartUp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Rms.Server.Core.Utility">
+      <HintPath>..\lib\Rms.Server.Core.Utility.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

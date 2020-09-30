@@ -1,0 +1,4 @@
+﻿No,in_InsertNewDataSqlPath,in_DeleteNewDataSqlPath,expected_DataJsonPath,expected_ExceptionType,expected_ExceptionMessage,Remarks
+1,TestData\DtDeliveryGroupRepository\DeleteDtDeliveryGroup_1\InsertNewData.sql,TestData\DtDeliveryGroupRepository\DeleteDtDeliveryGroup_1\DeleteNewData.sql,,,,【正常系】データを削除する
+2,,,,,,【正常系】削除するデータがない
+3,TestData\DtDeliveryGroupRepository\DeleteDtDeliveryGroup_3\InsertNewData.sql,TestData\DtDeliveryGroupRepository\DeleteDtDeliveryGroup_3\DeleteNewData.sql,,Rms.Server.Core.Utility.Exceptions.RmsCannotChangeDeliveredFileException,配信前状態ではないDT_DELIVERY_GROUPテーブルのレコードをDeleteしようとしました。(DT_DELIVERY_GROUP.SID = 1),【異常系】未開始以外のデータを削除しようとした

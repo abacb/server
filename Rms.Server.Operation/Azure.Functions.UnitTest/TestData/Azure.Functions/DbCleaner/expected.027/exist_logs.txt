@@ -1,0 +1,3 @@
+[OP_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_A is not supported.）
+[OP_DBC_DBC_004] データを削除しました。（データ情報：Rms.Server.Operation.Abstraction.Repositories.DtAlarmRepository, Rms.Server.Operation.Abstraction）
+[OP_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_Z is not supported.）

@@ -1,0 +1,40 @@
+{
+  "parent": {
+    "edgeId": "",
+    "installType": {
+      "installTypeSid": 2,
+      "installTypeCode": ""
+    },
+    "equipmentUid": "",
+    "equipmentName": "",
+    "equipmentSerialNumber": "",
+    "installFeatures": "",
+    "ipAddress": "",
+    "hostName": "",
+    "model": {
+      "modelSid": 2,
+      "modelCode": ""
+    },
+    "networkRoute": ""
+  },
+  "children": [
+    {
+      "edgeId": "",
+      "installType": {
+        "installTypeSid": 2,
+        "installTypeCode": ""
+      },
+      "equipmentUid": "",
+      "equipmentName": "",
+      "equipmentSerialNumber": "",
+      "installFeatures": "",
+      "ipAddress": "",
+      "hostName": "",
+      "model": {
+        "modelSid": 2,
+        "modelCode": ""
+      },
+      "networkRoute": ""
+    }
+  ]
+}

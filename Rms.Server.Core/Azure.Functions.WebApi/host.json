@@ -1,0 +1,13 @@
+{
+  "version": "2.0",
+  "extensions": {
+    "Swashbuckle": {
+      "XmlPath": "Rms.Server.Core.Azure.Functions.xml"
+    }
+  },
+  "logging": {
+    "logLevel": {
+      "default": "Debug"
+    }
+  }
+}

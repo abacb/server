@@ -1,0 +1,107 @@
+[
+    {
+        "ContainerName": "log",
+        "Path": "120/file.json",
+        "UpdateTime": "2020-05-01T00:00:00.0000000",
+        "CreatedTime": "2020-05-01T00:00:00.0000000",
+        "DeviceFileAttributes": 
+            [
+                {
+                    "name": "sys_container",
+                    "value": "log",
+                    "UpdateTime": "2020-05-01T00:00:00.0000000",
+                    "CreatedTime": "2020-05-01T00:00:00.0000000"
+                },
+                {
+                    "name": "sys_owner",
+                    "value": "120",
+                    "UpdateTime": "2020-05-01T00:00:00.0000000",
+                    "CreatedTime": "2020-05-01T00:00:00.0000000"
+                },
+                {
+                    "name": "sys_file_datetime",
+                    "value": "2020-05-01 00:00:00",
+                    "UpdateTime": "2020-05-01T00:00:00.0000000",
+                    "CreatedTime": "2020-05-01T00:00:00.0000000"
+                }
+            ]
+    },
+    {
+        "ContainerName": "error",
+        "Path": "120/file.json",
+        "UpdateTime": "2020-05-01T00:00:00.0000000",
+        "CreatedTime": "2020-05-01T00:00:00.0000000",
+        "DeviceFileAttributes": 
+            [
+                {
+                    "name": "sys_container",
+                    "value": "error",
+                    "UpdateTime": "2020-05-01T00:00:00.0000000",
+                    "CreatedTime": "2020-05-01T00:00:00.0000000"
+                },
+                {
+                    "name": "sys_owner",
+                    "value": "120",
+                    "UpdateTime": "2020-05-01T00:00:00.0000000",
+                    "CreatedTime": "2020-05-01T00:00:00.0000000"
+                },
+                {
+                    "name": "sys_file_datetime",
+                    "value": "2020-05-01 00:00:00",
+                    "UpdateTime": "2020-05-01T00:00:00.0000000",
+                    "CreatedTime": "2020-05-01T00:00:00.0000000"
+                },
+                {
+                    "name": "user",
+                    "value": "hoge",
+                    "UpdateTime": "2020-05-01T00:00:00.0000000",
+                    "CreatedTime": "2020-05-01T00:00:00.0000000"
+                }
+            ]
+    },
+    {
+        "ContainerName": "device",
+        "Path": "abcd1234/sub/file.json",
+        "UpdateTime": "2020-05-01T00:00:00.0000000",
+        "CreatedTime": "2020-05-01T00:00:00.0000000",
+        "DeviceFileAttributes": 
+            [
+                {
+                    "name": "sys_container",
+                    "value": "device",
+                    "UpdateTime": "2020-05-01T00:00:00.0000000",
+                    "CreatedTime": "2020-05-01T00:00:00.0000000"
+                },
+                {
+                    "name": "sys_owner",
+                    "value": "abcd1234",
+                    "UpdateTime": "2020-05-01T00:00:00.0000000",
+                    "CreatedTime": "2020-05-01T00:00:00.0000000"
+                },
+                {
+                    "name": "sys_sub_directory",
+                    "value": "sub",
+                    "UpdateTime": "2020-05-01T00:00:00.0000000",
+                    "CreatedTime": "2020-05-01T00:00:00.0000000"
+                },
+                {
+                    "name": "sys_file_datetime",
+                    "value": "2020-05-01 00:00:00",
+                    "UpdateTime": "2020-05-01T00:00:00.0000000",
+                    "CreatedTime": "2020-05-01T00:00:00.0000000"
+                },
+                {
+                    "name": "user",
+                    "value": "hoge",
+                    "UpdateTime": "2020-05-01T00:00:00.0000000",
+                    "CreatedTime": "2020-05-01T00:00:00.0000000"
+                },
+                {
+                    "name": "user2",
+                    "value": "あああ",
+                    "UpdateTime": "2020-05-01T00:00:00.0000000",
+                    "CreatedTime": "2020-05-01T00:00:00.0000000"
+                }
+            ]
+    }
+]

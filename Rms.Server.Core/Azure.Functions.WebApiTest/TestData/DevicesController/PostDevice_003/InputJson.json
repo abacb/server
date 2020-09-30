@@ -1,0 +1,16 @@
+{
+  "device": {
+    "installType": {
+      "installTypeSid": 1,
+      "installTypeCode": "A"
+    },
+    "equipmentUid": "B",
+    "equipmentName": "C",
+    "equipmentSerialNumber": "D",
+    "model": {
+      "modelSid": 1,
+      "modelCode": "E"
+    },
+    "networkRoute": "F"
+  }
+}

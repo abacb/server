@@ -1,0 +1,3 @@
+﻿No,in_InsertNewDataSqlPath,in_DeleteNewDataSqlPath,expected_DataJsonPath,expected_ExceptionType,expected_ExceptionMessage,Remarks
+1,TestData\DtDeliveryFileRepository\ReadDtDeliveryFile_1\InsertNewData.sql,TestData\DtDeliveryFileRepository\ReadDtDeliveryFile_1\DeleteNewData.sql,TestData\DtDeliveryFileRepository\ReadDtDeliveryFile_1\ExpectData.json,,,【正常系】データを読み出す
+2,,,TestData\DtDeliveryFileRepository\ReadDtDeliveryFile_2\ExpectData.json,,,【正常系】読み出すデータがない

@@ -1,0 +1,2 @@
+ContainerName,LocalFilePath,Path,sys_container,sys_owner,sys_sub_directory,sys_file_datetime,user,user2
+collect,TestData\UploadedFiles\013\log\120\file.json,log/120/file.json,log,120,,aaa,,

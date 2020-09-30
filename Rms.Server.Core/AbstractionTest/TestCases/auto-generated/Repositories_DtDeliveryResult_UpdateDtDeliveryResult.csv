@@ -1,0 +1,4 @@
+﻿No,in_InsertNewDataSqlPath,in_DeleteNewDataSqlPath,expected_DataJsonPath,expected_ExceptionType,expected_ExceptionMessage,Remarks
+1,TestData\auto-generated\UpdateDtDeliveryResult_1\InsertNewData.sql,TestData\auto-generated\UpdateDtDeliveryResult_1\DeleteNewData.sql,TestData\auto-generated\UpdateDtDeliveryResult_1\ExpectData.json,,,【正常系】データを更新する
+2,,,,System.ArgumentNullException,Rms.Server.Core.Utility.Models.Entites.DtDeliveryResult is null.,【異常系】メソッドにnullを渡した
+3,,,,Rms.Server.Core.Utility.Exceptions.RmsException,DT_DELIVERY_RESULTテーブルのUpdateに失敗しました。,【異常系】存在しないSIDをもったデータで更新しようとした

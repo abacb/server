@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="70a3343f731d46f3a0193218793949d5" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="meta.rms.trialModel.DT_DELIVERY_FILE" Width="1.5" PointX="8.25" PointY="54.375" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.DT_DELIVERY_GROUP" Width="1.5" PointX="13.5" PointY="54.75" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.DT_DELIVERY_MODEL" Width="1.5" PointX="5.25" PointY="44.75" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.DT_DELIVERY_RESULT" Width="1.5" PointX="13.5" PointY="48.625" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.DT_DEVICE" Width="1.5" PointX="8.25" PointY="46.625" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.DT_DEVICE_FILE" Width="1.5" PointX="10.5" PointY="28.25" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.DT_DEVICE_FILE_ATTRIBUTE" Width="1.5" PointX="12.75" PointY="28.5" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.DT_DIRECTORY_USAGE" Width="1.5" PointX="10.5" PointY="82.375" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.DT_DISK_DRIVE" Width="1.5" PointX="10.5" PointY="19.125" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.DT_DRIVE" Width="1.5" PointX="10.5" PointY="31.875" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.DT_DXA_BILL_LOG" Width="1.5" PointX="10.5" PointY="77.875" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.DT_DXA_QC_LOG" Width="1.5" PointX="10.5" PointY="45.75" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.DT_EQUIPMENT_USAGE" Width="1.5" PointX="10.5" PointY="85.625" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.DT_INSTALL_RESULT" Width="1.5" PointX="15.75" PointY="47" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.DT_INVENTORY" Width="1.5" PointX="10.5" PointY="35.25" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.DT_PARENT_CHILD_CONNECT" Width="1.5" PointX="10.5" PointY="73.625" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.DT_PLUS_SERVICE_BILL_LOG" Width="1.5" PointX="10.5" PointY="23.125" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.DT_SCRIPT_CONFIG" Width="1.5" PointX="5.25" PointY="52.125" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.DT_SOFT_VERSION" Width="1.5" PointX="13.5" PointY="44.875" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.DT_STORAGE_CONFIG" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.MT_CONNECT_STATUS" Width="1.5" PointX="6" PointY="41.125" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.MT_DELIVERY_FILE_TYPE" Width="1.5" PointX="6" PointY="56.375" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.MT_DELIVERY_GROUP_STATUS" Width="1.5" PointX="11.25" PointY="42.375" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.MT_EQUIPMENT_MODEL" Width="1.5" PointX="3" PointY="45.375" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.MT_EQUIPMENT_TYPE" Width="1.5" PointX="0.75" PointY="47.5" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.MT_INSTALL_RESULT_STATUS" Width="1.5" PointX="13.5" PointY="42.125" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.MT_INSTALL_TYPE" Width="1.5" PointX="3" PointY="52" />
+        <EntityTypeShape EntityType="meta.rms.trialModel.MT_SOFT_VERSION_CONVERT" Width="1.5" PointX="5.25" PointY="48.5" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_DELIVERY_FILE_FK1" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_DELIVERY_FILE_FK2" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_DELIVERY_GROUP_FK1" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_DELIVERY_MODEL_FK1" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_DELIVERY_GROUP_FK2" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_DELIVERY_RESULT_FK2" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_DELIVERY_MODEL_FK2" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_DELIVERY_RESULT_FK1" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_DELIVERY_RESULT_FK3" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_INSTALL_RESULT_FK3" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_DEVICE_FILE_FK1" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_DEVICE_FK1" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_DEVICE_FK2" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_DEVICE_FK3" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_DIRECTORY_USAGE_FK1" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_DISK_DRIVE_FK1" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_DRIVE_FK1" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_DXA_BILL_LOG_FK1" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_DXA_QC_LOG_FK1" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_EQUIPMENT_USAGE_FK1" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_INSTALL_RESULT_FK2" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_INVENTORY_FK1" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_PARENT_CHILD_CONNECT_FK1" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_PARENT_CHILD_CONNECT_FK2" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_PLUS_SERVICE_BILL_LOG_FK1" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_SOFT_VERSION_FK2" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_DEVICE_FILE_ATTRIBUTE_FK1" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_INSTALL_RESULT_FK1" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_SCRIPT_CONFIG_FK1" />
+        <AssociationConnector Association="meta.rms.trialModel.DT_SOFT_VERSION_FK1" />
+        <AssociationConnector Association="meta.rms.trialModel.MT_EQUIPMENT_MODEL_FK1" />
+        <AssociationConnector Association="meta.rms.trialModel.MT_SOFT_VERSION_CONVERT_FK1" />
+        <AssociationConnector Association="meta.rms.trialModel.MT_INSTALL_TYPE_FK1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

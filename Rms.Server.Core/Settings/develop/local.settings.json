@@ -1,0 +1,67 @@
+﻿
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+
+    "RemoteParameter": "--on-load \"customization? preselect_allow_remote_desktop_control = false\" --connect {0}",
+    "CollectingBlobContainerNameCollect": "collect",
+    "CollectingBlobContainerNameUnknown": "unknown",
+    "FailureBlobContainerNameDispatcher": "dispatcher",
+    "BlobIndexerKeepFileDays": "7",
+    "DbCleanTarget_DtSoftVersion": "1",
+    "DbCleanTarget_DtDiskDrive": "1",
+    "DbCleanTarget_DtDirectoryUsage": "1",
+    "DbCleanTarget_DtInventory": "1",
+    "DbCleanTarget_DtEquipmentUsage": "1",
+    "DbCleanTarget_DtDrive": "1",
+    "DbCleanTarget_DtPlusServiceBillLog": "1",
+    "DbCleanTarget_DtDxaBillLog": "1",
+    "DbCleanTarget_DtDxaQcLog": "1",
+    "DbCleanTarget_DtInstallResult": "1",
+    "BlobCleanTarget_log": "1",
+    "BlobCleanTarget_error": "1",
+    "BlobCleanTarget_device": "1",
+    "DbAccessMaxAttempts": "3",
+    "DbAccessDelayDeltaSeconds": "3",
+    "BlobAccessMaxAttempts": "3",
+    "BlobAccessDelayDeltaSeconds": "3",
+    "IotHubMaxRetryAttempts": "3",
+    "IotHubDelayDeltaSeconds": "3",
+    "IotHubDirectMessageConnectionTimeoutSeconds": "0",
+    "IotHubDirectMessageResponseTimeoutSeconds": "0",
+    "DpsMaxRetryAttempts": "3",
+    "DpsDelayDeltaSeconds": "3",
+
+    "DeliveringBlobContainerNameInstallbase": "config",
+    "DeliveringBlobInstallbaseFilePath": "installbase/{0}/installbase.config",
+
+    "EventHubsConnectionStringDeviceConnected": "Endpoint=sb://rms-core-emu-jpeast-evthubs-ms00.servicebus.windows.net/;SharedAccessKeyName=sas-listen-device-connected;SharedAccessKey=xcx8xI5xHTvxVbWUaksiojtasfk0C7XdN/rXD4ZYXpI=;EntityPath=device-connected",
+    "EventHubsConnectionStringDeviceDisconnected": "Endpoint=sb://rms-core-emu-jpeast-evthubs-ms00.servicebus.windows.net/;SharedAccessKeyName=sas-listen-device-disconnected;SharedAccessKey=nRpVVzro5XumOSkrzakC9sgjNq0xmhbvZdoIFMf5Itc=;EntityPath=device-disconnected",
+    "EventHubsConnectionStringTwinChanged": "Endpoint=sb://rms-core-emu-jpeast-evthubs-ms00.servicebus.windows.net/;SharedAccessKeyName=sas-listen-twin-changed;SharedAccessKey=VN9DAKuKKmX/slcvGAG/XeqNxsw6pBxUY+GsBoOPuAo=;EntityPath=twin-changed",
+    "EventHubsConnectionStringMs011": "Endpoint=sb://rms-core-emu-jpeast-evthubs-ms01.servicebus.windows.net/;SharedAccessKeyName=sas-listen-ms-010;SharedAccessKey=9IX/afRtEPPt5y2foK9kdZzQcoz/EC7DMfBeFm7oKtE=;EntityPath=ms-011",
+    "EventHubsConnectionStringMs014": "Endpoint=sb://rms-core-emu-jpeast-evthubs-ms01.servicebus.windows.net/;SharedAccessKeyName=sas-listen-ms-014;SharedAccessKey=oLSLPxJn7O0B1yrmYU70NkvRDM3bZ68laOCuyy/Sebw=;EntityPath=ms-014",
+    "EventHubsConnectionStringMs015": "Endpoint=sb://rms-core-emu-jpeast-evthubs-ms01.servicebus.windows.net/;SharedAccessKeyName=sas-listen-ms-015;SharedAccessKey=g7isDU8RxohoY0w5Z+rXwS0W/ByqvSKAUWEdrfxR2mY=;EntityPath=ms-015",
+    "EventHubsConnectionStringMs016": "Endpoint=sb://rms-core-emu-jpeast-evthubs-ms01.servicebus.windows.net/;SharedAccessKeyName=sas-listen-ms-016;SharedAccessKey=3oF5wBj1j/OxkiLbdtwGhRCUuUElZjLYhsXXPnNX7Ek=;EntityPath=ms-016",
+    "EventHubsConnectionStringMs025": "Endpoint=sb://rms-core-emu-jpeast-evthubs-ms02.servicebus.windows.net/;SharedAccessKeyName=sas-listen-ms-025;SharedAccessKey=VVN/hFN5N4+co8YG4hP/vEsKmzx08u+BF8nBcwmd8uk=;EntityPath=ms-025",
+    "EventHubsConnectionStringMs026": "Endpoint=sb://rms-core-emu-jpeast-evthubs-ms02.servicebus.windows.net/;SharedAccessKeyName=sas-listen-ms-026;SharedAccessKey=0sPbPetnmTwZHTJOYAA1feMIPKv5F1FtrnreQBBW8Wo=;EntityPath=ms-026",
+    "EventHubsConnectionStringMs027": "Endpoint=sb://rms-core-emu-jpeast-evthubs-ms02.servicebus.windows.net/;SharedAccessKeyName=sas-listen-ms-027;SharedAccessKey=UstlUYDHSzyiRmp0W70wov3QU19a8OJHOSBbzRHGt/A=;EntityPath=ms-027",
+    "EventHubsConnectionStringMs028": "Endpoint=sb://rms-core-emu-jpeast-evthubs-ms02.servicebus.windows.net/;SharedAccessKeyName=sas-listen-ms-028;SharedAccessKey=J0e14c16YcX8EuIH1yNOITR+uu+rJTIomyMkVzMxzeg=;EntityPath=ms-028",
+    "EventHubsConnectionStringMs029": "Endpoint=sb://rms-core-emu-jpeast-evthubs-ms02.servicebus.windows.net/;SharedAccessKeyName=sas-listen-ms-029;SharedAccessKey=IrVD1YKSVJVj6l12r9KzbroWurfznoaocWRAokexJiI=;EntityPath=ms-029",
+    "EventHubsConnectionStringMs030": "Endpoint=sb://rms-core-emu-jpeast-evthubs-ms03.servicebus.windows.net/;SharedAccessKeyName=sas-listen-ms-030;SharedAccessKey=vUhJnuR+rVo/xexyt0G6nMMeVHnQkwYN5dx9mE7ocJQ=;EntityPath=ms-030",
+    "EventHubsConnectionStringMs031": "Endpoint=sb://rms-core-emu-jpeast-evthubs-ms03.servicebus.windows.net/;SharedAccessKeyName=sas-listen-ms-031;SharedAccessKey=FQaC2j1bIpj+LteOLrcjPG8ErbW1XY92uu6qaphVQJA=;EntityPath=ms-031"
+  },
+  "ConnectionStrings": {
+    "PrimaryBlobConnectionString": "DefaultEndpointsProtocol=https;AccountName=metatechnotrial;AccountKey=7eHSzMoqgdQmruEd2DUDUOOIMsPgkHS0mvQ9SZvuWpP8SKILqH1N1La8Y5jkYnQbKzd9mfYLbIEeH9BBNV7jvg==;EndpointSuffix=core.windows.net",
+    "CollectingBlobConnectionString": "DefaultEndpointsProtocol=https;AccountName=metatechnotrial;AccountKey=7eHSzMoqgdQmruEd2DUDUOOIMsPgkHS0mvQ9SZvuWpP8SKILqH1N1La8Y5jkYnQbKzd9mfYLbIEeH9BBNV7jvg==;EndpointSuffix=core.windows.net",
+    "DeliveringBlobConnectionString": "BlobEndpoint=https://rmscoemujpedeliver01.blob.core.windows.net/;QueueEndpoint=https://rmscoemujpedeliver01.queue.core.windows.net/;FileEndpoint=https://rmscoemujpedeliver01.file.core.windows.net/;TableEndpoint=https://rmscoemujpedeliver01.table.core.windows.net/;SharedAccessSignature=sv=2019-02-02&ss=bfqt&srt=sco&sp=rwdlacup&se=9999-12-31T14:59:59Z&st=2019-12-31T15:00:00Z&spr=https&sig=%2BfPWFeRVqOfks3rUvosqt1POzc2ET2%2BQrdKtl6MBgT8%3D",
+    "FailureBlobConnectionString": "DefaultEndpointsProtocol=https;AccountName=metatechnotrial;AccountKey=7eHSzMoqgdQmruEd2DUDUOOIMsPgkHS0mvQ9SZvuWpP8SKILqH1N1La8Y5jkYnQbKzd9mfYLbIEeH9BBNV7jvg==;EndpointSuffix=core.windows.net",
+
+    "PrimaryDbConnectionString": "Server=meta-rms-trial.database.windows.net;Database=meta.rms.trial.20200128;persist security info=True;user id=metaAdmin;password=FfRms_01;MultipleActiveResultSets=True",
+    "DpsConnectionString": "",
+
+    "IotHubConnectionString_rms-core-emu-jpeast-rgroup01": "",
+    "IotHubConnectionString_rms-core-emu-jpwest-rgroup01": ""
+  }
+}

@@ -1,0 +1,3 @@
+ContainerName,Path,Deleted,sys_container,sys_owner,sys_subdirectory,sys_file_datetime,user,user2
+collect,log/120/file.json,TRUE,,120,,2020-05-01 00:00:00,,
+unknown,20200501000000000/log/120/file.json,FALSE,,120,,2020-05-01 00:00:00,,

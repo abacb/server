@@ -1,0 +1,38 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+
+    "※本jsonに関する説明※": "本ファイルは単体テスト向けのjsonではあるが、単体テストではコード上local.settings.jsonのValues値は参照できない。",
+    "なぜか1": "単体テスト時にlocal.settings.jsonのValuesを読む場合、コード上で「.SetBasePath(context.FunctionAppDirectory)」を実行するか、設定値フルパス(Values.hoge)を指定する必要がある。",
+    "なぜか2": "しかしDIを使用する場合、単体テスト上でcontextインスタンスが取得できない。そのため、単体テスト上でlocal.settings.jsonのValuesは使用しない。",
+    "どうするか": "かわりにTestDiProviderBuilderクラスを作成したので、テスト固有の設定値を指定したい場合これを使用すること。",
+    "備考": "なお実環境では普通にValuesを読み込めるため、本問題は単体テスト時のみ気にする必要がある。",
+
+    "EventHubsConnectionStringDeviceConnected": "Endpoint=sb://rms-core-emu-jpeast-evthubs-ms00.servicebus.windows.net/;SharedAccessKeyName=sas-listen-device-connected;SharedAccessKey=xcx8xI5xHTvxVbWUaksiojtasfk0C7XdN/rXD4ZYXpI=;EntityPath=device-connected",
+    "EventHubsConnectionStringDeviceDisconnected": "Endpoint=sb://rms-core-emu-jpeast-evthubs-ms00.servicebus.windows.net/;SharedAccessKeyName=sas-listen-device-disconnected;SharedAccessKey=nRpVVzro5XumOSkrzakC9sgjNq0xmhbvZdoIFMf5Itc=;EntityPath=device-disconnected",
+    "EventHubsConnectionStringTwinChanged": "Endpoint=sb://rms-core-emu-jpeast-evthubs-ms00.servicebus.windows.net/;SharedAccessKeyName=sas-listen-twin-changed;SharedAccessKey=VN9DAKuKKmX/slcvGAG/XeqNxsw6pBxUY+GsBoOPuAo=;EntityPath=twin-changed",
+    "EventHubsConnectionStringMs011": "",
+    "EventHubsConnectionStringMs014": "",
+    "EventHubsConnectionStringMs015": "",
+    "EventHubsConnectionStringMs016": "",
+    "EventHubsConnectionStringMs025": "",
+    "EventHubsConnectionStringMs026": "",
+    "EventHubsConnectionStringMs027": "",
+    "EventHubsConnectionStringMs028": "",
+    "EventHubsConnectionStringMs029": "",
+    "EventHubsConnectionStringMs030": "",
+    "EventHubsConnectionStringMs031": ""
+  },
+  "ConnectionStrings": {
+    "PrimaryBlobConnectionString": "BlobEndpoint=https://rmscoemujpemain01.blob.core.windows.net/;QueueEndpoint=https://rmscoemujpemain01.queue.core.windows.net/;FileEndpoint=https://rmscoemujpemain01.file.core.windows.net/;TableEndpoint=https://rmscoemujpemain01.table.core.windows.net/;SharedAccessSignature=sv=2019-02-02&ss=bfqt&srt=sco&sp=rwdlacup&se=9999-12-31T14:59:59Z&st=2019-12-31T15:00:00Z&spr=https&sig=ag1JfXOioL2TUARozkCKsobR8UntzAKYYWbyZYQs9og%3D",
+    "CollectingBlobConnectionString": "BlobEndpoint=https://rmscoemujpecollect01.blob.core.windows.net/;QueueEndpoint=https://rmscoemujpecollect01.queue.core.windows.net/;FileEndpoint=https://rmscoemujpecollect01.file.core.windows.net/;TableEndpoint=https://rmscoemujpecollect01.table.core.windows.net/;SharedAccessSignature=sv=2019-02-02&ss=bfqt&srt=sco&sp=rwdlacup&se=9999-12-31T14:59:59Z&st=2019-12-31T15:00:00Z&spr=https&sig=MoblcA%2FhuV5aYUBQomExVYqewEPkMpk1uCy74vKpY3U%3D",
+    "DeliveringBlobConnectionString": "BlobEndpoint=https://rmscoemujpedeliver01.blob.core.windows.net/;QueueEndpoint=https://rmscoemujpedeliver01.queue.core.windows.net/;FileEndpoint=https://rmscoemujpedeliver01.file.core.windows.net/;TableEndpoint=https://rmscoemujpedeliver01.table.core.windows.net/;SharedAccessSignature=sv=2019-02-02&ss=bfqt&srt=sco&sp=rwdlacup&se=9999-12-31T14:59:59Z&st=2019-12-31T15:00:00Z&spr=https&sig=%2BfPWFeRVqOfks3rUvosqt1POzc2ET2%2BQrdKtl6MBgT8%3D",
+    "FailureBlobConnectionString": "BlobEndpoint=https://rmscoemujpefail01.blob.core.windows.net/;QueueEndpoint=https://rmscoemujpefail01.queue.core.windows.net/;FileEndpoint=https://rmscoemujpefail01.file.core.windows.net/;TableEndpoint=https://rmscoemujpefail01.table.core.windows.net/;SharedAccessSignature=sv=2019-02-02&ss=bfqt&srt=sco&sp=rwdlacup&se=9999-12-31T14:59:59Z&st=2019-12-31T15:00:00Z&spr=https&sig=2DtzUFSw9EnIsWGZ%2F%2Fg9nCHsyttqTOMY5UwBTat%2BQ8E%3D",
+
+    "PrimaryDbConnectionString": "Server=tcp:meta-rms-test.database.windows.net,1433;Initial Catalog=meta-rms-test20200623;Persist Security Info=False;User ID=metaAdmin;Password=FfRms_02;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
+
+    "DpsConnectionString": "HostNdame=meta-trial-iothubs-dps.azure-devices-provisioning.net;SharedAccessKeyName=provisidoningserviceowner;SharedAccessKey=ncCSebP8mspNDoHep+1KnIdNSTrje0D43qXENr/QKRQ="
+  }
+}

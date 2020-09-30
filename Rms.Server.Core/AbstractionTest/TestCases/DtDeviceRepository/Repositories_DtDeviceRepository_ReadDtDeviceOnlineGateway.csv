@@ -1,0 +1,5 @@
+﻿No,in_InsertNewDataSqlPath,in_DeleteNewDataSqlPath,expected_DataJsonPath,expected_ExceptionType,expected_ExceptionMessage,Remarks
+1,TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_1\InsertNewData.sql,TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_1\DeleteNewData.sql,TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_1\ExpectData.json,,,【正常系】データを読み出す(オンラインなゲートウェイ機器)
+2,TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_2\InsertNewData.sql,TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_2\DeleteNewData.sql,TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_2\ExpectData.json,,,【正常系】データを読み出す(オフラインなゲートウェイ機器)
+3,TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_3\InsertNewData.sql,TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_3\DeleteNewData.sql,TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_3\ExpectData.json,,,【正常系】データを読み出す(ゲートウェイ機器がない)
+4,TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_4\InsertNewData.sql,TestData\DtDeviceRepository\ReadDtDeviceOnlineGateway_4\DeleteNewData.sql,,System.ArgumentNullException,Rms.Server.Core.Utility.Models.Entites.DtDevice is null.,【異常系】メソッドにnullを渡した

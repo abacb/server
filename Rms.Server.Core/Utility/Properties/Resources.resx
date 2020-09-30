@@ -1,0 +1,980 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CO_API_DFC_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合。</comment>
+  </data>
+  <data name="CO_API_DFC_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】【sd 01-1. 3.1】 WebApiの呼び出し処理で、不正なパラメータを指定した場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：Sid is required.）</comment>
+  </data>
+  <data name="CO_API_DFC_003" xml:space="preserve">
+    <value>配信ファイル情報の登録に失敗しました。</value>
+    <comment>【ERROR】【sd 01-1. 3.1.1】 配信ファイル情報を登録する処理で、登録に失敗した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DFC_004" xml:space="preserve">
+    <value>配信ファイル情報を登録しました。</value>
+    <comment>【INFO】【sd 01-1. 3.1.1】 配信ファイル情報を登録する処理が成功した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DGC_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合。</comment>
+  </data>
+  <data name="CO_API_DGC_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】【sd 01-2. 1.1】 WebApiの呼び出し処理で、不正なパラメータを指定した場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：Sid is required.）</comment>
+  </data>
+  <data name="CO_API_DGC_003" xml:space="preserve">
+    <value>配信グループの登録に失敗しました。</value>
+    <comment>【ERROR】【sd 01-2. 1.1.1】 配信グループを登録する処理で、登録に失敗した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DGC_004" xml:space="preserve">
+    <value>配信グループを登録しました。</value>
+    <comment>【INFO】【sd 01-2. 1.1.1】 配信グループを登録する処理が成功した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DRC_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DRC_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】【sd 03-2. 3.1】 WebApiの呼び出し処理で、不正なパラメータを指定した場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：Sid is required.）</comment>
+  </data>
+  <data name="CO_API_DRC_003" xml:space="preserve">
+    <value>対象デバイス情報の取得に失敗しました。</value>
+    <comment>【ERROR】【sd 03-2. 3.1.1】 接続先のIoT Hubを取得する処理で、対象デバイス情報の取得に失敗した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DRC_004" xml:space="preserve">
+    <value>接続先情報の取得に失敗しました。</value>
+    <comment>【ERROR】【sd 03-2. 3.1.1】 接続先のIoT Hubを取得する処理で、接続先情報の取得に失敗した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DRC_006" xml:space="preserve">
+    <value>メッセージの送信に失敗しました。</value>
+    <comment>【ERROR】【sd 03-2. 3.1.3】 メッセージを送信する処理で、送信に失敗した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DRC_007" xml:space="preserve">
+    <value>メッセージを送信しました。</value>
+    <comment>【INFO】【sd 03-2. 3.1.1, 3.1.3】 接続先のIoT Hubを取得する処理とメッセージを送信する処理の両方に成功した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DVC_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DVC_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】【sd 04-1. 3.2】 WebApiの呼び出し処理で、不正なパラメータを指定した場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：Sid is required.）</comment>
+  </data>
+  <data name="CO_API_DVC_003" xml:space="preserve">
+    <value>DB設定のためのパラメータが不正です。（{0}）</value>
+    <comment>【ERROR】【sd 04-1. 3.2.1】 機器情報の保存時に、パラメータ不正があった場合に出力される。{0}には詳細メッセージが出力される。</comment>
+  </data>
+  <data name="CO_API_DVC_004" xml:space="preserve">
+    <value>機器情報の保存に失敗しました。（{0}）</value>
+    <comment>【ERROR】【sd 04-1. 3.2.1】 DBに機器情報を保存できなかった場合に出力される。{0}には詳細メッセージが出力される。</comment>
+  </data>
+  <data name="CO_API_DVC_005" xml:space="preserve">
+    <value>設置設定ファイルの生成に失敗しました。（{0}）</value>
+    <comment>【ERROR】【sd 04-1. 3.2.2】 Blobにアップロードする設置設定ファイルを生成できなかった場合に出力される。{0}には詳細メッセージが出力される。</comment>
+  </data>
+  <data name="CO_API_DVC_006" xml:space="preserve">
+    <value>設置設定ファイルのアップロードに失敗しました。（{0}）</value>
+    <comment>【ERROR】【sd 04-1. 3.2.3】 DeliveringBlobへのアップロード処理に失敗した場合に出力される。{0}には詳細メッセージが出力される。</comment>
+  </data>
+  <data name="CO_API_DVC_007" xml:space="preserve">
+    <value>機器情報の保存、設置設定ファイルのアップロードに成功しました。（エッジID = {0}）</value>
+    <comment>【INFO】【sd 04-1. 3.2.3】 機器登録処理が正常に終了した際に出力される。{0}には登録機器のエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_API_DFD_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合。</comment>
+  </data>
+  <data name="CO_API_DFD_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】 WebApiの呼び出し処理で、不正なパラメータを指定した場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：Sid is required.）</comment>
+  </data>
+  <data name="CO_API_DFD_003" xml:space="preserve">
+    <value>配信ファイル情報の削除に失敗しました。配信前状態ではない配信ファイル情報を削除しようとしています。</value>
+    <comment>【ERROR】 配信ファイル情報を削除する処理で、対象配信ファイルに紐づく配信グループのステータスが1つでも「配信前」以外だった場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DFD_004" xml:space="preserve">
+    <value>配信ファイル情報の削除に失敗しました。別プロセスにより更新された配信ファイル情報を削除しようとしています。</value>
+    <comment>【ERROR】 配信ファイル情報を削除する処理で、RowVersion競合が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DFD_005" xml:space="preserve">
+    <value>配信ファイル情報の削除に失敗しました。存在しない配信ファイル情報を削除しようとしています。</value>
+    <comment>【ERROR】 配信ファイル情報を削除する処理で、存在しない配信ファイル情報を削除しようとした場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DFD_006" xml:space="preserve">
+    <value>配信ファイル情報の削除に失敗しました。</value>
+    <comment>【ERROR】 配信ファイル情報を削除する処理で、削除に失敗した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DFD_007" xml:space="preserve">
+    <value>配信ファイル情報を削除しました。</value>
+    <comment>【INFO】 配信ファイル情報を更新する処理が成功した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DGD_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合。</comment>
+  </data>
+  <data name="CO_API_DGD_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】 WebApiの呼び出し処理で、不正なパラメータを指定した場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：Sid is required.）</comment>
+  </data>
+  <data name="CO_API_DGD_003" xml:space="preserve">
+    <value>配信グループの削除に失敗しました。配信前状態ではない配信ファイル情報を削除しようとしています。</value>
+    <comment>【ERROR】 配信グループを削除する処理で、対象のステータスが「配信前」以外だった場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DGD_004" xml:space="preserve">
+    <value>配信グループの削除に失敗しました。別プロセスにより更新された配信グループを削除しようとしています。</value>
+    <comment>【ERROR】 配信グループを削除する処理で、RowVersion競合が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DGD_005" xml:space="preserve">
+    <value>配信グループの削除に失敗しました。存在しない配信グループを削除しようとしています。</value>
+    <comment>【ERROR】 配信グループを削除する処理で、存在しない配信グループを削除しようとした場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DGD_006" xml:space="preserve">
+    <value>配信グループの削除に失敗しました。</value>
+    <comment>【ERROR】 配信グループを削除する処理で、削除に失敗した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DGD_007" xml:space="preserve">
+    <value>配信グループを削除しました。</value>
+    <comment>【INFO】 配信グループを削除する処理が成功した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DFU_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合。</comment>
+  </data>
+  <data name="CO_API_DFU_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】【sd 01-1. 3.1】 WebApiの呼び出し処理で、不正なパラメータを指定した場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：Sid is required.）</comment>
+  </data>
+  <data name="CO_API_DFU_003" xml:space="preserve">
+    <value>配信ファイル情報の更新に失敗しました。配信前状態ではない配信ファイル情報を更新しようとしています。</value>
+    <comment>【ERROR】【sd 01-1. 3.1.1】 配信ファイル情報を更新する処理で、対象配信ファイルに紐づく配信グループのステータスが1つでも「配信前」以外だった場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DFU_004" xml:space="preserve">
+    <value>配信ファイル情報の更新に失敗しました。別プロセスにより更新された配信ファイル情報を上書きしようとしています。</value>
+    <comment>【ERROR】【sd 01-1. 3.1.1】 配信ファイル情報を更新する処理で、RowVersion競合が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DFU_005" xml:space="preserve">
+    <value>配信ファイル情報の更新に失敗しました。存在しない配信ファイル情報を更新しようとしています。</value>
+    <comment>【ERROR】【sd 01-1. 3.1.1】 配信ファイル情報を更新する処理で、存在しない配信ファイル情報を更新しようとした場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DFU_006" xml:space="preserve">
+    <value>配信ファイル情報の更新に失敗しました。</value>
+    <comment>【ERROR】【sd 01-1. 3.1.1】 配信ファイル情報を更新する処理で、更新に失敗した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DFU_007" xml:space="preserve">
+    <value>配信ファイル情報を更新しました。</value>
+    <comment>【INFO】【sd 01-1. 3.1.1】 配信ファイル情報を更新する処理が成功した場合に出力される。（値に変更がなく更新不要であった場合も、このメッセージが出力される。）</comment>
+  </data>
+  <data name="CO_API_DGU_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合。</comment>
+  </data>
+  <data name="CO_API_DGU_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】【sd 01-2. 1.1】 WebApiの呼び出し処理で、不正なパラメータを指定した場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：Sid is required.）</comment>
+  </data>
+  <data name="CO_API_DGU_003" xml:space="preserve">
+    <value>配信グループの更新に失敗しました。配信前状態ではない配信グループを更新しようとしています。</value>
+    <comment>【ERROR】【sd 01-2. 1.1.1】 配信グループを更新する処理で、対象のステータスが「配信前」以外だった場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DGU_004" xml:space="preserve">
+    <value>配信グループの更新に失敗しました。別プロセスにより更新された配信グループを上書きしようとしています。</value>
+    <comment>【ERROR】【sd 01-2. 1.1.1】 配信グループを更新する処理で、RowVersion競合が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DGU_005" xml:space="preserve">
+    <value>配信グループの更新に失敗しました。存在しない配信グループを更新しようとしています。</value>
+    <comment>【ERROR】【sd 01-2. 1.1.1】 配信グループを更新する処理で、存在しない配信グループを更新しようとした場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DGU_006" xml:space="preserve">
+    <value>配信グループの更新に失敗しました。</value>
+    <comment>【ERROR】【sd 01-2. 1.1.1】 配信グループを更新する処理で、更新に失敗した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DGU_007" xml:space="preserve">
+    <value>配信グループを更新しました。</value>
+    <comment>【INFO】【sd 01-2. 1.1.1】 配信グループを更新する処理が成功した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DSU_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合。</comment>
+  </data>
+  <data name="CO_API_DSU_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】【sd 01-9. 1.1, 2.1】 WebApiの呼び出し処理で、不正なパラメータを指定した場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：Sid is required.）</comment>
+  </data>
+  <data name="CO_API_DSU_003" xml:space="preserve">
+    <value>配信ステータスの更新に失敗しました。別プロセスにより更新された配信ファイル情報を上書きしようとしています。</value>
+    <comment>【ERROR】【sd 01-9. 1.1.1, 2.1.1】 配信ステータスを更新する処理で、RowVersion競合が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DSU_004" xml:space="preserve">
+    <value>配信ステータスの更新に失敗しました。存在しない配信ファイル情報を更新しようとしています。</value>
+    <comment>【ERROR】【sd 01-9. 1.1.1, 2.1.1】 配信ステータスを更新する処理で、存在しない配信ファイル情報を更新しようとした場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DSU_005" xml:space="preserve">
+    <value>配信ステータスの更新に失敗しました。</value>
+    <comment>【ERROR】【sd 01-9. 1.1.1, 2.1.1】 配信ステータスを更新する処理で、更新に失敗した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DSU_006" xml:space="preserve">
+    <value>配信ステータスを更新しました。</value>
+    <comment>【INFO】【sd 01-9. 1.1.1, 2.1.1】 配信ステータスを更新する処理が成功した場合に出力される。（値に変更がなく更新不要であった場合も、このメッセージが出力される。）</comment>
+  </data>
+  <data name="CO_API_DVU_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_API_DVU_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】【sd 04-1. 3.2】 WebApiの呼び出し処理で、不正なパラメータを指定した場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：Sid is required.）</comment>
+  </data>
+  <data name="CO_API_DVU_003" xml:space="preserve">
+    <value>DB設定のためのパラメータが不正です。（{0}）</value>
+    <comment>【ERROR】【sd 04-1. 3.2.1】 機器情報の更新時に、パラメータ不正があった場合に出力される。{0}には詳細メッセージが出力される。</comment>
+  </data>
+  <data name="CO_API_DVU_004" xml:space="preserve">
+    <value>機器情報の更新に失敗しました。（{0}）</value>
+    <comment>【ERROR】【sd 04-1. 3.2.1】 DBの機器情報を更新できなかった場合に出力される。{0}には詳細メッセージが出力される。</comment>
+  </data>
+  <data name="CO_API_DVU_005" xml:space="preserve">
+    <value>設置設定ファイルの生成に失敗しました。（{0}）</value>
+    <comment>【ERROR】【sd 04-1. 3.2.2】 Blobにアップロードする設置設定ファイルを生成できなかった場合に出力される。{0}には詳細メッセージが出力される。</comment>
+  </data>
+  <data name="CO_API_DVU_006" xml:space="preserve">
+    <value>設置設定ファイルのアップロードに失敗しました。（{0}）</value>
+    <comment>【ERROR】【sd 04-1. 3.2.3】 DeliveringBlobへのアップロード処理に失敗した場合に出力される。{0}には詳細メッセージが出力される。</comment>
+  </data>
+  <data name="CO_API_DVU_007" xml:space="preserve">
+    <value>機器情報の更新、設置設定ファイルのアップロードに成功しました。（エッジID = {0}）</value>
+    <comment>【INFO】【sd 04-1. 3.2.3】 機器更新処理が正常に終了した際に出力される。{0}には更新機器のエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_BLC_BLC_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_BLC_BLC_002" xml:space="preserve">
+    <value>アプリケーション設定が不正です。（{0}）</value>
+    <comment>【ERROR】【sd 10-1. 1】 定期実行の呼び出し処理で、不正なアプリケーション設定を検出した場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：xxx is required.）</comment>
+  </data>
+  <data name="CO_BLC_BLC_003" xml:space="preserve">
+    <value>削除対象のファイル情報一覧の取得に失敗しました。（検索条件：Container = {0} and FilePathPrefix= {1} and UpdateDatetime &lt; {2}）</value>
+    <comment>【ERROR】【sd 10-1. 1.2】 削除対象のファイル情報一覧を取得する処理で、取得に失敗した場合に出力される。{0}にはコンテナ名が、{1}にはファイルパスのプレフィックスが、{2}には更新日時が、それぞれ出力される。</comment>
+  </data>
+  <data name="CO_BLC_BLC_004" xml:space="preserve">
+    <value>削除対象のファイル情報が存在しません。（検索条件：Container = {0} and FilePathPrefix= {1} and UpdateDatetime &lt; {2}）</value>
+    <comment>【INFO】【sd 10-1. 1.2】 削除対象のファイル情報一覧を取得する処理で、ファイル情報が1つも存在しなかった場合に出力される。{0}にはコンテナ名が、{1}にはファイルパスのプレフィックスが、{2}には更新日時が、それぞれ出力される。</comment>
+  </data>
+  <data name="CO_BLC_BLC_005" xml:space="preserve">
+    <value>ファイル情報の削除に失敗しました。（ファイル情報：Container = {0}, FilePath = {1}, UpdateDatetime = {2}）</value>
+    <comment>【WARN】【sd 10-1. 1.3】 ファイル情報を削除する処理で、削除に失敗した場合に出力される。{0}にはコンテナ名が、{1}にはファイルパスが、{2}には更新日時が、それぞれ出力される。</comment>
+  </data>
+  <data name="CO_BLC_BLC_006" xml:space="preserve">
+    <value>ファイルの削除に失敗しました。（ファイル情報：Container = {0}, FilePath = {1}, UpdateDatetime = {2}）</value>
+    <comment>【WARN】【sd 10-1. 1.4】 ファイルを削除する処理で、削除に失敗した場合に出力される。{0}にはコンテナ名が、{1}にはファイルパスが、{2}には更新日時が、それぞれ出力される。</comment>
+  </data>
+  <data name="CO_BLC_BLC_007" xml:space="preserve">
+    <value>ファイル情報とファイルを削除しました。（ファイル情報：Container = {0}, FilePath = {1}, UpdateDatetime = {2}）</value>
+    <comment>【INFO】【sd 10-1. 1.3, 1.4】 ファイル情報を削除する処理とファイルを削除する処理の両方に成功した場合に出力される。{0}にはコンテナ名が、{1}にはファイルパスが、{2}には更新日時が、それぞれ出力される。</comment>
+  </data>
+  <data name="CO_BLI_BLI_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_BLI_BLI_003" xml:space="preserve">
+    <value>Collectingからのファイルの取得に失敗しました。（検索条件：Container = {0}）</value>
+    <comment>【ERROR】【sd 02-7. 2.1】 ファイルを取得する処理で、取得に失敗した場合に出力される。{0}にはコンテナ名が出力される。</comment>
+  </data>
+  <data name="CO_BLI_BLI_004" xml:space="preserve">
+    <value>異常ファイルの保存に失敗しました。（ファイル情報：Container = {0}, FilePath = {1}）</value>
+    <comment>【ERROR】【sd 02-7. 2.2】 異常ファイルの集積コンテナにファイルを保存する処理で、保存に失敗した場合に出力される。{0}にはコンテナ名が、{1}にはファイルパスが、それぞれ出力される。</comment>
+  </data>
+  <data name="CO_BLI_BLI_005" xml:space="preserve">
+    <value>Collectingからのファイルの削除に失敗しました。（ファイル情報：Container = {0}, FilePath = {1}）</value>
+    <comment>【ERROR】【sd 02-7. 2.3, 2.7】 ファイルを削除する処理で、削除に失敗した場合に出力される。{0}にはコンテナ名が、{1}にはファイルパスが、それぞれ出力される。</comment>
+  </data>
+  <data name="CO_BLI_BLI_006" xml:space="preserve">
+    <value>Core-mainへのファイルの保存に失敗しました。（ファイル情報：Container = {0}, FilePath = {1}）</value>
+    <comment>【ERROR】【sd 02-7. 2.4】 ファイルを保存する処理で、保存に失敗した場合に出力される。{0}にはコンテナ名が、{1}にはファイルパスが、それぞれ出力される。</comment>
+  </data>
+  <data name="CO_BLI_BLI_007" xml:space="preserve">
+    <value>ファイル情報の保存に失敗しました。（ファイル情報：Container = {0}, FilePath = {1}）</value>
+    <comment>【ERROR】【sd 02-7. 2.5】 ファイル情報を保存する処理で、保存に失敗した場合に出力される。{0}にはコンテナ名が、{1}にはファイルパスが、それぞれ出力される。</comment>
+  </data>
+  <data name="CO_BLI_BLI_008" xml:space="preserve">
+    <value>Core-mainからのファイルの削除に失敗しました。（ファイル情報：Container = {0}, FilePath = {1}）</value>
+    <comment>【ERROR】【sd 02-7. 2.6】 ファイル情報を保存する処理で、保存に失敗した場合に出力される。{0}にはコンテナ名が、{1}にはファイルパスが、それぞれ出力される。</comment>
+  </data>
+  <data name="CO_BLI_BLI_009" xml:space="preserve">
+    <value>インデックスを作成しました。（ファイル情報：Container = {0}, FilePath = {1}）</value>
+    <comment>【ERROR】【sd 02-7. 2.4, 2.5, 2.7】 ファイルを保存する処理、ファイル情報を保存する処理、ファイルを削除する処理のすべてに成功した場合に出力される。{0}にはコンテナ名が、{1}にはファイルパスが、それぞれ出力される。</comment>
+  </data>
+  <data name="CO_DBC_DBC_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_DBC_DBC_002" xml:space="preserve">
+    <value>アプリケーション設定が不正です。（{0}）</value>
+    <comment>【ERROR】【sd 10-2. 1.1】 削除設定を取得する処理で、不正なアプリケーション設定を検出した場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：xxx is required.）</comment>
+  </data>
+  <data name="CO_DBC_DBC_003" xml:space="preserve">
+    <value>データの削除に失敗しました。（データ情報：{0}）</value>
+    <comment>【ERROR】【sd 10-2. 1.2】 データを削除する処理で、削除に失敗した場合に出力される。{0}にはデータ削除処理を実施するクラスの名称が出力される。</comment>
+  </data>
+  <data name="CO_DBC_DBC_004" xml:space="preserve">
+    <value>データを削除しました。（データ情報：{0}）</value>
+    <comment>【INFO】【sd 10-1. 1.2】 データを削除する処理が成功した場合に出力される。{0}にはデータ削除処理を実施するクラスの名称が出力される。</comment>
+  </data>
+  <data name="CO_DLV_DLV_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】【sd 01-3 1.1】  想定外の例外が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_DLV_DLV_002" xml:space="preserve">
+    <value>エラーが発生しました。（配信グループSID = {0}, メッセージ = 「{1}」）</value>
+    <comment>【ERROR】【sd 01-3 1.2, 1.3】 開始可能な配信グループの処理で想定外の例外が発生した場合に出力される。{0}には処理していた配信グループのSID、{1}には詳細メッセージが出力される。</comment>
+  </data>
+  <data name="CO_DLV_DLV_003" xml:space="preserve">
+    <value>エラーが発生しました。（ゲートウェイ機器エッジID = {0}, 機器UID = {1},メッセージ = 「{2}」）</value>
+    <comment>【ERROR】【sd 01-3 1.3, 1.4, 1.5, 1.6, 1.7】 ゲートウェイ機器ごとの処理で想定外の例外が発生した場合に出力される。{0}には処理していたゲートウェイ機器のエッジID、{1}にはゲートウェイ機器のUID、{2}には詳細メッセージが出力される。</comment>
+  </data>
+  <data name="CO_DLV_DLV_009" xml:space="preserve">
+    <value>配信グループの取得に失敗しました。（{0}）</value>
+    <comment>【ERROR】【sd 01-3 1.1】開始可能な配信グループの取得に失敗した場合に出力される。{0}には詳細メッセージが出力される。</comment>
+  </data>
+  <data name="CO_DLV_DLV_010" xml:space="preserve">
+    <value>配信グループの更新に失敗しました。（配信グループSID = {0}, メッセージ = 「{1}」）</value>
+    <comment>【ERROR】【sd 01-3 1.2】開始可能な配信グループの更新に失敗した場合に出力される。{0}には処理していた配信グループのSID、{1}には詳細メッセージが出力される。</comment>
+  </data>
+  <data name="CO_DLV_DLV_011" xml:space="preserve">
+    <value>オンラインなゲートウェイ機器の取得に失敗しました。（配信グループSID = {0}, メッセージ = 「{1}」）</value>
+    <comment>【ERROR】【sd 01-3 1.3】オンラインなゲートウェイ機器の取得に失敗した場合に出力される。{0}には処理していた配信グループのSID、{1}には詳細メッセージが出力される。</comment>
+  </data>
+  <data name="CO_DLV_DLV_012" xml:space="preserve">
+    <value>配信メッセージ作成に失敗しました。（ゲートウェイ機器エッジID = {0}, 機器UID = {1},メッセージ = 「{2}」）</value>
+    <comment>【ERROR】【sd 01-3 1.4】配信メッセージの作成中にエラーが発生した場合に出力される。{0}には処理していたゲートウェイ機器のエッジID、{1}にはゲートウェイ機器のUID、{2}には詳細メッセージが出力される。</comment>
+  </data>
+  <data name="CO_DLV_DLV_013" xml:space="preserve">
+    <value>ゲートウェイ機器が接続中のIoT Hubの情報取得中にエラーが発生しました。（ゲートウェイ機器エッジID = {0}, 機器UID = {1},メッセージ = 「{2}」）</value>
+    <comment>【ERROR】【sd 01-3 1.5】ゲートウェイ機器が接続中のIoT Hubの情報取得中にエラーが発生した場合に出力される。{0}には処理していたゲートウェイ機器のエッジID、{1}にはゲートウェイ機器のUID、{2}には詳細メッセージが出力される。</comment>
+  </data>
+  <data name="CO_DLV_DLV_015" xml:space="preserve">
+    <value>ゲートウェイ機器へのメッセージ送信依頼に失敗しました。（ゲートウェイ機器エッジID = {0}, 機器UID = {1},メッセージ = 「{2}」）</value>
+    <comment>【ERROR】【sd 01-3 1.6】ゲートウェイ機器へメッセージ送信を依頼した際にエラーが発生した場合に出力される。{0}には処理していたゲートウェイ機器のエッジID、{1}にはゲートウェイ機器のUID、{2}には詳細メッセージが出力される。</comment>
+  </data>
+  <data name="CO_DLV_DLV_016" xml:space="preserve">
+    <value>配信結果ステータスの更新に失敗しました。（ゲートウェイ機器エッジID = {0}, 機器UID = {1},メッセージ = 「{2}」）</value>
+    <comment>【ERROR】【sd 01-3 1.7】ゲートウェイ機器を持つ配信機器の配信結果ステータスの更新時にエラーが発生した場合に出力される。{0}には処理していたゲートウェイ機器のエッジID、{1}にはゲートウェイ機器のUID、{2}には詳細メッセージが出力される。</comment>
+  </data>
+  <data name="CO_DLV_DLV_017" xml:space="preserve">
+    <value>メッセージ送信処理が完了しました。（ゲートウェイ機器エッジID = {0}, 機器UID = {1}）</value>
+    <comment>【INFO】【sd 01-3. 1.7】 ゲートウェイ機器に向けてメッセージ送信処理を正常に終了できた場合に出力される。{0}には処理していたゲートウェイ機器のエッジID、{1}にはゲートウェイ機器のUIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDB_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDB_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】 Dispatcherの呼び出し処理で、Messageが期待する形式と異なる場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：Sid is required.）</comment>
+  </data>
+  <data name="CO_DSP_DDB_003" xml:space="preserve">
+    <value>処理に失敗したMessageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】 Dispatcherで処理を正常に完了できなかったMessageのBlobへの保存に失敗した場合に出力される。({0}には保存を試みたメッセージが出力される。)</comment>
+  </data>
+  <data name="CO_DSP_DDB_004" xml:space="preserve">
+    <value>指定したデバイスが存在しません（{0}）</value>
+    <comment>【ERROR】 Dispatcherで指定した機器UIDに該当するデバイス情報の取得に失敗した場合に出力される。{0}には指定したエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDB_005" xml:space="preserve">
+    <value>Messageの追加に成功しました（{0}）</value>
+    <comment>【Info】 Messageの保存に成功しました。{0}には追加したMessageが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDB_006" xml:space="preserve">
+    <value>EventDataの変換に失敗しました</value>
+    <comment>【ERROR】受信したEventDataが期待する形式ではなく、必要な情報が読み取れない場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDD_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDD_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】 Dispatcherの呼び出し処理で、Messageが期待する形式と異なる場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：Sid is required.）</comment>
+  </data>
+  <data name="CO_DSP_DDD_003" xml:space="preserve">
+    <value>処理に失敗したMessageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】 Dispatcherで処理を正常に完了できなかったMessageのBlobへの保存に失敗した場合に出力される。({0}には保存を試みたメッセージが出力される。)</comment>
+  </data>
+  <data name="CO_DSP_DDD_004" xml:space="preserve">
+    <value>指定したデバイスが存在しません（{0}）</value>
+    <comment>【ERROR】 Dispatcherで指定した機器UIDに該当するデバイス情報の取得に失敗した場合に出力される。{0}には指定したエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDD_005" xml:space="preserve">
+    <value>Messageの追加に成功しました（{0}）</value>
+    <comment>【Info】 Messageの保存に成功しました。{0}には追加したMessageが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDD_006" xml:space="preserve">
+    <value>EventDataの変換に失敗しました</value>
+    <comment>【ERROR】受信したEventDataが期待する形式ではなく、必要な情報が読み取れない場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDL_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDL_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】 Dispatcherの呼び出し処理で、Messageが期待する形式と異なる場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：Sid is required.）</comment>
+  </data>
+  <data name="CO_DSP_DDL_003" xml:space="preserve">
+    <value>処理に失敗したMessageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】 Dispatcherで処理を正常に完了できなかったMessageのBlobへの保存に失敗した場合に出力される。({0}には保存を試みたメッセージが出力される。)</comment>
+  </data>
+  <data name="CO_DSP_DDL_004" xml:space="preserve">
+    <value>指定したデバイスが存在しません（{0}）</value>
+    <comment>【ERROR】 Dispatcherで指定した機器UIDに該当するデバイス情報の取得に失敗した場合に出力される。{0}には指定したエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDL_005" xml:space="preserve">
+    <value>Messageの追加に成功しました（{0}）</value>
+    <comment>【Info】 Messageの保存に成功しました。{0}には追加したMessageが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDL_006" xml:space="preserve">
+    <value>EventDataの変換に失敗しました</value>
+    <comment>【ERROR】受信したEventDataが期待する形式ではなく、必要な情報が読み取れない場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDU_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDU_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】 Dispatcherの呼び出し処理で、Messageが期待する形式と異なる場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：Sid is required.）</comment>
+  </data>
+  <data name="CO_DSP_DDU_003" xml:space="preserve">
+    <value>処理に失敗したMessageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】 Dispatcherで処理を正常に完了できなかったMessageのBlobへの保存に失敗した場合に出力される。({0}には保存を試みたメッセージが出力される。)</comment>
+  </data>
+  <data name="CO_DSP_DDU_004" xml:space="preserve">
+    <value>指定したデバイスが存在しません（{0}）</value>
+    <comment>【ERROR】 Dispatcherで指定した機器UIDに該当するデバイス情報の取得に失敗した場合に出力される。{0}には指定したエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDU_005" xml:space="preserve">
+    <value>Messageの追加に成功しました（{0}）</value>
+    <comment>【Info】 Messageの保存に成功しました。{0}には追加したMessageが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDU_006" xml:space="preserve">
+    <value>EventDataの変換に失敗しました</value>
+    <comment>【ERROR】受信したEventDataが期待する形式ではなく、必要な情報が読み取れない場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DEU_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DEU_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】 Dispatcherの呼び出し処理で、Messageが期待する形式と異なる場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：Sid is required.）</comment>
+  </data>
+  <data name="CO_DSP_DEU_003" xml:space="preserve">
+    <value>処理に失敗したMessageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】 Dispatcherで処理を正常に完了できなかったMessageのBlobへの保存に失敗した場合に出力される。({0}には保存を試みたメッセージが出力される。)</comment>
+  </data>
+  <data name="CO_DSP_DEU_004" xml:space="preserve">
+    <value>指定したデバイスが存在しません（{0}）</value>
+    <comment>【ERROR】 Dispatcherで指定した機器UIDに該当するデバイス情報の取得に失敗した場合に出力される。{0}には指定したエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DEU_005" xml:space="preserve">
+    <value>Messageの追加に成功しました（{0}）</value>
+    <comment>【Info】 Messageの保存に成功しました。{0}には追加したMessageが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DEU_006" xml:space="preserve">
+    <value>EventDataの変換に失敗しました</value>
+    <comment>【ERROR】受信したEventDataが期待する形式ではなく、必要な情報が読み取れない場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DID_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DID_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】 Dispatcherの呼び出し処理で、Messageが期待する形式と異なる場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：Sid is required.）</comment>
+  </data>
+  <data name="CO_DSP_DID_003" xml:space="preserve">
+    <value>処理に失敗したMessageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】 Dispatcherで処理を正常に完了できなかったMessageのBlobへの保存に失敗した場合に出力される。({0}には保存を試みたメッセージが出力される。)</comment>
+  </data>
+  <data name="CO_DSP_DID_004" xml:space="preserve">
+    <value>指定したデバイスが存在しません（{0}）</value>
+    <comment>【ERROR】 Dispatcherで指定した機器UIDに該当するデバイス情報の取得に失敗した場合に出力される。{0}には指定したエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DID_005" xml:space="preserve">
+    <value>Messageの追加に成功しました（{0}）</value>
+    <comment>【Info】 Messageの保存に成功しました。{0}には追加したMessageが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DID_006" xml:space="preserve">
+    <value>EventDataの変換に失敗しました</value>
+    <comment>【ERROR】受信したEventDataが期待する形式ではなく、必要な情報が読み取れない場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DII_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DII_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】 Dispatcherの呼び出し処理で、Messageが期待する形式と異なる場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：Sid is required.）</comment>
+  </data>
+  <data name="CO_DSP_DII_003" xml:space="preserve">
+    <value>処理に失敗したMessageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】 Dispatcherで処理を正常に完了できなかったMessageのBlobへの保存に失敗した場合に出力される。({0}には保存を試みたメッセージが出力される。)</comment>
+  </data>
+  <data name="CO_DSP_DII_004" xml:space="preserve">
+    <value>指定したデバイスが存在しません（{0}）</value>
+    <comment>【ERROR】 Dispatcherで指定した機器UIDに該当するデバイス情報の取得に失敗した場合に出力される。{0}には指定したエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DII_005" xml:space="preserve">
+    <value>Messageの追加に成功しました（{0}）</value>
+    <comment>【Info】 Messageの保存に成功しました。{0}には追加したMessageが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DII_006" xml:space="preserve">
+    <value>EventDataの変換に失敗しました</value>
+    <comment>【ERROR】受信したEventDataが期待する形式ではなく、必要な情報が読み取れない場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DIR_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DIR_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】 Dispatcherの呼び出し処理で、Messageが期待する形式と異なる場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：Sid is required.）</comment>
+  </data>
+  <data name="CO_DSP_DIR_003" xml:space="preserve">
+    <value>処理に失敗したMessageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】 Dispatcherで処理を正常に完了できなかったMessageのBlobへの保存に失敗した場合に出力される。({0}には保存を試みたメッセージが出力される。)</comment>
+  </data>
+  <data name="CO_DSP_DIR_004" xml:space="preserve">
+    <value>指定したデバイスが存在しません（{0}）</value>
+    <comment>【ERROR】 Dispatcherで指定した機器UIDに該当するデバイス情報の取得に失敗した場合に出力される。{0}には指定したエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DIR_005" xml:space="preserve">
+    <value>Messageの追加に成功しました（{0}）</value>
+    <comment>【Info】 Messageの保存に成功しました。{0}には追加したMessageが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DIR_006" xml:space="preserve">
+    <value>EventDataの変換に失敗しました</value>
+    <comment>【ERROR】受信したEventDataが期待する形式ではなく、必要な情報が読み取れない場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DSV_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DSV_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】 Dispatcherの呼び出し処理で、Messageが期待する形式と異なる場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：Sid is required.）</comment>
+  </data>
+  <data name="CO_DSP_DSV_003" xml:space="preserve">
+    <value>処理に失敗したMessageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】 Dispatcherで処理を正常に完了できなかったMessageのBlobへの保存に失敗した場合に出力される。({0}には保存を試みたメッセージが出力される。)</comment>
+  </data>
+  <data name="CO_DSP_DSV_004" xml:space="preserve">
+    <value>指定したデバイスが存在しません（{0}）</value>
+    <comment>【ERROR】 Dispatcherで指定した機器UIDに該当するデバイス情報の取得に失敗した場合に出力される。{0}には指定したエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DSV_005" xml:space="preserve">
+    <value>Messageの追加に成功しました（{0}）</value>
+    <comment>【Info】 Messageの保存に成功しました。{0}には追加したMessageが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DSV_006" xml:space="preserve">
+    <value>EventDataの変換に失敗しました</value>
+    <comment>【ERROR】受信したEventDataが期待する形式ではなく、必要な情報が読み取れない場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDB_007" xml:space="preserve">
+    <value>メッセージの「計測日時」が既存レコードよりも古かったためテーブルを更新しませんでした（{0}）</value>
+    <comment>【Info】 メッセージの「計測日時」が既存レコードよりも古く、テーブルを更新しなかった場合に出力される。{0}には指定したメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDD_007" xml:space="preserve">
+    <value>処理済みのメッセージです（{0}）</value>
+    <comment>【Info】 Dispatcherで処理済みのメッセージを保存しようとした場合に出力される。{0}には指定したメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDL_007" xml:space="preserve">
+    <value>処理済みのメッセージです（{0}）</value>
+    <comment>【WARN】 Dispatcherで処理済みのメッセージを保存しようとした場合に出力される。{0}には指定したメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDU_007" xml:space="preserve">
+    <value>処理済みのメッセージです（{0}）</value>
+    <comment>【Info】 Dispatcherで処理済みのメッセージを保存しようとした場合に出力される。{0}には指定したメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DEU_007" xml:space="preserve">
+    <value>処理済みのメッセージです（{0}）</value>
+    <comment>【Info】 Dispatcherで処理済みのメッセージを保存しようとした場合に出力される。{0}には指定したメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DID_007" xml:space="preserve">
+    <value>処理済みのメッセージです（{0}）</value>
+    <comment>【Info】 Dispatcherで処理済みのメッセージを保存しようとした場合に出力される。{0}には指定したメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DII_007" xml:space="preserve">
+    <value>処理済みのメッセージです（{0}）</value>
+    <comment>【Info】 Dispatcherで処理済みのメッセージを保存しようとした場合に出力される。{0}には指定したメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DIR_007" xml:space="preserve">
+    <value>処理済みのメッセージです（{0}）</value>
+    <comment>【Info】 Dispatcherで処理済みのメッセージを保存しようとした場合に出力される。{0}には指定したメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DSV_007" xml:space="preserve">
+    <value>処理済みのメッセージです（{0}）</value>
+    <comment>【Info】 Dispatcherで処理済みのメッセージを保存しようとした場合に出力される。{0}には指定したメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDB_008" xml:space="preserve">
+    <value>Messageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】受信したメッセージの保存に失敗した場合に出力される。{0}にはメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDD_008" xml:space="preserve">
+    <value>Messageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】受信したメッセージの保存に失敗した場合に出力される。{0}にはメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDL_008" xml:space="preserve">
+    <value>Messageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】受信したメッセージの保存に失敗した場合に出力される。{0}にはメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDU_008" xml:space="preserve">
+    <value>Messageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】受信したメッセージの保存に失敗した場合に出力される。{0}にはメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DEU_008" xml:space="preserve">
+    <value>Messageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】受信したメッセージの保存に失敗した場合に出力される。{0}にはメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DID_008" xml:space="preserve">
+    <value>Messageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】受信したメッセージの保存に失敗した場合に出力される。{0}にはメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DII_008" xml:space="preserve">
+    <value>Messageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】受信したメッセージの保存に失敗した場合に出力される。{0}にはメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DIR_008" xml:space="preserve">
+    <value>Messageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】受信したメッセージの保存に失敗した場合に出力される。{0}にはメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DSV_008" xml:space="preserve">
+    <value>Messageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】受信したメッセージの保存に失敗した場合に出力される。{0}にはメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DIR_009" xml:space="preserve">
+    <value>配信グループのステータス更新に失敗しました（{0}）</value>
+    <comment>【ERROR】配信グループステータスの更新に失敗した場合に出力される。{0}にはメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DPS_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DPS_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】 Dispatcherの呼び出し処理で、Messageが期待する形式と異なる場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：Sid is required.）</comment>
+  </data>
+  <data name="CO_DSP_DPS_003" xml:space="preserve">
+    <value>処理に失敗したMessageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】 Dispatcherで処理を正常に完了できなかったMessageのBlobへの保存に失敗した場合に出力される。({0}には保存を試みたメッセージが出力される。)</comment>
+  </data>
+  <data name="CO_DSP_DPS_004" xml:space="preserve">
+    <value>指定したデバイスが存在しません（{0}）</value>
+    <comment>【ERROR】 Dispatcherで指定した機器UIDに該当するデバイス情報の取得に失敗した場合に出力される。{0}には指定したエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DPS_005" xml:space="preserve">
+    <value>Messageの追加に成功しました（{0}）</value>
+    <comment>【Info】 Messageの保存に成功しました。{0}には追加したMessageが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DPS_006" xml:space="preserve">
+    <value>EventDataの変換に失敗しました</value>
+    <comment>【ERROR】受信したEventDataが期待する形式ではなく、必要な情報が読み取れない場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DPS_007" xml:space="preserve">
+    <value>メッセージの「計測日時」が既存レコードよりも古かったためテーブルを更新しませんでした（{0}）</value>
+    <comment>【Info】 メッセージの「計測日時」が既存レコードよりも古く、テーブルを更新しなかった場合に出力される。{0}には指定したメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DPS_008" xml:space="preserve">
+    <value>Messageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】受信したメッセージの保存に失敗した場合に出力される。{0}にはメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DPC_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DPC_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】 Dispatcherの呼び出し処理で、Messageが期待する形式と異なる場合に出力される。{0}には詳細メッセージが出力される。（詳細メッセージ例：Sid is required.）</comment>
+  </data>
+  <data name="CO_DSP_DPC_003" xml:space="preserve">
+    <value>処理に失敗したMessageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】 Dispatcherで処理を正常に完了できなかったMessageのBlobへの保存に失敗した場合に出力される。({0}には保存を試みたメッセージが出力される。)</comment>
+  </data>
+  <data name="CO_DSP_DPC_004" xml:space="preserve">
+    <value>指定したデバイスが存在しません（{0}）</value>
+    <comment>【ERROR】 Dispatcherで指定した機器UIDに該当するデバイス情報の取得に失敗した場合に出力される。{0}には指定したエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DPC_005" xml:space="preserve">
+    <value>Messageの追加または更新に成功しました（{0}）</value>
+    <comment>【Info】 Messageの保存に成功しました。{0}には追加したMessageが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DPC_006" xml:space="preserve">
+    <value>EventDataの変換に失敗しました</value>
+    <comment>【ERROR】受信したEventDataが期待する形式ではなく、必要な情報が読み取れない場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DPC_008" xml:space="preserve">
+    <value>Messageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】受信したメッセージの保存に失敗した場合に出力される。{0}にはメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DPC_009" xml:space="preserve">
+    <value>メッセージの「確認日時」が既存レコードよりも古かったためテーブルを更新しませんでした（{0}）</value>
+    <comment>【Info】 メッセージの「確認日時」が既存レコードよりも古く、テーブルを更新しなかった場合に出力される。{0}には指定したメッセージIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDV_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDV_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】 Dispatcherの呼び出し処理で、Messageが期待する形式と異なる場合に出力される。{0}にはエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDV_003" xml:space="preserve">
+    <value>処理に失敗したMessageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】 Dispatcherで処理を正常に完了できなかったMessageのBlobへの保存に失敗した場合に出力される。({0}には保存を試みたメッセージが出力される。)</comment>
+  </data>
+  <data name="CO_DSP_DDV_004" xml:space="preserve">
+    <value>指定したデバイスが存在しません（{0}）</value>
+    <comment>【ERROR】 Dispatcherで指定した機器UIDに該当するデバイス情報の取得に失敗した場合に出力される。{0}には指定したエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDV_005" xml:space="preserve">
+    <value>ステータスの更新に成功しました（{0}）</value>
+    <comment>【Info】 ステータスの更新に成功しました。{0}には更新したデータが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDV_006" xml:space="preserve">
+    <value>EventDataの変換に失敗しました</value>
+    <comment>【ERROR】受信したEventDataが期待する形式ではなく、必要な情報が読み取れない場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDV_008" xml:space="preserve">
+    <value>ステータスの更新に失敗しました（{0}）</value>
+    <comment>【ERROR】 Dispatcherで指定した機器UIDの接続ステータスの更新に失敗した場合に出力される。({0}にはエッジIDが出力される。)</comment>
+  </data>
+  <data name="CO_DSP_DTC_001" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DTC_002" xml:space="preserve">
+    <value>パラメータが不正です。（{0}）</value>
+    <comment>【ERROR】 Dispatcherの呼び出し処理で、Messageが期待する形式と異なる場合に出力される。{0}にはエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DTC_003" xml:space="preserve">
+    <value>処理に失敗したMessageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】 Dispatcherで処理を正常に完了できなかったMessageのBlobへの保存に失敗した場合に出力される。({0}には保存を試みたメッセージが出力される。)</comment>
+  </data>
+  <data name="CO_DSP_DTC_004" xml:space="preserve">
+    <value>指定したデバイスが存在しません（{0}）</value>
+    <comment>【ERROR】 Dispatcherで指定した機器UIDに該当するデバイス情報の取得に失敗した場合に出力される。{0}には指定したエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DTC_005" xml:space="preserve">
+    <value>テーブルの更新に成功しました（{0}）</value>
+    <comment>【Info】 テーブルの更新に成功しました。{0}には更新したデータが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DTC_006" xml:space="preserve">
+    <value>EventDataの変換に失敗しました</value>
+    <comment>【ERROR】受信したEventDataが期待する形式ではなく、必要な情報が読み取れない場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DTC_008" xml:space="preserve">
+    <value>テーブルの更新に失敗しました（{0}）</value>
+    <comment>【ERROR】 Dispatcherで指定した機器UIDの機器データテーブルの更新に失敗した場合に出力される。({0}にはエッジIDが出力される。)</comment>
+  </data>
+  <data name="CO_DSP_DDC_001" xml:space="preserve">
+    <value>接続ステータスの更新に失敗しました（{0}）</value>
+    <comment>【ERROR】 接続ステータスの更新に失敗した場合に出力される。{0}にはエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDC_002" xml:space="preserve">
+    <value>機器が接続中のIoT Hub情報を取得できませんでした（{0}）</value>
+    <comment>【ERROR】 IoT Hubの接続文字列の取得に失敗した場合に出力される。{0}にはエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDC_003" xml:space="preserve">
+    <value>機器のデバイスツインを取得できませんでした（{0}）</value>
+    <comment>【ERROR】 IoT Hubのデバイスツインを取得に失敗した場合に出力される。{0}にはエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDC_004" xml:space="preserve">
+    <value>端末情報を取得できませんでした（{0}）</value>
+    <comment>【ERROR】 エッジIDに対応する端末情報の取得に失敗した場合に出力される。{0}にはエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDC_005" xml:space="preserve">
+    <value>スクリプト設定をできませんでした（{0}）</value>
+    <comment>【ERROR】 スクリプト設定データテーブルからデータを取得に失敗した場合に出力される。{0}にはエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDC_006" xml:space="preserve">
+    <value>ストレージ設定を取得できませんでした（{0}）</value>
+    <comment>【ERROR】 ストレージ設定データテーブルからデータを取得に失敗した場合に出力される。{0}にはエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDC_007" xml:space="preserve">
+    <value>デバイスツインのストレージおよびスクリプトの設定の最新情報を確認できませんでした（{0}）</value>
+    <comment>【ERROR】 ストレージ設定またはスクリプト設定データに必要な情報が含まれない等により、設定情報の比較を行えなかった場合に出力される。{0}にはエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDC_008" xml:space="preserve">
+    <value>デバイスツインのDesiredプロパティを更新できませんでした（{0}）</value>
+    <comment>【ERROR】 デバイスツインのDesiredプロパティを更新できなかった場合に出力される。{0}にはエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDC_009" xml:space="preserve">
+    <value>機器をゲートウェイ機器とする配信情報を取得できませんでした（{0}）</value>
+    <comment>【ERROR】 エッジIDに対応する機器をゲートウェイ機器とする配信情報を取得できなかった場合に出力される。{0}にはエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDC_010" xml:space="preserve">
+    <value>配信メッセージの作成に失敗しました（{0}）</value>
+    <comment>【ERROR】 配信メッセージ作成に必要な情報が欠落し、メッセージ作成できなかった場合に出力される。{0}にはエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDC_011" xml:space="preserve">
+    <value>機器へのメッセージ送信に失敗しました（{0}）</value>
+    <comment>【ERROR】 機器へのメッセージ送信に失敗した場合に出力される。{0}にはエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDC_012" xml:space="preserve">
+    <value>配信結果ステータス更新に失敗しました（{0}）</value>
+    <comment>【ERROR】 配信結果ステータスの更新に失敗した場合に出力される。{0}にはエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDC_013" xml:space="preserve">
+    <value>エラーが発生しました。</value>
+    <comment>【ERROR】 想定外の例外が発生した場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDC_014" xml:space="preserve">
+    <value>IoT Hubへの機器接続に対応する処理に成功しました（{0}）</value>
+    <comment>【Info】 IoT Hubへの機器接続に対応する処理に成功しました。{0}にはエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDC_015" xml:space="preserve">
+    <value>IoT Hubへの機器接続に対応する処理に失敗しました（{0}）</value>
+    <comment>【ERROR】 IoT Hubへの機器接続に対応する処理に失敗しました。{0}にはエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDC_016" xml:space="preserve">
+    <value>EventDataの変換に失敗しました。</value>
+    <comment>【ERROR】受信したEventDataが期待する形式ではなく、必要な情報が読み取れない場合に出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDC_017" xml:space="preserve">
+    <value>接続ステータスの更新に成功しました（{0}）</value>
+    <comment>【Info】 接続ステータス更新に成功した場合に出力される。{0}には更新データが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDC_019" xml:space="preserve">
+    <value>イベント時刻がDBに記録された時刻より古いため更新しませんでした（{0}）</value>
+    <comment>【ERROR】受信したEventDataのEventTimeがDBに記録された時刻よりも古い場合に出力される。{0}にはエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDV_009" xml:space="preserve">
+    <value>イベント時刻がDBに記録された時刻より古いため更新しませんでした（{0}）</value>
+    <comment>【ERROR】受信したEventDataのEventTimeがDBに記録された時刻よりも古い場合に出力される。{0}にはエッジIDが出力される。</comment>
+  </data>
+  <data name="CO_DSP_DDC_020" xml:space="preserve">
+    <value>処理に失敗したMessageの保存に失敗しました（{0}）</value>
+    <comment>【ERROR】 Dispatcherで処理を正常に完了できなかったMessageのBlobへの保存に失敗した場合に出力される。({0}には保存を試みたメッセージが出力される。)</comment>
+  </data>
+</root>

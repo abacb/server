@@ -1,0 +1,1465 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Rms.Server.Core.Azure.Functions.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DeliveryFilesController">
+            <summary>
+            配信ファイルのWebAPI
+            </summary>
+        </member>
+        <member name="F:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DeliveryFilesController._settings">
+            <summary>
+            設定
+            </summary>
+        </member>
+        <member name="F:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DeliveryFilesController._service">
+            <summary>
+            配信ファイル用サービスクラス
+            </summary>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DeliveryFilesController.#ctor(Rms.Server.Core.Utility.AppSettings,Rms.Server.Core.Service.Services.IDeliveryFileService)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="settings">設定</param>
+            <param name="service">配信ファイル用サービスクラス</param>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DeliveryFilesController.PostDeliveryFile(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestDto,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            配信ファイルを追加する
+            </summary>
+            <remarks>認証は、Headerにx-functions-keyかqueryにcodeのどちらかに関数キー設定する。セキュリティ上、codeは使用しないこと。</remarks>
+            <param name="request">配信ファイル情報</param>
+            <param name="log">ロガー</param>
+            <returns>追加された配信ファイル情報</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DeliveryFilesController.PutDeliveryFile(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestDto,System.Int64,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            配信ファイルを更新する
+            </summary>
+            <remarks>
+            対象配信ファイルに紐づく配信グループのステータスが、1つ以上「配信前」以外の場合、403エラーを返す。
+            認証は、Headerにx-functions-keyかqueryにcodeのどちらかに関数キー設定する。セキュリティ上、codeは使用しないこと。
+            </remarks>
+            <param name="request">配信ファイル情報</param>
+            <param name="deliveryFileId">配信ファイルID</param>
+            <param name="log">ロガー</param>
+            <returns>更新された配信ファイル情報</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DeliveryFilesController.DeleteDeliveryFile(Microsoft.AspNetCore.Http.HttpRequest,System.Int64,System.Int64,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            配信ファイルを削除する
+            </summary>
+            <remarks>
+            対象配信ファイルに紐づく配信グループのステータスが、1つ以上「配信前」以外の場合、403エラーを返す。
+            認証は、Headerにx-functions-keyかqueryにcodeのどちらかに関数キー設定する。セキュリティ上、codeは使用しないこと。
+            </remarks>
+            <param name="request">配信ファイル削除情報</param>
+            <param name="deliveryFileId">配信ファイルID</param>
+            <param name="rowVersion">楽観的同時制御用のバージョン番号</param>
+            <param name="log">ロガー</param>
+            <returns>結果</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DeliveryFilesController.PutDeliveryFileStatus(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileStatusUpdateRequestDto,System.Int64,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            配信ファイルの配信を中止/開始する
+            </summary>
+            <remarks>認証は、Headerにx-functions-keyかqueryにcodeのどちらかに関数キー設定する。セキュリティ上、codeは使用しないこと。</remarks>
+            <param name="request">リクエスト</param>
+            <param name="deliveryFileId">配信ファイルID</param>
+            <param name="log">ロガー</param>
+            <returns>結果</returns>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DeliveryGroupsController">
+            <summary>
+            配信グループのWebAPI
+            </summary>
+        </member>
+        <member name="F:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DeliveryGroupsController._settings">
+            <summary>
+            設定ファイル
+            </summary>
+        </member>
+        <member name="F:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DeliveryGroupsController._service">
+            <summary>
+            配信グループ用サービスクラス
+            </summary>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DeliveryGroupsController.#ctor(Rms.Server.Core.Utility.AppSettings,Rms.Server.Core.Service.Services.IDeliveryGroupService)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="settings">設定</param>
+            <param name="service">配信グループ用サービスクラス</param>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DeliveryGroupsController.PostDeliveryGroup(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupAddRequestDto,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            配信グループを追加する
+            </summary>
+            <remarks>認証は、Headerにx-functions-keyかqueryにcodeのどちらかに関数キー設定する。セキュリティ上、codeは使用しないこと。</remarks>
+            <param name="request">配信グループ情報</param>
+            <param name="log">logger</param>
+            <returns>追加された配信グループ情報</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DeliveryGroupsController.PutDeliveryGroup(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupUpdateRequestDto,System.Int64,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            配信グループを更新する
+            </summary>
+            <remarks>
+            対象のステータスが「配信前」以外の場合、403エラーを返す。
+            認証は、Headerにx-functions-keyかqueryにcodeのどちらかに関数キー設定する。セキュリティ上、codeは使用しないこと。
+            </remarks>
+            <param name="request">配信グループ情報</param>
+            <param name="deliveryGroupId">配信グループID</param>
+            <param name="log">logger</param>
+            <returns>更新された配信グループ情報</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DeliveryGroupsController.DeleteDeliveryGroup(Microsoft.AspNetCore.Http.HttpRequest,System.Int64,System.Int64,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            配信グループを削除する
+            </summary>
+            <remarks>
+            対象のステータスが「配信前」以外の場合、403エラーを返す。
+            認証は、Headerにx-functions-keyかqueryにcodeのどちらかに関数キー設定する。セキュリティ上、codeは使用しないこと。
+            </remarks>
+            <param name="request">リクエスト</param>
+            <param name="deliveryGroupId">配信グループID</param>
+            <param name="rowVersion">楽観的同時制御用のバージョン番号</param>
+            <param name="log">logger</param>
+            <returns>結果</returns>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DevicesController">
+            <summary>
+            機器データのWebAPI
+            </summary>
+        </member>
+        <member name="F:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DevicesController._settings">
+            <summary>
+            設定
+            </summary>
+        </member>
+        <member name="F:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DevicesController._deviceService">
+            <summary>
+            DeviceService
+            </summary>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DevicesController.#ctor(Rms.Server.Core.Utility.AppSettings,Rms.Server.Core.Service.Services.IDeviceService)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="settings">設定</param>
+            <param name="deviceService">deviceService</param>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DevicesController.PostDevice(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceAddRequestDto,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            デバイスを追加する
+            </summary>
+            <remarks>認証は、Headerにx-functions-keyかqueryにcodeのどちらかに関数キー設定する。セキュリティ上、codeは使用しないこと。</remarks>
+            <param name="request">デバイス追加リクエスト</param>
+            <param name="log">ロガー</param>
+            <returns>追加された配信ファイル情報</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DevicesController.PutDevice(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceUpdateRequestDto,System.Int64,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            デバイスを更新する
+            </summary>
+            <remarks>認証は、Headerにx-functions-keyかqueryにcodeのどちらかに関数キー設定する。セキュリティ上、codeは使用しないこと。</remarks>
+            <param name="request">デバイス更新リクエスト</param>
+            <param name="deviceId">デバイスID</param>
+            <param name="log">ロガー</param>
+            <returns>更新された配信ファイル情報</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Controllers.DevicesController.PostDeviceRemoteAsync(RmsRms.Server.Core.Azure.Functions.WebApi.Dto.DeviceRemoteRequestDto,System.Int64,Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            機器に対してリモート接続を開始する
+            </summary>
+            <remarks>認証は、Headerにx-functions-keyかqueryにcodeのどちらかに関数キー設定する。セキュリティ上、codeは使用しないこと。</remarks>
+            <param name="request">リモート接続開始リクエスト</param>
+            <param name="deviceId">端末データID</param>
+            <param name="log">ロガー</param>
+            <returns>結果</returns>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Controllers.SwaggerController">
+            <summary>
+            Swagger関連API
+            </summary>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Controllers.SwaggerController.Swagger(System.Net.Http.HttpRequestMessage,AzureFunctions.Extensions.Swashbuckle.ISwashBuckleClient)">
+            <summary>
+            Swagger Json
+            </summary>
+            <param name="req">リクエスト</param>
+            <param name="swashBuckleClient">swashBuckleClient</param>
+            <returns>swagger json</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Controllers.SwaggerController.SwaggerUi(System.Net.Http.HttpRequestMessage,AzureFunctions.Extensions.Swashbuckle.ISwashBuckleClient)">
+            <summary>
+            Swagger UI
+            </summary>
+            <param name="req">リクエスト</param>
+            <param name="swashBuckleClient">swashBuckleClient</param>
+            <returns>swagger ui</returns>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeliveryFileDtoExtensions">
+            <summary>
+            DeliveryFileDto関連クラスの拡張クラス
+            </summary>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeliveryFileDtoExtensions.ConvertDtoToUtility(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestDto)">
+            <summary>
+            配信ファイル追加リクエストDTOをUtilityモデルに変換する
+            </summary>
+            <param name="dto">Dtoクラスパラメータ</param>
+            <returns>Utilityパラメータ</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeliveryFileDtoExtensions.ConvertDtoToUtility(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestDto,System.Int64)">
+            <summary>
+            配信ファイル更新リクエストDTOをUtilityモデルに変換する
+            </summary>
+            <param name="dto">Dtoクラスパラメータ</param>
+            <param name="deliveryFileId">配信ファイルデータID</param>
+            <returns>Utilityパラメータ</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeliveryFileDtoExtensions.ConvertDtoToUtility(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileStatusUpdateRequestDto,System.Int64)">
+            <summary>
+            中止フラグ更新リクエストのDtoクラスパラメータをUtilityのパラメータに変換する
+            </summary>
+            <param name="dto">Dtoクラスパラメータ</param>
+            <param name="deliveryFileId">配信ファイルID</param>
+            <returns>Utilityパラメータ</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeliveryFileDtoExtensions.ConvertUtilityToResponseDto(Rms.Server.Core.Utility.Models.Entites.DtDeliveryFile)">
+            <summary>
+            UtilityのパラメータをレスポンスDtoに変換する
+            </summary>
+            <param name="utilParam">Utilityのパラメータ</param>
+            <returns>レスポンス用Dto</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeliveryFileDtoExtensions.ToModelDtos(System.Collections.Generic.IEnumerable{Rms.Server.Core.Azure.Functions.WebApi.Dto.ModelMasterDto})">
+            <summary>
+            型式DTOをUtilityモデルに変換する
+            </summary>
+            <param name="dtos">DTO</param>
+            <returns>Utilityパラメータ</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeliveryFileDtoExtensions.ToDtDeliveryModels(System.Collections.Generic.IEnumerable{Rms.Server.Core.Utility.Models.Entites.DtDeliveryModel})">
+            <summary>
+            Utilityのパラメータを型式DTOに変換する
+            </summary>
+            <param name="models">Utilityのパラメタ</param>
+            <returns>配信ファイル型式DTO</returns>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeliveryGroupDtoExtensions">
+            <summary>
+            DeliveryGroupDto関連クラスの拡張クラス
+            </summary>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeliveryGroupDtoExtensions.ConvertDtoToUtility(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupAddRequestDto)">
+            <summary>
+            追加リクエストのDtoクラスパラメータをUtilityのパラメータに変換する
+            </summary>
+            <param name="dto">Dtoクラスパラメータ</param>
+            <returns>Utilityパラメータ</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeliveryGroupDtoExtensions.ConvertDtoToUtility(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupUpdateRequestDto,System.Int64)">
+            <summary>
+            更新リクエストのDtoクラスパラメータをUtilityのパラメータに変換する
+            </summary>
+            <param name="dto">Dtoクラスパラメータ</param>
+            <param name="deliveryGroupId">配信グループID</param>
+            <returns>Utilityパラメータ</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeliveryGroupDtoExtensions.ConvertUtilityToResponseDto(Rms.Server.Core.Utility.Models.Entites.DtDeliveryGroup)">
+            <summary>
+            UtilityモデルをレスポンスDTOに変換する
+            </summary>
+            <param name="utilParam">Utilityのパラメータ</param>
+            <returns>レスポンス用Dto</returns>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeliveryResultDtoExtensions">
+            <summary>
+            DeliveryGroupDto関連クラスの拡張クラス
+            </summary>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeliveryResultDtoExtensions.ConvertDtoToUtility(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryResultAddRequestDto)">
+            <summary>
+            配信ファイル追加リクエストDTOをUtilityモデルに変換する
+            </summary>
+            <param name="dto">Dtoクラスパラメータ</param>
+            <returns>Utilityパラメータ</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeliveryResultDtoExtensions.ConvertUtilityToResponseDto(Rms.Server.Core.Utility.Models.Entites.DtDeliveryResult)">
+            <summary>
+            UtilityモデルをレスポンスDTOに変換する
+            </summary>
+            <param name="utilParam">Utilityパラメータ</param>
+            <returns>Dtoクラスパラメータ</returns>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeviceDtoExtensions">
+            <summary>
+            DeviceDto関連クラスの拡張クラス
+            </summary>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeviceDtoExtensions.ConvertDtoToUtility(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceAddRequestDto)">
+            <summary>
+            追加リクエストのDtoクラスパラメータをUtilityのパラメータに変換する
+            </summary>
+            <param name="dto">Dtoクラスパラメータ</param>
+            <returns>Utilityパラメータ</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeviceDtoExtensions.ConvertDtoToUtility(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceUpdateRequestDto)">
+            <summary>
+            更新リクエストのDtoクラスパラメータをUtilityのパラメータに変換する
+            </summary>
+            <param name="dto">Dtoクラスパラメータ</param>
+            <returns>Utilityパラメータ</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeviceDtoExtensions.ConvertUtilityToResponseDto(Rms.Server.Core.Utility.Models.Entites.DtDevice)">
+            <summary>
+            UtilityモデルをレスポンスDTOに変換する
+            </summary>
+            <param name="utilParam">Utilityのパラメータ</param>
+            <returns>レスポンス用Dto</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeviceDtoExtensions.ConvertDtoToInstallBaseConfig(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceAddRequestDto)">
+            <summary>
+            機器登録DTOを設置設定インスタンスに変換する(エッジIDを除く)
+            </summary>
+            <param name="dto">機器登録DTO</param>
+            <returns>設置設定インスタンス(エッジIDを除く)</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeviceDtoExtensions.ConvertDtoToInstallBaseConfig(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceUpdateRequestDto)">
+            <summary>
+            機器更新DTOを設置設定インスタンスに変換する(エッジID・機器UIDを除く)
+            </summary>
+            <param name="dto">機器更新DTO</param>
+            <returns>設置設定インスタンス(エッジID・機器UIDを除く)</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeviceDtoExtensions.ConvertUtilityInstallTypeMasterToDto(System.Int64,System.String)">
+            <summary>
+            インストールタイプをUtilityモデルからDTOモデルに変換する
+            </summary>
+            <param name="sid">インストールタイプSID</param>
+            <param name="code">インストールタイプコード</param>
+            <returns>DTOモデルのインストールタイプ</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeviceDtoExtensions.ConvertUtilityModelMasterToDto(System.Nullable{System.Int64},System.String)">
+            <summary>
+            機器型式をUtilityモデルからDTOモデルに変換する
+            </summary>
+            <param name="sid">機器型式SID</param>
+            <param name="code">機器型式コード</param>
+            <returns>DTOモデルの機器型式</returns>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeviceRemoteRequestDtoExtensions">
+            <summary>
+            DeviceRemoteRequestDtoクラスの拡張クラス
+            </summary>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.DeviceRemoteRequestDtoExtensions.ConvertDtoToUtility(RmsRms.Server.Core.Azure.Functions.WebApi.Dto.DeviceRemoteRequestDto,System.Int64)">
+            <summary>
+            リクエストのDtoクラスパラメータをUtilityのパラメータに変換する
+            </summary>
+            <param name="dto">Dtoクラスパラメータ</param>
+            <param name="deviceId">デバイスID</param>
+            <returns>Utilityパラメータ</returns>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Converter.InstallResultHistoryDtoExtensions">
+            <summary>
+            InstallResultHistoryDto関連クラスの拡張クラス
+            </summary>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.InstallResultHistoryDtoExtensions.ConvertUtilityToResponseDto(Rms.Server.Core.Utility.Models.Entites.DtInstallResult)">
+            <summary>
+            UtilityモデルをレスポンスDTOに変換する
+            </summary>
+            <param name="utilParam">Utilityパラメータ</param>
+            <returns>Dtoクラスパラメータ</returns>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Converter.SqlResultConverter">
+            <summary>
+            DB操作結果を変換するコンバータクラス
+            </summary>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.SqlResultConverter.ConvertToActionResult``1(Rms.Server.Core.Utility.Models.ResultCode,System.String,``0)">
+            <summary>
+            DB操作結果をActionResultに変換する
+            </summary>
+            <typeparam name="T">Dtoクラス型</typeparam>
+            <param name="resultCode">結果コード</param>
+            <param name="message">結果メッセージ</param>
+            <param name="dto">response用Dtoクラスパラメータ</param>
+            <returns>結果コードに対応するActionResult</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Converter.SqlResultConverter.ConvertToActionResult(Rms.Server.Core.Utility.Models.ResultCode,System.String)">
+            <summary>
+            DB操作結果をボディなしのActionResultに変換する
+            </summary>
+            <param name="resultCode">結果コード</param>
+            <param name="message">結果メッセージ</param>
+            <returns>結果コードに対応するActionResult</returns>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestDto">
+            <summary>
+            配信ファイル追加リクエストDTO<br/>
+            ・型式について、配信ファイル種別が"hotfix_console","hotfix_hobbit"の場合必須(要素数1以上)。それ以外の場合無視する。<br/>
+            ・インストールタイプについて、配信ファイル種別が"rms"の場合必須。それ以外の場合無視する。<br/>
+            ・バージョン情報について、配信ファイル種別が"rms","hotfix_console","hotfix_hobbit"の場合必須。それ以外の場合無視する。ASCII文字のみ許可する。<br/>
+            ・適用対象バージョンについて、カンマ区切りの文字列。配信ファイル種別が"hotfix_console","hotfix_hobbit"の場合必須。それ以外の場合無視する。ASCII文字のみ許可する。<br/>
+            ・情報IDについて、配信ファイル種別が"hotfix_console","hotfix_hobbit"の場合必須。<br/>
+            </summary>
+            <remarks>
+            nullableを使用するのは、リクエストの欠落と初期値の区別をつけるため。
+            ASCII文字のみ許可の判定は、DbAccessorで実施する。
+            </remarks>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestDto.DeliveryFileType">
+            <summary>
+            配信ファイル種別
+            </summary>
+            <remarks>配信ファイル種別マスタ</remarks>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestDto.FilePath">
+            <summary>
+            配信対象ファイルのBlob上のパス
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestDto.EquipmentModels">
+            <summary>
+            型式。配信ファイル種別が"hotfix_console","hotfix_hobbit"の場合必須(要素数1以上)。それ以外の場合無視する。
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestDto.InstallType">
+            <summary>
+            インストールタイプ。配信ファイル種別が"rms"の場合必須。それ以外の場合無視する。
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestDto.Version">
+            <summary>
+            ファイルのバージョン情報。配信ファイル種別が"rms","hotfix_console","hotfix_hobbit"の場合必須。それ以外の場合無視する。
+            ASCII文字のみ許可する。
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestDto.InstallableVersion">
+            <summary>
+            適用対象バージョン。カンマ区切りの文字列。配信ファイル種別が"hotfix_console","hotfix_hobbit"の場合必須。それ以外の場合無視する。
+            ASCII文字のみ許可する。
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestDto.Description">
+            <summary>
+            説明
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestDto.InformationId">
+            <summary>
+            情報ID。配信ファイル種別が"hotfix_console","hotfix_hobbit"の場合必須。
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestTypeAlSoft">
+            <summary>
+            A/Lソフト配信ファイル追加リクエストDTO
+            </summary>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestTypeAlSoft.#ctor(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestDto)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="source">DeliveryFileAddRequestDto</param>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestTypeAlSoft.InstallTypeEx">
+            <summary>
+            インストールタイプ
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestTypeAlSoft.VersionEx">
+            <summary>
+            ファイルのバージョン情報
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestTypeHotFix">
+            <summary>
+            HotFix配信ファイル追加リクエストDTO
+            </summary>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestTypeHotFix.#ctor(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestDto)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="source">DeliveryFileAddRequestDto</param>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestTypeHotFix.EquipmentModelsEx">
+            <summary>
+            型式
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestTypeHotFix.VersionEx">
+            <summary>
+            ファイルのバージョン情報
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestTypeHotFix.InstallableVersionEx">
+            <summary>
+            適用対象バージョン。カンマ区切りの文字列。
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestTypeHotFix.InformationIdEx">
+            <summary>
+            情報ID
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestTypePackage">
+            <summary>
+            パッケージ配信ファイル追加リクエストDTO
+            </summary>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestTypePackage.#ctor(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestDto)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="source">DeliveryFileAddRequestDto</param>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileResponseDto">
+            <summary>
+            配信ファイルレスポンスDTO
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileResponseDto.Sid">
+            <summary>
+            SID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileResponseDto.DeliveryFileTypeSid">
+            <summary>
+            配信ファイル種別SID
+            </summary>
+            <remarks>配信ファイル種別マスタで該当するID</remarks>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileResponseDto.FilePath">
+            <summary>
+            配信対象ファイルのBlob上のパス
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileResponseDto.EquipmentModels">
+            <summary>
+            型式
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileResponseDto.InstallTypeSid">
+            <summary>
+            インストールタイプSID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileResponseDto.Version">
+            <summary>
+            ファイルのバージョン情報
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileResponseDto.InstallableVersion">
+            <summary>
+            適用対象バージョン。カンマ区切りの文字列。
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileResponseDto.Description">
+            <summary>
+            説明
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileResponseDto.InformationId">
+            <summary>
+            情報ID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileResponseDto.IsCanceled">
+            <summary>
+            中止フラグ
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileResponseDto.CreateDatetime">
+            <summary>
+            作成日時(UTC)
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileResponseDto.UpdateDatetime">
+            <summary>
+            更新日時(UTC)
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileResponseDto.RowVersion">
+            <summary>
+            楽観的同時制御用のバージョン番号
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryModelDto">
+            <summary>
+            配信ファイル型式DTO
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryModelDto.Sid">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryModelDto.EquipmentModelSid">
+            <summary>
+            EquipmentModelSid
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryModelDto.CreateDatetime">
+            <summary>
+            作成日時(UTC)
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileStatusUpdateRequestDto">
+            <summary>
+            配信ファイルステータス更新リクエストDTO
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileStatusUpdateRequestDto.RequestDeliveryStatus">
+            <summary>
+            配信リクエスト
+            </summary>
+        </member>
+        <member name="F:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileStatusUpdateRequestDto.RequestDeliveryStatus.Stop">
+            <summary>
+            配信中止
+            </summary>
+        </member>
+        <member name="F:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileStatusUpdateRequestDto.RequestDeliveryStatus.Start">
+            <summary>
+            配信開始
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileStatusUpdateRequestDto.DeliveryStatus">
+            <summary>
+            配信ステータス
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileStatusUpdateRequestDto.RowVersion">
+            <summary>
+            楽観的同時制御用のバージョン番号
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileTypeMasterDto">
+            <summary>
+            配信ファイル種別マスタDTO
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileTypeMasterDto.DeliveryFileTypeSid">
+            <summary>
+            SID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileTypeMasterDto.DeliveryFileTypeCode">
+            <summary>
+            コード
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestDto">
+            <summary>
+            配信ファイル更新リクエストDTO<br/>
+            ・型式について、配信ファイル種別が"hotfix_console","hotfix_hobbit"の場合必須(要素数1以上)。それ以外の場合無視する。<br/>
+            ・インストールタイプについて、配信ファイル種別が"rms"の場合必須。それ以外の場合無視する。<br/>
+            ・ファイルのバージョン情報について、配信ファイル種別が"rms","hotfix_console","hotfix_hobbit"の場合必須。それ以外の場合無視する。ASCII文字のみ許可する。<br/>
+            ・適用対象バージョンについて、カンマ区切りの文字列。配信ファイル種別が"hotfix_console","hotfix_hobbit"の場合必須。それ以外の場合無視する。ASCII文字のみ許可する。<br/>
+            ・情報IDについて、配信ファイル種別が"hotfix_console","hotfix_hobbit"の場合必須。<br/>
+            </summary>
+            <remarks>
+            nullableを使用するのは、リクエストの欠落と初期値の区別をつけるため。
+            ASCII文字のみ許可の判定は、DbAccessorで実施する。
+            </remarks>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestDto.DeliveryFileType">
+            <summary>
+            配信ファイル種別
+            </summary>
+            <remarks>配信ファイル種別マスタ。更新としては必要ではないが、バリデーションチェックのために必要</remarks>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestDto.EquipmentModels">
+            <summary>
+            型式。配信ファイル種別が"hotfix_console","hotfix_hobbit"の場合必須(要素数1以上)。それ以外の場合無視する。
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestDto.InstallType">
+            <summary>
+            インストールタイプ。配信ファイル種別が"rms"の場合必須。それ以外の場合無視する。
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestDto.Version">
+            <summary>
+            ファイルのバージョン情報。配信ファイル種別が"rms","hotfix_console","hotfix_hobbit"の場合必須。それ以外の場合無視する。
+            ASCII文字のみ許可する。
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestDto.InstallableVersion">
+            <summary>
+            適用対象バージョン。カンマ区切りの文字列。配信ファイル種別が"hotfix_console","hotfix_hobbit"の場合必須。それ以外の場合無視する。
+            ASCII文字のみ許可する。
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestDto.Description">
+            <summary>
+            説明
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestDto.InformationId">
+            <summary>
+            情報ID。配信ファイル種別が"hotfix_console","hotfix_hobbit"の場合必須。
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestDto.RowVersion">
+            <summary>
+            楽観的同時制御用のバージョン番号
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestTypeAlSoft">
+            <summary>
+            A/Lソフト配信ファイル更新リクエストDTO
+            </summary>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestTypeAlSoft.#ctor(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestDto)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="source">DeliveryFileUpdateRequestDto</param>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestTypeAlSoft.InstallTypeEx">
+            <summary>
+            インストールタイプ
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestTypeAlSoft.VersionEx">
+            <summary>
+            ファイルのバージョン情報
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestTypeHotFix">
+            <summary>
+            HotFix配信ファイル更新リクエストDTO
+            </summary>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestTypeHotFix.#ctor(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestDto)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="source">DeliveryFileUpdateRequestDto</param>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestTypeHotFix.EquipmentModelsEx">
+            <summary>
+            型式
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestTypeHotFix.VersionEx">
+            <summary>
+            ファイルのバージョン情報
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestTypeHotFix.InstallableVersionEx">
+            <summary>
+            適用対象バージョン。カンマ区切りの文字列。
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestTypeHotFix.InformationIdEx">
+            <summary>
+            情報ID
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestTypePackage">
+            <summary>
+            パッケージ配信ファイル更新リクエストDTO
+            </summary>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestTypePackage.#ctor(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestDto)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="source">DeliveryFileUpdateRequestDto</param>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupAddRequestDto">
+            <summary>
+            配信グループ追加リクエストDTO
+            </summary>
+            <remarks>
+            nullableを使用するのは、リクエストの欠落と0の区別をつけるため。
+            </remarks>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupAddRequestDto.DeliveryFileSid">
+            <summary>
+            配信ファイルSID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupAddRequestDto.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupAddRequestDto.StartDatetime">
+            <summary>
+            配信開始日時(UTC)
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupAddRequestDto.DownloadDelayTime">
+            <summary>
+            ダウンロード遅延時間
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupAddRequestDto.DeliveryDestinations">
+            <summary>
+            配信先一覧。要素数1以上を必要とする。
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupResponseDto">
+            <summary>
+            配信グループレスポンスDTO
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupResponseDto.Sid">
+            <summary>
+            SID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupResponseDto.DeliveryFileSid">
+            <summary>
+            配信ファイルSID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupResponseDto.DeliveryGroupStatusSid">
+            <summary>
+            配信グループステータスSID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupResponseDto.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupResponseDto.StartDatetime">
+            <summary>
+            配信開始日時(UTC)
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupResponseDto.DownloadDelayTime">
+            <summary>
+            ダウンロード遅延時間
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupResponseDto.CreateDatetime">
+            <summary>
+            作成日時(UTC)
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupResponseDto.UpdateDatetime">
+            <summary>
+            更新日時(UTC)
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupResponseDto.RowVersion">
+            <summary>
+            楽観的同時制御用のバージョン番号
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupResponseDto.DeliveryDestinations">
+            <summary>
+            配信先一覧
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupUpdateRequestDto">
+            <summary>
+            配信グループ更新リクエストDTO
+            </summary>
+            <remarks>
+            nullableを使用するのは、リクエストの欠落と初期値の区別をつけるため。
+            </remarks>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupUpdateRequestDto.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupUpdateRequestDto.StartDatetime">
+            <summary>
+            配信開始日時
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupUpdateRequestDto.DownloadDelayTime">
+            <summary>
+            ダウンロード遅延時間
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryGroupUpdateRequestDto.RowVersion">
+            <summary>
+            楽観的同時制御用のバージョン番号
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryResultAddRequestDto">
+            <summary>
+            配信結果追加リクエストDTO
+            </summary>
+            <remarks>
+            nullableを使用するのは、リクエストの欠落と初期値の区別をつけるため。
+            </remarks>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryResultAddRequestDto.DeviceSid">
+            <summary>
+            端末SID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryResultAddRequestDto.GatewayDeviceSid">
+            <summary>
+            最上位端末SID
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryResultResponseDto">
+            <summary>
+            配信結果レスポンスDTO
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryResultResponseDto.Sid">
+            <summary>
+            SID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryResultResponseDto.DeviceSid">
+            <summary>
+            端末SID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryResultResponseDto.GatewayDeviceSid">
+            <summary>
+            最上位端末SID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryResultResponseDto.CreateDatetime">
+            <summary>
+            作成日時(UTC)
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryResultResponseDto.InstallResultHistories">
+            <summary>
+            適用結果履歴一覧
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryUtil">
+            <summary>
+            配信汎用処理
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryUtil.DeliveryAction">
+            <summary>
+            配信時の動作
+            </summary>
+        </member>
+        <member name="F:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryUtil.DeliveryAction.DownloadOnly">
+            <summary>
+            ダウンロードのみ行う
+            </summary>
+        </member>
+        <member name="F:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryUtil.DeliveryAction.Unzip">
+            <summary>
+            解凍する
+            </summary>
+        </member>
+        <member name="F:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryUtil.DeliveryAction.UnzipAndRun">
+            <summary>
+            解凍して実行する
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryUtil.DeliveryGroupStatusCode">
+            <summary>
+            配信グループステータスコード
+            </summary>
+        </member>
+        <member name="F:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryUtil.DeliveryGroupStatusCode.NotStart">
+            <summary>
+            配信開始前
+            </summary>
+        </member>
+        <member name="F:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryUtil.DeliveryGroupStatusCode.Start">
+            <summary>
+            配信開始
+            </summary>
+        </member>
+        <member name="F:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryUtil.DeliveryGroupStatusCode.Complete">
+            <summary>
+            完了
+            </summary>
+        </member>
+        <member name="F:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryUtil.DeliveryGroupStatusCode.Cancel">
+            <summary>
+            配信中止
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceAddRequestDto">
+            <summary>
+            デバイス追加リクエストDTO
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceAddRequestDto.Device">
+            <summary>
+            自機のデバイス情報
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceAddRequestDto.Parent">
+            <summary>
+            親機のデバイス情報
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceAddRequestDto.Children">
+            <summary>
+            子機のデバイス情報
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.RelatedDeviceDto">
+            <summary>
+            関連デバイスDTO
+            </summary>
+            <remarks>
+            Core側のDBに存在しないデータを含むため、リクエストで受け取る。そうでない値もあるが、二度手間になるためすべてリクエストで受ける。本項目の値チェックは行わない。
+            </remarks>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.RelatedDeviceDto.EdgeId">
+            <summary>
+            エッジID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.RelatedDeviceDto.InstallType">
+            <summary>
+            インストールタイプ
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.RelatedDeviceDto.EquipmentUid">
+            <summary>
+            デバイスUID（機器管理番号）
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.RelatedDeviceDto.EquipmentName">
+            <summary>
+            デバイス名（機器名）
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.RelatedDeviceDto.EquipmentSerialNumber">
+            <summary>
+            シリアル番号
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.RelatedDeviceDto.InstallFeatures">
+            <summary>
+            設置場所
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.RelatedDeviceDto.IpAddress">
+            <summary>
+            IPアドレス
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.RelatedDeviceDto.HostName">
+            <summary>
+            ホスト名
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.RelatedDeviceDto.Model">
+            <summary>
+            モデル（型式）
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.RelatedDeviceDto.NetworkRoute">
+            <summary>
+            回線種別
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceAddDto">
+            <summary>
+            デバイス登録DTO
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceAddDto.InstallType">
+            <summary>
+            インストールタイプ
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceAddDto.EquipmentUid">
+            <summary>
+            デバイスUID（機器管理番号）
+            ASCII文字のみ許可する。
+            </summary>
+            <remarks>
+            ASCII文字のみ許可の判定は、DbAccessorで実施する。
+            </remarks>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceAddDto.EquipmentName">
+            <summary>
+            デバイス名（機器名）
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceAddDto.EquipmentSerialNumber">
+            <summary>
+            シリアル番号
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceAddDto.InstallFeatures">
+            <summary>
+            設置場所
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceAddDto.IpAddress">
+            <summary>
+            IPアドレス
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceAddDto.HostName">
+            <summary>
+            ホスト名
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceAddDto.Model">
+            <summary>
+            モデル（型式）
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceAddDto.NetworkRoute">
+            <summary>
+            回線種別
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceResponseDto">
+            <summary>
+            デバイスレスポンスDTO
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceResponseDto.Sid">
+            <summary>
+            SID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceResponseDto.EdgeId">
+            <summary>
+            エッジID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceResponseDto.InstallType">
+            <summary>
+            インストールタイプ
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceResponseDto.EquipmentUid">
+            <summary>
+            デバイスUID（機器管理番号）
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceResponseDto.Models">
+            <summary>
+            モデル（型式）
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceResponseDto.CreateDatetime">
+            <summary>
+            作成日時(UTC)
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceResponseDto.UpdateDatetime">
+            <summary>
+            更新日時(UTC)
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceResponseDto.RemoteConnectUid">
+            <summary>
+            リモート接続UID
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceUpdateRequestDto">
+            <summary>
+            デバイス更新リクエストDTO
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceUpdateRequestDto.Device">
+            <summary>
+            自機のデバイス情報
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceUpdateRequestDto.Parent">
+            <summary>
+            親機のデバイス情報
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceUpdateRequestDto.Children">
+            <summary>
+            子機のデバイス情報
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceUpdateDto">
+            <summary>
+            デバイス更新DTO
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceUpdateDto.InstallType">
+            <summary>
+            インストールタイプ
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceUpdateDto.EquipmentName">
+            <summary>
+            デバイス名（機器名）
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceUpdateDto.EquipmentSerialNumber">
+            <summary>
+            シリアル番号
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceUpdateDto.InstallFeatures">
+            <summary>
+            設置場所
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceUpdateDto.IpAddress">
+            <summary>
+            IPアドレス
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceUpdateDto.HostName">
+            <summary>
+            ホスト名
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceUpdateDto.Model">
+            <summary>
+            モデル（型式）
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.DeviceUpdateDto.NetworkRoute">
+            <summary>
+            回線種別
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto">
+            <summary>
+            適用結果履歴レスポンスDTO
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.Sid">
+            <summary>
+            SID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.DeviceSid">
+            <summary>
+            端末SID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.DeliveryResultSid">
+            <summary>
+            配信結果SID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.InstallResultStatusSid">
+            <summary>
+            適用結果ステータスsid
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.SourceEquipmentUid">
+            <summary>
+            発生元機器UID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.ReleaseVersion">
+            <summary>
+            リリースバージョン
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.BeforeVersion">
+            <summary>
+            前バージョン
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.AfterVervion">
+            <summary>
+            後バージョン
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.IsSuccess">
+            <summary>
+            成功（成否）
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.ErrorCode">
+            <summary>
+            エラーコード
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.ErrorDescription">
+            <summary>
+            エラー内容(説明)
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.IsAuto">
+            <summary>
+            自動適用フラグ
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.Method">
+            <summary>
+            インストール方法
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.Process">
+            <summary>
+            アップデート処理プロセス
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.UpdateStratDatetime">
+            <summary>
+            アップデート処理開始日時
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.UpdateEndDatetime">
+            <summary>
+            アップデート処理終了日時
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.ComputerName">
+            <summary>
+            コンピュータ名
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.IpAddress">
+            <summary>
+            IPアドレス
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.ServerClientKind">
+            <summary>
+            サーバ・クライアント種別
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.HasRepairReport">
+            <summary>
+            修理報告出力フラグ
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.EventDatetime">
+            <summary>
+            イベント日時
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.CollectDatetime">
+            <summary>
+            収集日時
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.MessageId">
+            <summary>
+            メッセージID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallResultHistoryResponseDto.CreateDatetime">
+            <summary>
+            作成日時
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallTypeMasterDto">
+            <summary>
+            インストールタイプマスタDTO
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallTypeMasterDto.InstallTypeSid">
+            <summary>
+            SID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.InstallTypeMasterDto.InstallTypeCode">
+            <summary>
+            コード
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Dto.ModelMasterDto">
+            <summary>
+            型式マスタ
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.ModelMasterDto.ModelSid">
+            <summary>
+            SID
+            </summary>
+        </member>
+        <member name="P:Rms.Server.Core.Azure.Functions.WebApi.Dto.ModelMasterDto.ModelCode">
+            <summary>
+            コード
+            </summary>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.StartUp.FunctionAppStartup">
+            <summary>
+            FunctionsApp 共通のスタートアップ処理
+            </summary>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.StartUp.FunctionAppStartup.Configure(Microsoft.Azure.Functions.Extensions.DependencyInjection.IFunctionsHostBuilder)">
+            <summary>
+            設定する
+            </summary>
+            <param name="builder">ビルダー</param>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.StartUp.SwashBuckleStartup">
+            <summary>
+            SwashBuckleStartup
+            </summary>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.StartUp.SwashBuckleStartup.Configure(Microsoft.Azure.WebJobs.IWebJobsBuilder)">
+            <summary>
+            Configure
+            </summary>
+            <param name="builder">builder</param>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Utility.RequestConverter">
+            <summary>
+            RequestValidator
+            </summary>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Utility.RequestConverter.Convert(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileAddRequestDto)">
+            <summary>
+            Dtoをファイル種別ごとに適切なクラスに変換する。
+            </summary>
+            <param name="source">変換元</param>
+            <returns>変換先。リクエストがnullの場合にはそのままnullを返す</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Utility.RequestConverter.Convert(Rms.Server.Core.Azure.Functions.WebApi.Dto.DeliveryFileUpdateRequestDto)">
+            <summary>
+            Dtoをファイル種別ごとに適切なクラスに変換する。
+            </summary>
+            <param name="source">変換元</param>
+            <returns>変換先。リクエストがnullの場合にはそのままnullを返す</returns>
+        </member>
+        <member name="T:Rms.Server.Core.Azure.Functions.WebApi.Utility.WebApiHelper">
+            <summary>
+            WebAPIHelper
+            </summary>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Utility.WebApiHelper.ConvertLongToByteArray(System.Int64)">
+            <summary>
+            long型パラメータをバイト配列型に変換する。並びはビッグエンディアン固定。
+            </summary>
+            <param name="param">long型パラメータ</param>
+            <returns>変換後バイト配列</returns>
+        </member>
+        <member name="M:Rms.Server.Core.Azure.Functions.WebApi.Utility.WebApiHelper.ConvertByteArrayToLong(System.Byte[])">
+            <summary>
+            バイト配列型パラメータをlong型に変換する。並びはビッグエンディアンとして処理する。
+            </summary>
+            <param name="param">バイト配列型パラメータ</param>
+            <returns>変換後long</returns>
+        </member>
+        <member name="T:RmsRms.Server.Core.Azure.Functions.WebApi.Dto.DeviceRemoteRequestDto">
+            <summary>
+            リモート接続開始要求DTO
+            </summary>
+            <remarks>
+            nullableを使用するのは、リクエストの欠落と初期値の区別をつけるため。
+            </remarks>
+        </member>
+        <member name="P:RmsRms.Server.Core.Azure.Functions.WebApi.Dto.DeviceRemoteRequestDto.SessionCode">
+            <summary>
+            セッションコード
+            </summary>
+        </member>
+    </members>
+</doc>

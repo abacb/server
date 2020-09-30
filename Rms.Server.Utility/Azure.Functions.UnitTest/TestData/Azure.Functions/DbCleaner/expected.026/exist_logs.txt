@@ -1,0 +1,2 @@
+[UT_DBC_DBC_003] データの削除に失敗しました。（データ情報：Rms.Server.Utility.Abstraction.Repositories.DtAlmilogAnalysisResultRepository, Rms.Server.Utility.Abstraction）
+[UT_DBC_DBC_003] データの削除に失敗しました。（データ情報：Rms.Server.Utility.Abstraction.Repositories.DtBloclogAnalysisResultRepository, Rms.Server.Utility.Abstraction）

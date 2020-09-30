@@ -1,0 +1,2 @@
+No,in_InitializeSqlSet,in_Message,expected_TableData,expected_FailureBlobFileSet,expected_LogMessages,Remarks
+"001","TestData\Azure.Functions\CalibrationPremonitor\001\initial.SQL","TestData\Azure.Functions\CalibrationPremonitor\001\input.message.json","TestData\Azure.Functions\DipAlmiLogAnalyzer\001\utility.DT_ALMILOG_ANALYSIS_RESULT.csv","TestData\Azure.Functions\CalibrationPremonitor\001\expected.FailureBlob","TestData\Azure.Functions\CalibrationPremonitor\001\expected.logs.txt","テストの説明を記載してください。"

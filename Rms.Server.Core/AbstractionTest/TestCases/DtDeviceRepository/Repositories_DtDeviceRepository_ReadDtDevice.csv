@@ -1,0 +1,5 @@
+﻿No,in_InsertNewDataSqlPath,in_DeleteNewDataSqlPath,expected_DataJsonPath,expected_ExceptionType,expected_ExceptionMessage,Remarks
+1_001,TestData\DtDeviceRepository\ReadDtDevice_1\InsertNewData.sql,TestData\DtDeviceRepository\ReadDtDevice_1\DeleteNewData.sql,TestData\DtDeviceRepository\ReadDtDevice_1\ExpectData_001.json,,,【正常系】データを読み出す(UID)
+1_002,TestData\DtDeviceRepository\ReadDtDevice_1\InsertNewData.sql,TestData\DtDeviceRepository\ReadDtDevice_1\DeleteNewData.sql,TestData\DtDeviceRepository\ReadDtDevice_1\ExpectData_002.json,,,【正常系】データを読み出す(エッジID)
+1_003,TestData\DtDeviceRepository\ReadDtDevice_1\InsertNewData.sql,TestData\DtDeviceRepository\ReadDtDevice_1\DeleteNewData.sql,TestData\DtDeviceRepository\ReadDtDevice_1\ExpectData_003.json,,,【正常系】データを読み出す(ヒットしない)
+1_004,TestData\DtDeviceRepository\ReadDtDevice_1\InsertNewData.sql,TestData\DtDeviceRepository\ReadDtDevice_1\DeleteNewData.sql,TestData\DtDeviceRepository\ReadDtDevice_1\ExpectData_004.json,,,【正常系】データを読み出す(null投入)

@@ -1,0 +1,2 @@
+No,in_InitializeSqlSet,in_Message,expected_TableData,expected_FailureBlobFileSet,expected_LogMessages,expected_WithoutError,Remarks
+001,,TestData\DispatchPlusServiceBillLog\001\input.message.json,TestData\DispatchPlusServiceBillLog\001\core.DT_PLUS_SERVICE_BILL_LOG.csv,TestData\DispatchPlusServiceBillLog\001\expected.FailureBlob,TestData\DispatchPlusServiceBillLog\001\expected.logs.txt,false,

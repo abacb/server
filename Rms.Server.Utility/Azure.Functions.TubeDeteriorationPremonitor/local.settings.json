@@ -1,0 +1,17 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "ConnectionString": "Endpoint=sb://meta-tril-eventhubs-ms-01.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=RN1Ku2Q5Lc+Qf1An2eMjUkwk/IRM1Me8T+m5UxlI9DI=",
+    "AlarmQueueName": "alarm-queue",
+    "SystemName": "rms",
+    "SubSystemName": "tubedeteriorationpremonitor",
+    "FailureBlobContainerName": "tube-deterioration-premonitor"
+  },
+  "ConnectionStrings": {
+    "PrimaryDbConnectionString": "Server=meta-rms-trial.database.windows.net;Database=meta.rms.trial.20200309;persist security info=True;user id=metaAdmin;password=FfRms_01;MultipleActiveResultSets=True",
+    "QueueStorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=metatechnotrialqueue;AccountKey=knL5xI/l8TZowaZbOsrh8NGNHF+JcEJz6JKFxBbxTnvgPmpaWVHY1nlDC9hzpQvQtr2vLONbP44LIT3iq0xQzA==;EndpointSuffix=core.windows.net",
+    "FailureBlobConnectionString": "DefaultEndpointsProtocol=https;AccountName=metatechnotrial;AccountKey=7eHSzMoqgdQmruEd2DUDUOOIMsPgkHS0mvQ9SZvuWpP8SKILqH1N1La8Y5jkYnQbKzd9mfYLbIEeH9BBNV7jvg==;EndpointSuffix=core.windows.net"
+  }
+}

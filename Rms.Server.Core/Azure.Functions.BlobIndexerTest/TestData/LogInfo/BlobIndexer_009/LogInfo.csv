@@ -1,0 +1,4 @@
+ContainerName,Path
+collect,log/120/file.json
+collect,error/120/file.json
+collect,device/abcd1234/sub/file.json

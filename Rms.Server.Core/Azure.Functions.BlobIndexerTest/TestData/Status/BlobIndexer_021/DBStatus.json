@@ -1,0 +1,29 @@
+[
+    {
+        "ContainerName": "log",
+        "Path": "120/file.json",
+        "UpdateTime": "2020-05-01T00:00:00.0000000",
+        "CreatedTime": "2020-05-01T00:00:00.0000000",
+        "DeviceFileAttributes": 
+            [
+                {
+                    "name": "sys_container",
+                    "value": "log",
+                    "UpdateTime": "2020-05-01T00:00:00.0000000",
+                    "CreatedTime": "2020-05-01T00:00:00.0000000"
+                },
+                {
+                    "name": "sys_owner",
+                    "value": "120",
+                    "UpdateTime": "2020-05-01T00:00:00.0000000",
+                    "CreatedTime": "2020-05-01T00:00:00.0000000"
+                },
+                {
+                    "name": "sys_file_datetime",
+                    "value": "2020-05-01 00:00:00",
+                    "UpdateTime": "2020-05-01T00:00:00.0000000",
+                    "CreatedTime": "2020-05-01T00:00:00.0000000"
+                }
+            ]
+    }
+]

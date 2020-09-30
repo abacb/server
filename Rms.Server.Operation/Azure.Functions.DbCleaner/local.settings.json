@@ -1,0 +1,14 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+
+    "DbCleanTarget_DtAlarm": "1",
+    "DbAccessMaxAttempts": "3",
+    "DbAccessDelayDeltaSeconds": "3"
+  },
+  "ConnectionStrings": {
+    "PrimaryDbConnectionString": "Server=tcp:rms-core-emu-jp-sqlsvr01-failover-group-rms-db01.database.windows.net,1433;Database=rms-db01;Uid=rmsoperation;Pwd=D5Npe8rXQXqh;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
+  }
+}

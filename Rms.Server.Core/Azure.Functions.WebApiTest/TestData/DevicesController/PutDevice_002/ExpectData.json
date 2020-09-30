@@ -1,0 +1,22 @@
+{
+  "Value": {
+    "sid": 1,
+    "edgeId": {0},
+    "installType": {
+      "installTypeSid": 2,
+      "installTypeCode": null
+    },
+    "equipmentUid": "device_equipmentUid01234567890",
+    "models": {
+      "modelSid": 2,
+      "modelCode": null
+    },
+    "createDatetime": "2020-04-01T09:00:00",
+    "updateDatetime": "2020-04-30T09:00:00",
+    "remoteConnectUid": null
+  },
+  "Formatters": [],
+  "ContentTypes": [],
+  "DeclaredType": null,
+  "StatusCode": 200
+}

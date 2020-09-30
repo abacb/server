@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>Rms.Server.Utility.Abstraction</AssemblyName>
+    <RootNamespace>Rms.Server.Utility.Abstraction</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Repositories\auto-generated\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Polly" Version="7.2.0" />
+    <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DbAccessor\DBAccessor.csproj" />
+    <ProjectReference Include="..\Utility\Utility.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Rms.Server.Core.Abstraction">
+      <HintPath>..\lib\Rms.Server.Core.Abstraction.dll</HintPath>
+    </Reference>
+    <Reference Include="Rms.Server.Core.Utility">
+      <HintPath>..\lib\Rms.Server.Core.Utility.dll</HintPath>
+    </Reference>
+    <Reference Include="Rms.Server.Operation.Utility">
+      <HintPath>..\lib\Rms.Server.Operation.Utility.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

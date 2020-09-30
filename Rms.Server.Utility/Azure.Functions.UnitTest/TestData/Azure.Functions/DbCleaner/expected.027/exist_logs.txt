@@ -1,0 +1,4 @@
+[UT_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_A is not supported.）
+[UT_DBC_DBC_004] データを削除しました。（データ情報：Rms.Server.Utility.Abstraction.Repositories.DtAlmilogAnalysisResultRepository, Rms.Server.Utility.Abstraction）
+[UT_DBC_DBC_004] データを削除しました。（データ情報：Rms.Server.Utility.Abstraction.Repositories.DtBloclogAnalysisResultRepository, Rms.Server.Utility.Abstraction）
+[UT_DBC_DBC_002] アプリケーション設定が不正です。（DbCleanTarget_Z is not supported.）

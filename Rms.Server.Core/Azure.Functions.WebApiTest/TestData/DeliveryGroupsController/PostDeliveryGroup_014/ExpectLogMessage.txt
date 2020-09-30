@@ -1,0 +1,1 @@
+[CO_API_DGC_002] パラメータが不正です。（ / The field DownloadDelayTime must be between 0 and 32767.）

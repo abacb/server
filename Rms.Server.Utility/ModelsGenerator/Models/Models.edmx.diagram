@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="05ce8e878feb4ced80f5898332222c50" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.DT_ALARM_DEF_CALIBRATION_PREMONITOR" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DT_ALARM_DEF_CONNECTION_MONITOR" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DT_ALARM_DEF_DIRECTORY_USAGE_MONITOR" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DT_ALARM_DEF_FAILURE_MONITOR" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DT_ALARM_DEF_FAILURE_PREMONITOR" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DT_ALARM_DEF_INSTALL_MONITOR" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DT_ALARM_DEF_PANEL_DEFECT_PREMONITOR" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DT_ALARM_DEF_PANEL_DISCHARGE_BREAKDOWN_PREMONITOR" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DT_ALARM_DEF_TEMPERATURE_MONITOR" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DT_ALARM_DEF_TUBE_CURRENT_DETERIORATION_PREMONITOR" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DT_ALARM_DEF_TUBE_DETERIORATION_PREMONITOR" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DT_ALMILOG_ANALYSIS_RESULT" Width="1.5" PointX="6.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DT_ALMILOG_PREMONITOR" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DT_BLOCLOG_ANALYSIS_RESULT" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

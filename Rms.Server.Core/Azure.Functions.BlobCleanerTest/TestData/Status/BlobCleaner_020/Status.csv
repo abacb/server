@@ -1,0 +1,5 @@
+ContainerName,Path,DB_Check,DB_Deleted,Blob_Check,Blob_Deleted
+device,369e2b6e-e1e1-4263-9af9-643f9c03ac5c/folder1/filea.json,TRUE,TRUE,TRUE,TRUE
+device,369e2b6e-e1e1-4263-9af9-643f9c03ac5c/folder1/fileb.json,FALSE,FALSE,FALSE,FALSE
+device,369e2b6e-e1e1-4263-9af9-643f9c03ac5c/folder2/filec.json,FALSE,FALSE,FALSE,FALSE
+device,369e2b6e-e1e1-4263-9af9-643f9c03ac5c/folder2/filed.json,FALSE,FALSE,FALSE,FALSE

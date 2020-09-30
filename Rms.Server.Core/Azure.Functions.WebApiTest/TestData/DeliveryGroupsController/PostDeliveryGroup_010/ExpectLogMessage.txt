@@ -1,0 +1,1 @@
+[CO_API_DGC_002] パラメータが不正です。（ / The field Name must be a string or array type with a maximum length of '100'.）

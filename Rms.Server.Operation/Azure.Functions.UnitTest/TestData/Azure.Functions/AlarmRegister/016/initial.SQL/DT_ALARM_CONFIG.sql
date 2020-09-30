@@ -1,0 +1,4 @@
+INSERT INTO operation.DT_ALARM_CONFIG VALUES (10, 19, 'amarume.hiraku@meta.co.jp', 0, N'メール送信間隔0', SYSUTCDATETIME(), SYSUTCDATETIME(), DEFAULT);
+INSERT INTO operation.DT_ALARM_CONFIG VALUES (20, 29, 'amarume.hiraku@meta.co.jp', 0, N'メール送信間隔0', SYSUTCDATETIME(), SYSUTCDATETIME(), DEFAULT);
+INSERT INTO operation.DT_ALARM_CONFIG VALUES (30, 30, '', null, N'メール送信無し', SYSUTCDATETIME(), SYSUTCDATETIME(), DEFAULT);
+INSERT INTO operation.DT_ALARM_CONFIG VALUES (31, 31, 'amarume.hiraku@meta.co.jp', 0, N'メール送信間隔0', SYSUTCDATETIME(), SYSUTCDATETIME(), DEFAULT);

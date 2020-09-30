@@ -1,0 +1,1758 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="..\Settings\test\local.settings.json" Link="local.settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Azure.Functions.Dispatcher\Azure.Functions.Dispatcher.csproj" />
+    <ProjectReference Include="..\Azure.Functions.StartUp\Azure.Functions.StartUp.csproj" />
+    <ProjectReference Include="..\TestHelper\TestHelper.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TestCases\" />
+    <Folder Include="TestData\DispatchPlusServiceBillLog\001\expected.FailureBlob\" />
+    <Folder Include="TestData\DispatchPlusServiceBillLog\001\initial.SQL\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="DispatchSoftVersionTest.cs">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="TestCases\DispatchController_DispatchDirectoryUsage.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DispatchController_DispatchDiskDrive.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DispatchController_DispatchEquipmentUsage.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DispatchController_DispatchPlusServiceBillLog.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\DispatchController_DispatchSoftVersion.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\AppSettings_002.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\AppSettings_003.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\AppSettings_004.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeleteDispatcherData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DeleteMastersReseed.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\005\expected.FailureBlob\MS-026\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\005\initial.SQL\DT_DEVICE_005.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\005\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\007\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\007\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\007\initial.SQL\DT_DEVICE_007.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\007\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\008\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\008\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\008\initial.SQL\DT_DEVICE_008.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\008\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\009\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\009\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\009\initial.SQL\DT_DEVICE_009.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\009\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\010\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\010\expected.FailureBlob\MS-026\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\010\initial.SQL\DT_DEVICE_010.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\010\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\011\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\011\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\011\initial.SQL\DT_DEVICE_011.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\011\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\016\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\016\expected.FailureBlob\MS-026\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\016\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\016\initial.SQL\DT_DEVICE_016.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\016\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\017\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\017\expected.FailureBlob\MS-026\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\017\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\017\initial.SQL\DT_DEVICE_017.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\017\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\018\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\018\expected.FailureBlob\MS-026\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\018\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\018\initial.SQL\DT_DEVICE_018.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\018\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\019\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\019\expected.FailureBlob\MS-026\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\019\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\019\initial.SQL\DT_DEVICE_019.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\019\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\020\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\020\expected.FailureBlob\MS-026\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\020\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\020\initial.SQL\DT_DEVICE_020.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\020\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\021\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\021\expected.FailureBlob\MS-026\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\021\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\021\initial.SQL\DT_DEVICE_021.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\021\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\022\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\022\expected.FailureBlob\MS-026\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\022\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\022\initial.SQL\DT_DEVICE_022.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\022\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\023\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\023\expected.FailureBlob\MS-026\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\023\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\023\initial.SQL\DT_DEVICE_023.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\023\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\024\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\024\expected.FailureBlob\MS-026\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\024\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\024\initial.SQL\DT_DEVICE_024.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\024\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\025\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\025\expected.FailureBlob\MS-026\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\025\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\025\initial.SQL\DT_DEVICE_025.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\025\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\026\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\026\expected.FailureBlob\MS-026\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\026\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\026\initial.SQL\DT_DEVICE_026.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\026\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\027\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\027\expected.FailureBlob\MS-026\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\027\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\027\initial.SQL\DT_DEVICE_027.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\027\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\028\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\028\expected.FailureBlob\MS-026\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\028\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\028\initial.SQL\DT_DEVICE_028.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\028\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\029\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\029\expected.FailureBlob\MS-026\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\029\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\029\initial.SQL\DT_DEVICE_029.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\029\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\030\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\030\expected.FailureBlob\MS-026\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\030\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\030\initial.SQL\DT_DEVICE_030.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\030\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\032\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\032\expected.FailureBlob\MS-026\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\032\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\032\initial.SQL\DT_DEVICE_032.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\032\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\033\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\033\expected.FailureBlob\MS-026\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\033\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\033\initial.SQL\DT_DEVICE_033.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\033\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\034\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\034\expected.FailureBlob\MS-026\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\034\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\034\initial.SQL\DT_DEVICE_034.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\034\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\035\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\035\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\035\initial.SQL\DT_DEVICE_035.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\035\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\036\core.DT_DIRECTORY_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\036\expected.FailureBlob\MS-026\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\036\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\036\initial.SQL\DT_DEVICE_036.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDirectoryUsage\036\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\005\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\005\initial.SQL\DT_DEVICE_005.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\005\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\007\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\007\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\007\initial.SQL\DT_DEVICE_007.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\007\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\008\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\008\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\008\initial.SQL\DT_DEVICE_008.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\008\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\009\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\009\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\009\initial.SQL\DT_DEVICE_009.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\009\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\010\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\010\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\010\initial.SQL\DT_DEVICE_010.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\010\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\011\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\011\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\011\initial.SQL\DT_DEVICE_011.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\011\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\016\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\016\expected.FailureBlob\MS-027\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\016\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\016\initial.SQL\DT_DEVICE_016.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\016\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\017\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\017\expected.FailureBlob\MS-027\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\017\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\017\initial.SQL\DT_DEVICE_017.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\017\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\018\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\018\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\018\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\018\initial.SQL\DT_DEVICE_018.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\018\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\019\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\019\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\019\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\019\initial.SQL\DT_DEVICE_019.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\019\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\020\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\020\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\020\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\020\initial.SQL\DT_DEVICE_020.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\020\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\021\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\021\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\021\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\021\initial.SQL\DT_DEVICE_021.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\021\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\022\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\022\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\022\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\022\initial.SQL\DT_DEVICE_022.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\022\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\023\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\023\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\023\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\023\initial.SQL\DT_DEVICE_023.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\023\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\024\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\024\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\024\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\024\initial.SQL\DT_DEVICE_024.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\024\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\025\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\025\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\025\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\025\initial.SQL\DT_DEVICE_025.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\025\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\026\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\026\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\026\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\026\initial.SQL\DT_DEVICE_026.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\026\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\027\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\027\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\027\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\027\initial.SQL\DT_DEVICE_027.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\027\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\028\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\028\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\028\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\028\initial.SQL\DT_DEVICE_028.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\028\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\029\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\029\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\029\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\029\initial.SQL\DT_DEVICE_029.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\029\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\030\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\030\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\030\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\030\initial.SQL\DT_DEVICE_030.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\030\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\031\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\031\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\031\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\031\initial.SQL\DT_DEVICE_031.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\031\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\032\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\032\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\032\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\032\initial.SQL\DT_DEVICE_032.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\032\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\033\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\033\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\033\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\033\initial.SQL\DT_DEVICE_033.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\033\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\034\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\034\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\034\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\034\initial.SQL\DT_DEVICE_034.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\034\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\035\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\035\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\035\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\035\initial.SQL\DT_DEVICE_035.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\035\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\036\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\036\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\036\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\036\initial.SQL\DT_DEVICE_036.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\036\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\037\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\037\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\037\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\037\initial.SQL\DT_DEVICE_037.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\037\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\038\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\038\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\038\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\038\initial.SQL\DT_DEVICE_038.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\038\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\039\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\039\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\039\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\039\initial.SQL\DT_DEVICE_039.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\039\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\040\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\040\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\040\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\040\initial.SQL\DT_DEVICE_040.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\040\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\041\core.DT_DISK_DRIVE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\041\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\041\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\041\initial.SQL\DT_DEVICE_041.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\041\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\042\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\042\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\042\initial.SQL\DT_DEVICE_042.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\042\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\043\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\043\initial.SQL\DT_DEVICE_043.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\043\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\044\expected.FailureBlob\MS-027\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\044\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\044\initial.SQL\DT_DEVICE_044.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchDiskDrive\044\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\005\expected.FailureBlob\MS-028\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\005\initial.SQL\DT_DEVICE_005.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\005\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\007\core.DT_EQUIPMENT_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\007\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\007\initial.SQL\DT_DEVICE_007.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\007\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\008\core.DT_EQUIPMENT_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\008\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\008\initial.SQL\DT_DEVICE_008.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\008\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\009\core.DT_EQUIPMENT_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\009\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\009\initial.SQL\DT_DEVICE_009.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\009\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\010\core.DT_EQUIPMENT_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\010\expected.FailureBlob\MS-028\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\010\initial.SQL\DT_DEVICE_010.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\010\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\011\core.DT_EQUIPMENT_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\011\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\011\initial.SQL\DT_DEVICE_011.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\011\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\016\core.DT_EQUIPMENT_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\016\expected.FailureBlob\MS-028\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\016\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\016\initial.SQL\DT_DEVICE_016.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\016\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\017\core.DT_EQUIPMENT_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\017\expected.FailureBlob\MS-028\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\017\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\017\initial.SQL\DT_DEVICE_017.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\017\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\018\core.DT_EQUIPMENT_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\018\expected.FailureBlob\MS-028\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\018\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\018\initial.SQL\DT_DEVICE_018.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\018\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\019\core.DT_EQUIPMENT_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\019\expected.FailureBlob\MS-028\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\019\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\019\initial.SQL\DT_DEVICE_019.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\019\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\020\core.DT_EQUIPMENT_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\020\expected.FailureBlob\MS-028\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\020\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\020\initial.SQL\DT_DEVICE_020.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\020\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\021\core.DT_EQUIPMENT_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\021\expected.FailureBlob\MS-028\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\021\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\021\initial.SQL\DT_DEVICE_021.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\021\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\022\core.DT_EQUIPMENT_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\022\expected.FailureBlob\MS-028\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\022\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\022\initial.SQL\DT_DEVICE_022.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\022\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\023\core.DT_EQUIPMENT_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\023\expected.FailureBlob\MS-028\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\023\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\023\initial.SQL\DT_DEVICE_023.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\023\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\024\core.DT_EQUIPMENT_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\024\expected.FailureBlob\MS-028\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\024\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\024\initial.SQL\DT_DEVICE_024.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\024\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\025\core.DT_EQUIPMENT_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\025\expected.FailureBlob\MS-028\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\025\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\025\initial.SQL\DT_DEVICE_025.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\025\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\026\core.DT_EQUIPMENT_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\026\expected.FailureBlob\MS-028\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\026\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\026\initial.SQL\DT_DEVICE_026.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\026\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\027\core.DT_EQUIPMENT_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\027\expected.FailureBlob\MS-028\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\027\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\027\initial.SQL\DT_DEVICE_027.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\027\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\028\core.DT_EQUIPMENT_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\028\expected.FailureBlob\MS-028\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\028\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\028\initial.SQL\DT_DEVICE_028.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\028\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\029\core.DT_EQUIPMENT_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\029\expected.FailureBlob\MS-028\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\029\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\029\initial.SQL\DT_DEVICE_029.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\029\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\030\core.DT_EQUIPMENT_USAGE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\030\expected.FailureBlob\MS-028\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\030\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\030\initial.SQL\DT_DEVICE_030.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\030\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\031\expected.FailureBlob\MS-028\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\031\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\031\initial.SQL\DT_DEVICE_031.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\031\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\032\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\032\initial.SQL\DT_DEVICE_032.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\032\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\033\expected.FailureBlob\MS-028\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\033\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\033\initial.SQL\DT_DEVICE_033.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchEquipmentUsage\033\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\005\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\005\initial.SQL\DT_DEVICE_005.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\005\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\007\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\007\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\007\initial.SQL\DT_DEVICE_007.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\007\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\008\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\008\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\008\initial.SQL\DT_DEVICE_008.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\008\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\009\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\009\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\009\initial.SQL\DT_DEVICE_009.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\009\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\010\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\010\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\010\initial.SQL\DT_DEVICE_010.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\010\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\011\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\011\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\011\initial.SQL\DT_DEVICE_011.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\011\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\016\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\016\expected.FailureBlob\ms-025\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\016\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\016\initial.SQL\DT_DEVICE_016.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\016\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\017\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\017\expected.FailureBlob\ms-025\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\017\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\017\initial.SQL\DT_DEVICE_017.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\017\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\018\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\018\expected.FailureBlob\ms-025\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\018\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\018\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\018\initial.SQL\DT_DEVICE_018.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\018\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\019\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\019\expected.FailureBlob\ms-025\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\019\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\019\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\019\initial.SQL\DT_DEVICE_019.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\019\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\020\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\020\expected.FailureBlob\ms-025\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\020\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\020\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\020\initial.SQL\DT_DEVICE_020.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\020\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\021\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\021\expected.FailureBlob\ms-025\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\021\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\021\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\021\initial.SQL\DT_DEVICE_021.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\021\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\022\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\022\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\022\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\022\initial.SQL\DT_DEVICE_022.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\022\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\023\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\023\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\023\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\023\initial.SQL\DT_DEVICE_023.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\023\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\024\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\024\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\024\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\024\initial.SQL\DT_DEVICE_024.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\024\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\025\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\025\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\025\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\025\initial.SQL\DT_DEVICE_025.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\025\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\026\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\026\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\026\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\026\initial.SQL\DT_DEVICE_026.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\026\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\027\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\027\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\027\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\027\initial.SQL\DT_DEVICE_027.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\027\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\028\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\028\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\028\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\028\initial.SQL\DT_DEVICE_028.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\028\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\029\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\029\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\029\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\029\initial.SQL\DT_DEVICE_029.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\029\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\030\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\030\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\030\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\030\initial.SQL\DT_DEVICE_030.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\030\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\031\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\031\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\031\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\031\initial.SQL\DT_DEVICE_031.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\031\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\032\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\032\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\032\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\032\initial.SQL\DT_DEVICE_032.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\032\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\033\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\033\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\033\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\033\initial.SQL\DT_DEVICE_033.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\033\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\034\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\034\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\034\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\034\initial.SQL\DT_DEVICE_034.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\034\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\035\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\035\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\035\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\035\initial.SQL\DT_DEVICE_035.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\035\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\036\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\036\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\036\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\036\initial.SQL\DT_DEVICE_036.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\036\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\037\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\037\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\037\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\037\initial.SQL\DT_DEVICE_037.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\037\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\038\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\038\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\038\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\038\initial.SQL\DT_DEVICE_038.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\038\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\039\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\039\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\039\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\039\initial.SQL\DT_DEVICE_039.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\039\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\040\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\040\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\040\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\040\initial.SQL\DT_DEVICE_040.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\040\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\041\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\041\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\041\initial.SQL\DT_DEVICE_041.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\041\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\042\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\042\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\042\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\042\initial.SQL\DT_DEVICE_042.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\042\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\043\core.DT_SOFT_VERSION.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\043\expected.FailureBlob\MS-025\2030\01\01\2ffd90c1-bbf7-4d95-9571-65f9524eeed0_20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\043\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\043\initial.SQL\DT_DEVICE_043.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\DispatchSoftVersion\043\input.message.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\MakeMasterTableData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

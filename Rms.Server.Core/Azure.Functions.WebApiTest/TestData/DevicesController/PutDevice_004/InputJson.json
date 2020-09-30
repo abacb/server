@@ -1,0 +1,17 @@
+{
+  "device": {
+    "installType": {
+      "installTypeSid": 2,
+      "installTypeCode": "G"
+    },
+    "equipmentName": "H",
+    "equipmentSerialNumber": "I",
+    "model": {
+      "modelSid": 2,
+      "modelCode": "J"
+    },
+    "networkRoute": "K"
+  },
+  "parent": {},
+  "children": []
+}

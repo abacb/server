@@ -1,0 +1,1002 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <DebugType Condition="'$(Configuration)'=='DEBUG'">full</DebugType>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="Moq" Version="4.13.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
+    <PackageReference Include="OpenCover" Version="4.7.922" />
+    <PackageReference Include="ReportGenerator" Version="4.5.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TestData\Azure.Functions\MailSender\001\expected.FailureBlob\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Azure.Functions.AlarmRegister\Azure.Functions.AlarmRegister.csproj" />
+    <ProjectReference Include="..\Azure.Functions.DbCleaner\Azure.Functions.DbCleaner.csproj" />
+    <ProjectReference Include="..\Azure.Functions.MailSender\Azure.Functions.MailSender.csproj" />
+    <ProjectReference Include="..\Azure.Functions.StartUp\Azure.Functions.StartUp.csproj" />
+    <ProjectReference Include="..\TestHelper\TestHelper.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Rms.Server.Core.Abstraction">
+      <HintPath>..\lib\Rms.Server.Core.Abstraction.dll</HintPath>
+    </Reference>
+    <Reference Include="Rms.Server.Core.Service">
+      <HintPath>..\lib\Rms.Server.Core.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="Rms.Server.Core.Utility">
+      <HintPath>..\lib\Rms.Server.Core.Utility.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="local.settings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Functions_DbCleaner_CleanDb.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Functions_MailSender_DequeueMailInfo.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestCases\Functions_AlarmRegister_DequeueAlarmInfo.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\001\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\001\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\001\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\001\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\001\opration.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\002\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\002\expected.mailqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\002\expected.MailQueue\expected.mailqueue_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\002\initial.SQL\DT_ALARM.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\002\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\002\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\002\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\003\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\003\expected.MailQueue\expected.mailqueue_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\003\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\003\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\003\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\004\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\004\expected.MailQueue\expected.mailqueue_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\004\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\004\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\004\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\005\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\005\initial.SQL\DT_ALARM.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\005\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\005\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\005\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\006\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\006\initial.SQL\DT_ALARM.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\006\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\006\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\006\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\007\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\007\expected.MailQueue\expected.mailqueue_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\007\initial.SQL\DT_ALARM.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\007\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\007\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\007\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\008\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\008\initial.SQL\DT_ALARM.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\008\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\008\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\008\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\009\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\009\initial.SQL\DT_ALARM.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\009\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\009\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\009\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\010\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\010\expected.MailQueue\expected.mailqueue_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\010\initial.SQL\DT_ALARM.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\010\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\010\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\010\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\011\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\011\initial.SQL\DT_ALARM.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\011\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\011\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\011\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\012\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\012\expected.MailQueue\expected.mailqueue_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\012\initial.SQL\DT_ALARM.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\012\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\012\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\012\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\013\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\013\expected.MailQueue\expected.mailqueue_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\013\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\013\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\013\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\014\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\014\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\014\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\015\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\015\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\015\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\016\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\016\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\016\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\017\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\017\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\017\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\018\expected.FailureBlob\2030\01\01\20300101000000000_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\018\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\018\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\018\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\018\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\019\expected.FailureBlob\2030\01\01\20300101000000000_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\019\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\019\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\019\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\019\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\020\expected.FailureBlob\2030\01\01\20300101000000000_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\020\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\020\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\020\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\020\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\021\expected.FailureBlob\2030\01\01\20300101000000000_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\021\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\021\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\021\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\021\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\022\expected.FailureBlob\2030\01\01\20300101000000000_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\022\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\022\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\022\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\022\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\023\expected.FailureBlob\2030\01\01\20300101000000000_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\023\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\023\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\023\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\023\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\024\expected.FailureBlob\2030\01\01\20300101000000000_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\024\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\024\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\024\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\024\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\025\expected.FailureBlob\2030\01\01\20300101000000000_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\025\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\025\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\025\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\025\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\026\expected.FailureBlob\2030\01\01\20300101000000000_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\026\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\026\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\026\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\026\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\027\expected.FailureBlob\2030\01\01\20300101000000000_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\027\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\027\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\027\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\027\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\028\expected.FailureBlob\2030\01\01\20300101000000000_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\028\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\028\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\028\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\028\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\029\expected.FailureBlob\2030\01\01\20300101000000000_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\029\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\029\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\029\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\029\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\030\expected.FailureBlob\2030\01\01\20300101000000000_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\030\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\030\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\030\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\030\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\031\expected.FailureBlob\2030\01\01\20300101000000000_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\031\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\031\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\031\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\031\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\032\expected.FailureBlob\2030\01\01\20300101000000000_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\032\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\032\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\032\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\032\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\033\expected.FailureBlob\2030\01\01\20300101000000000_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\033\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\033\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\033\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\033\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\034\expected.FailureBlob\2030\01\01\20300101000000000_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\034\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\034\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\034\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\034\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\035\expected.FailureBlob\2030\01\01\20300101000000000_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\035\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\035\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\035\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\035\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\036\expected.FailureBlob\2030\01\01\20300101000000000_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\036\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\036\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\036\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\036\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\037\expected.FailureBlob\2030\01\01\20300101000000000_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\037\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\037\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\037\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\037\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\038\expected.FailureBlob\2030\01\01\20300101000000000_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\038\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\038\initial.SQL\DT_ALARM_CONFIG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\038\input.alarmqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\038\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\AlarmRegister\DbPreset.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_001.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_002.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_003.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_004.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_005.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_006.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_007.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_008.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_009.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_010.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_011.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_012.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\AppSettings_013.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.006\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.006\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.006\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.007\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.007\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.007\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.008\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.008\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.008\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.009\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.009\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.009\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.011\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.011\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.011\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.015\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.015\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.015\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.016\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.016\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.016\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.017\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.017\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.017\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.018\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.018\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.018\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.019\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.019\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.019\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.020\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.020\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.020\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.021\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.021\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.021\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.022\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.022\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.022\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.023\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.023\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.023\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.024\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.024\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.024\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.025\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.025\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.025\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.026\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.026\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.026\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.027\exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.027\not_exist_logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.027\operation.DT_ALARM.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.all\operation.DT_EQUIPMENT.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.all\operation.DT_INSTALL_BASE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\expected.all\operation.MT_NETWORK_ROUTE.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\SQL_DBCleaner_in%28削除対象外%29_001.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\SQL_DBCleaner_in_001.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\SQL_DBCleaner_in_002.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\SQL_DBCleaner_in_003.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\SQL_DBCleaner_in_004.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\SQL_DBCleaner_in_005.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\SQL_DBCleaner_in_006.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\SQL_DBCleaner_in_007.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\SQL_DBCleaner_in_008.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\DbCleaner\SQL_DBCleaner_in_009.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\001\input.mailqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\002\input.mailqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\003\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\002\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\001\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\003\input.mailqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\004\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\004\input.mailqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\005\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\005\input.mailqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\006\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\006\input.mailqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\007\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\007\input.mailqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\008\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\008\input.mailqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\009\expected.FailureBlob\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\009\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\009\input.mailqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\010\expected.FailureBlob\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\010\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\010\input.mailqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\011\expected.FailureBlob\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\011\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\011\input.mailqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\012\expected.FailureBlob\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\012\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\012\input.mailqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\013\expected.FailureBlob\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\013\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\013\input.mailqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\014\expected.FailureBlob\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\014\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\014\input.mailqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\015\expected.FailureBlob\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\015\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\015\input.mailqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\016\expected.FailureBlob\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\016\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\016\input.mailqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\017\expected.FailureBlob\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\017\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\017\input.mailqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\018\expected.FailureBlob\2030\01\01\20300101000000000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\018\expected.logs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Azure.Functions\MailSender\018\input.mailqueue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

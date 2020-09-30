@@ -1,0 +1,1 @@
+delete from core.MT_CONNECT_STATUS where CODE = 'unconnected';

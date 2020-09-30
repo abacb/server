@@ -1,0 +1,2 @@
+[UT_DBC_DBC_002] アプリケーション設定が不正です。（value is required.）
+[UT_DBC_DBC_002] アプリケーション設定が不正です。（value is required.）

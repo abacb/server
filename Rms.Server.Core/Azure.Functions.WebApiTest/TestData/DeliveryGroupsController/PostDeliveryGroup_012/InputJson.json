@@ -1,0 +1,16 @@
+{
+  "deliveryFileSid": 1,
+  "name": "WebApiAddTestあ",
+  "startDatetime": "10000-01-01T00:00:00.0000000Z",
+  "downloadDelayTime": 10,
+  "deliveryDestinations": [
+    {
+      "deviceSid": 1,
+      "gatewayDeviceSid": 1
+    },
+    {
+      "deviceSid": 2,
+      "gatewayDeviceSid": 1
+    }
+  ]
+}

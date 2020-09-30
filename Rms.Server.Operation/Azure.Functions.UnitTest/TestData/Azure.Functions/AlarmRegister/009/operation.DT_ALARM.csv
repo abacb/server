@@ -1,0 +1,9 @@
+SID,EQUIPMENT_SID,TYPE_CODE,ERROR_CODE,ALARM_LEVEL,ALARM_TITLE,ALARM_DESCRIPTION,ALARM_DATETIME,ALARM_DEF_ID,EVENT_DATETIME,HAS_MAIL,MESSAGE_ID,CREATE_DATETIME
+1,1,rms_hobbit_server,ActCode01090001,30,RelayAppでエラーが発生しています。,設定ファイルが不正です。アラーム内容を伝え解析を依頼してください。,2030-01-01T00:00:00Z,rms_fail_1,2019-12-12T08:13:28Z,1,2ffd90c1-bbf7-4d95-9571-65f9524eeed0,2029-12-24T00:00:00Z
+2,1,rms_hobbit_server,ActCode01090001,30,RelayAppでエラーが発生しています。,設定ファイルが不正です。アラーム内容を伝え解析を依頼してください。,2030-01-01T00:00:00Z,rms_fail_1,2019-12-12T08:13:28Z,0,3ffd90c1-bbf7-4d95-9571-65f9524eeed0,2029-12-25T00:00:00Z
+3,1,rms_hobbit_server,ActCode01090001,30,RelayAppでエラーが発生しています。,設定ファイルが不正です。アラーム内容を伝え解析を依頼してください。,2030-01-01T00:00:00Z,rms_fail_1,2019-12-12T08:13:28Z,0,4ffd90c1-bbf7-4d95-9571-65f9524eeed0,2029-12-26T00:00:00Z
+4,2,type_code_1,error_code_1,10,アラームタイトル1,アラーム定義IDが異なりかつメール未送信のアラームデータ1,2019-11-01T00:00:00Z,rsm_fail_2,2019-12-12T08:13:28Z,0,6ffd90c1-bbf7-4d95-9571-65f9524eeed0,2029-12-27T00:00:00Z
+5,2,type_code_1,error_code_1,10,アラームタイトル1,アラーム定義IDが異なりかつメール未送信のアラームデータ2,2019-11-02T00:00:00Z,rsm_fail_2,2019-12-13T08:13:28Z,0,7ffd90c1-bbf7-4d95-9571-65f9524eeed0,2029-12-28T00:00:00Z
+6,3,type_code_2,error_code_2,30,アラームタイトル2,アラーム定義IDが異なりかつメール送信済みのアラームデータ,2019-11-03T00:00:00Z,rsm_disk_1,2019-12-14T08:13:28Z,1,8ffd90c1-bbf7-4d95-9571-65f9524eeed0,2029-12-29T00:00:00Z
+7,1,rms_hobbit_server,ActCode01090001,30,RelayAppでエラーが発生しています。,設定ファイルが不正です。アラーム内容を伝え解析を依頼してください。,2030-01-01T00:00:00Z,rms_fail_1,2019-12-12T08:13:28Z,1,9ffd90c1-bbf7-4d95-9571-65f9524eeed0,2029-12-30T00:00:00Z
+8,1,rms_hobbit_server,ActCode01090001,30,RelayAppでエラーが発生しています。,設定ファイルが不正です。アラーム内容を伝え解析を依頼してください。,2030-01-01T00:00:00Z,rms_fail_1,2019-12-12T08:13:28Z,0,affd90c1-bbf7-4d95-9571-65f9524eeed0,2030-01-01T00:00:00Z
